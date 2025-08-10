@@ -1,152 +1,296 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - สวัสดี ฉันคือ [ชื่อของคุณ]</title>
-     <!-- Google Fonts -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ksuitcs • Portfolio (Landing Page)</title>
+  <meta name="description" content="Portfolio สำหรับสมัครงาน – เลือกดูผลงานที่คัดให้ตรงกับบริษัทเป้าหมาย (ไม่มี dropdown) รองรับมือถือเต็มรูปแบบ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfG4Z5qX6p1O9x4cJr4G5sS1d5Vt0Kw10wYF5ZCkq9r+YbC2YQ5xRL5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --bg-soft: #121a2b;
+      --card: #0f172a;
+      --text: #e6edf6;
+      --muted: #a9b5c9;
+      --brand: #00d8d6;
+      --brand-2: #74fac8;
+      --ring: rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text); background:
+        radial-gradient(60rem 60rem at 80% -10%, rgba(0,216,214,.15), transparent 60%),
+        radial-gradient(70rem 70rem at -20% 10%, rgba(116,250,200,.07), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Header */
+    .site-header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(11,18,32,.75);
+      border-bottom:1px solid var(--ring);
+    }
+    .container{max-width:1180px; margin-inline:auto; padding:0 20px}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{font-weight:700; letter-spacing:.4px}
+    .nav-links{display:flex; gap:18px; flex-wrap:wrap}
+    .nav-links a{font-size:.95rem; color:var(--muted)}
+    .nav-links a:hover{color:#fff}
+    .cta{
+      display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border:1px solid var(--ring);
+      border-radius:14px; background:transparent; color:#fff; font-weight:600;
+    }
+    .cta.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b1220; border:none}
+
+    /* Hero */
+    .hero{padding:72px 0 40px}
+    .grid{display:grid; gap:28px}
+    @media(min-width:960px){.grid-2{grid-template-columns:1.2fr 1fr}}
+    .headline{font-size:clamp(1.9rem,4vw,3.2rem); line-height:1.15; font-weight:800}
+    .lead{color:#d6deea; font-size:1.05rem}
+    .hero-btns{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .hero-badge{margin-top:14px; color:var(--muted); font-size:.95rem}
+
+    .preview{
+      border:1px solid var(--ring); border-radius:22px; padding:6px; background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      box-shadow:0 20px 50px rgba(0,0,0,.45)
+    }
+    .preview img{border-radius:16px; aspect-ratio:4/3; object-fit:cover}
+
+    /* Target Companies (Big Buttons) */
+    section{padding:64px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:20px}
+    .section-head h2{margin:0; font-size:clamp(1.4rem,3vw,2rem)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    .company-grid{display:grid; gap:18px}
+    @media(min-width:780px){.company-grid{grid-template-columns:repeat(3,1fr)}}
+
+    .company-card{
+      display:block; position:relative; padding:18px; border-radius:18px; border:1px solid var(--ring);
+      background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      transition:.25s transform, .25s box-shadow, .25s border-color;
+      box-shadow:0 10px 26px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+    .company-card:hover{transform:translateY(-2px); border-color:rgba(0,216,214,.45); box-shadow:0 16px 40px rgba(0,0,0,.35)}
+    .chip{display:inline-block; padding:.25rem .6rem; font-size:.75rem; border:1px solid var(--ring); border-radius:999px; background:rgba(255,255,255,.06)}
+    .open{display:inline-flex; align-items:center; gap:.4rem; font-weight:700; letter-spacing:.2px; color:var(--brand)}
+
+    /* About */
+    .about{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)}
+
+    /* Skills */
+    .skills{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .skill{padding:.4rem .75rem; border-radius:999px; border:1px solid var(--ring); background:rgba(255,255,255,.06); font-size:.9rem}
+
+    /* Work teaser */
+    .cards{display:grid; gap:18px}
+    @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{border:1px solid var(--ring); border-radius:16px; overflow:hidden; background:rgba(255,255,255,.04)}
+    .card img{aspect-ratio:16/10; object-fit:cover}
+    .card .p{padding:14px}
+
+    /* Contact */
+    .contact-grid{display:grid; gap:12px}
+    @media(min-width:960px){.contact-grid{grid-template-columns:repeat(4,1fr)}}
+    .contact-item{display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--ring); border-radius:14px; background:rgba(255,255,255,.05)}
+
+    /* Footer */
+    footer{border-top:1px solid var(--ring); padding:22px 0; color:var(--muted); font-size:.95rem}
+    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px}
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="logo">Portfolio</div>
-            <ul class="nav-menu">
-                <li><a href="#home">หน้าแรก</a></li>
-                <li><a href="#about">เกี่ยวกับฉัน</a></li>
-                <li><a href="#skills">ทักษะ</a></li>
-                <li><a href="#contact">ติดต่อ</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#home" class="brand">Ksuitcs • Portfolio</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="cta" href="#contact"><i class="fa-regular fa-envelope"></i> ติดต่อ</a>
+        <a class="cta primary" href="#cv"><i class="fa-regular fa-file-lines"></i> Download CV</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="main-content" id="home">
-        <div class="hero-section">
-            <div class="profile-image fade-in">
-                👨‍💻
-            </div>
-            <h1 class="hero-title fade-in delay-1">สวัสดี ฉันคือ [ชื่อของคุณ]</h1>
-            <p class="hero-subtitle fade-in delay-2">Full Stack Developer | UI/UX Designer | Creative Problem Solver</p>
-            <p class="intro-text fade-in delay-3">
-                ยินดีต้อนรับสู่ Portfolio ของฉัน! ฉันเป็นนักพัฒนาเว็บไซต์ที่มีความหลงใหลในการสร้างสรรค์ผลงานที่ทั้งสวยงามและใช้งานได้จริง 
-                พร้อมที่จะนำความคิดสร้างสรรค์และทักษะการเขียนโปรแกรมมาช่วยให้บริษัทของคุณเติบโตไปด้วยกัน
-            </p>
-            
-            <!-- Portfolio Buttons -->
-            <div class="portfolio-buttons fade-in delay-4">
-                <a href="#company1" class="portfolio-btn">
-                    <span class="btn-icon">🏢</span>
-                    <div class="btn-title">บริษัท Technology Startup</div>
-                    <div class="btn-description">Portfolio สำหรับตำแหน่ง Frontend Developer - เน้นการพัฒนา UI/UX และ Modern Web Technologies</div>
-                </a>
-                
-                <a href="#company2" class="portfolio-btn">
-                    <span class="btn-icon">🏦</span>
-                    <div class="btn-title">บริษัทธนาคารชั้นนำ</div>
-                    <div class="btn-description">Portfolio สำหรับตำแหน่ง Full Stack Developer - เน้นระบบความปลอดภัยและการพัฒนาแอพพลิเคชันการเงิน</div>
-                </a>
-                
-                <a href="#company3" class="portfolio-btn">
-                    <span class="btn-icon">🎨</span>
-                    <div class="btn-title">บริษัท Creative Agency</div>
-                    <div class="btn-description">Portfolio สำหรับตำแหน่ง Creative Developer - เน้นการออกแบบและพัฒนาเว็บไซต์เชิงสร้างสรรค์</div>
-                </a>
-            </div>
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container grid grid-2">
+      <div>
+        <h1 class="headline">สวัสดีครับ, ผม <span style="color:var(--brand)">Ksuitcs</span></h1>
+        <p class="lead">อาจารย์และนักพัฒนาระบบ: <strong>HTML/CSS/JS</strong>, <strong>PHP/MySQL</strong>, <strong>React</strong>, และ <strong>Data Visualization</strong> พร้อมผลงานด้าน <strong>AI & IoT</strong> และ UX/UI ที่ใช้งานจริง</p>
+        <div class="hero-btns">
+          <a class="cta primary" href="#targets"><i class="fa-solid fa-arrow-right"></i> ดูผลงานสำหรับบริษัทเป้าหมาย</a>
+          <a class="cta" href="#work">ดูโปรเจกต์ล่าสุด</a>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#privacy">นโยบายความเป็นส่วนตัว</a>
-                <a href="#terms">ข้อกำหนดการใช้งาน</a>
-                <a href="#sitemap">แผนผังเว็บไซต์</a>
-                <a href="#contact">ติดต่อเรา</a>
-            </div>
-            
-            <div class="social-links">
-                <a href="#" class="social-link" title="LinkedIn">💼</a>
-                <a href="#" class="social-link" title="GitHub">🐱</a>
-                <a href="#" class="social-link" title="Email">✉️</a>
-                <a href="#" class="social-link" title="Phone">📞</a>
-            </div>
-            
-            <p>&copy; 2025 [ชื่อของคุณ] Portfolio. สงวนลิขสิทธิ์.</p>
+        <div class="hero-badge">• Responsive • โค้ดคุณภาพ • เน้นประสิทธิภาพ • พร้อมร่วมทีม</div>
+      </div>
+      <div>
+        <div class="preview">
+          <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?q=80&w=1600&auto=format&fit=crop" alt="Portfolio preview" />
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Mobile Navigation Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+  <!-- Companies (3 big buttons) -->
+  <section id="targets">
+    <div class="container">
+      <div class="section-head">
+        <h2>Portfolio สำหรับบริษัทเป้าหมาย</h2>
+        <p class="muted">เลือกดูเวอร์ชันที่คัดเนื้อหาให้ตรง JD</p>
+      </div>
+      <div class="company-grid">
+        <a class="company-card" href="company-a.html">
+          <div class="muted">Target</div>
+          <h3 style="margin:.2rem 0 0">Company A</h3>
+          <div class="chip" style="margin:.5rem 0 0">Frontend / HTML-CSS-JS</div>
+          <p class="muted" style="margin:.7rem 0 0">เน้น UI/UX, Performance, SEO, และงานเว็บแบบมืออาชีพ</p>
+          <div style="margin-top:.9rem" class="open">เปิดดู <i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+        <a class="company-card" href="company-b.html">
+          <div class="muted">Target</div>
+          <h3 style="margin:.2rem 0 0">Company B</h3>
+          <div class="chip" style="margin:.5rem 0 0">Full‑Stack / PHP + MySQL</div>
+          <p class="muted" style="margin:.7rem 0 0">ระบบจริง จัดการข้อมูล ความปลอดภัย และรายงาน</p>
+          <div style="margin-top:.9rem" class="open">เปิดดู <i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+        <a class="company-card" href="company-c.html">
+          <div class="muted">Target</div>
+          <h3 style="margin:.2rem 0 0">Company C</h3>
+          <div class="chip" style="margin:.5rem 0 0">Data / Dashboard & AI</div>
+          <p class="muted" style="margin:.7rem 0 0">สถิติ, DataViz, IoT Dashboard, งาน AI ที่ใช้จริง</p>
+          <div style="margin-top:.9rem" class="open">เปิดดู <i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="muted">ผู้เชี่ยวชาญด้านการสอนสถิติและเทคโนโลยีสารสนเทศ พัฒนา Web App และระบบ IoT ที่ใช้งานจริงในองค์กร ชอบสร้างผลิตภัณฑ์ที่ใช้งานได้จริง โค้ดสะอาด ขยายต่อได้</p>
+    </div>
+  </section>
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="skills">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">PHP 8</span>
+        <span class="skill">MySQL</span>
+        <span class="skill">UX/UI</span>
+        <span class="skill">Chart.js</span>
+        <span class="skill">Docker</span>
+        <span class="skill">Zabbix / Grafana</span>
+        <span class="skill">SEO</span>
+        <span class="skill">React</span>
+      </div>
+    </div>
+  </section>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <!-- Work teaser -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Recent Work (Teaser)</h2>
+        <a class="muted" href="#">ดูทั้งหมดเร็ว ๆ นี้</a>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project 1">
+          <div class="p">
+            <div class="muted">Case Study #1</div>
+            <strong>ระบบจัดการข้อมูล + Dashboard</strong>
+            <p class="muted">Responsive • เขียนโค้ดสะอาด • ใช้งานจริง</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Project 2">
+          <div class="p">
+            <div class="muted">Case Study #2</div>
+            <strong>เว็บพอร์ต SEO‑friendly</strong>
+            <p class="muted">โหลดไว • โครงสร้างดีต่อ SEO</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Project 3">
+          <div class="p">
+            <div class="muted">Case Study #3</div>
+            <strong>IoT Dashboard & Alert</strong>
+            <p class="muted">กราฟสวย • แจ้งเตือนทันที</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
-        });
+  <!-- Contact -->
+  <section id="contact" class="about">
+    <div class="container">
+      <h2>ติดต่อ</h2>
+      <div class="contact-grid" style="margin-top:14px">
+        <a class="contact-item" href="mailto:you@email.com"><i class="fa-regular fa-envelope"></i> you@email.com</a>
+        <a class="contact-item" href="tel:+66999999999"><i class="fa-solid fa-phone"></i> +66 9 9999 9999</a>
+        <a class="contact-item" href="#"><i class="fa-brands fa-github"></i> github.com/yourname</a>
+        <a class="contact-item" href="#"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/yourname</a>
+      </div>
+    </div>
+  </section>
 
-        // Portfolio button hover effects
-        const portfolioBtns = document.querySelectorAll('.portfolio-btn');
-        portfolioBtns.forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="y"></span> Ksuitcs. All rights reserved.</div>
+      <div style="display:flex; gap:12px">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-        // Add click handlers for portfolio buttons (placeholder for now)
-        portfolioBtns.forEach((btn, index) => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert(`กำลังเตรียมเปิดหน้า Portfolio สำหรับบริษัทที่ ${index + 1}`);
-            });
-        });
-    </script>
+  <script>
+    // ปีในฟุตเตอร์
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ปรับโฟกัสเมื่อกด anchor เพื่อการเข้าถึง (accessibility)
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href');
+        if(id.length>1){
+          const el = document.querySelector(id);
+          if(el){
+            e.preventDefault();
+            el.setAttribute('tabindex', '-1');
+            el.focus({preventScroll:true});
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }
+      })
+    })
+  </script>
 </body>
 </html>
