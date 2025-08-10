@@ -3,25 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio – Company B (Full-Stack PHP + MySQL) | Thidarat</title>
-  <meta name="description" content="Portfolio ฉบับคัดเฉพาะสำหรับ Company B: Full-Stack PHP + MySQL, ระบบจัดการข้อมูล, ความปลอดภัย และรายงาน พร้อมตัวอย่างผลงาน/โค้ด/การออกแบบฐานข้อมูล" />
+  <title>Resume (Company B) – Thidarat Budsad</title>
+  <meta name="description" content="เรซูเม่ฉบับคัดเฉพาะสำหรับ Company B – Full-Stack PHP + MySQL, CRUD, Report, Auth, REST API, Docker" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root{
-      /* Pastel Purple–Pink Theme */
+      /* Pastel Purple–Pink */
       --bg:#ffffff; --bg-soft:#fdf7ff; --card:#ffffff;
       --text:#0f172a; --muted:#64748b;
       --brand:#a78bfa; --brand-2:#f9a8d4;
       --brand-strong-1:#8b5cf6; --brand-strong-2:#f472b6;
-      --ring:rgba(124,58,237,.16); --ring-strong:rgba(124,58,237,.35);
+      --ring:rgba(124,58,237,.16);
       --shadow:0 8px 24px rgba(124,58,237,.08);
       --shadow-hover:0 14px 32px rgba(236,72,153,.16);
-      --ok:#10b981; --warn:#f59e0b;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -34,442 +31,246 @@
       line-height:1.6;
     }
     a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
 
-    .container{max-width:1180px; margin-inline:auto; padding:0 20px}
+    /* Layout */
+    .page{max-width:980px; margin:24px auto; padding:18px;}
+    .card{background:var(--card); border:1px solid #e5e7eb; border-radius:16px; box-shadow:var(--shadow)}
+    .header{padding:22px; display:grid; gap:16px; align-items:center}
+    @media(min-width:860px){ .header{grid-template-columns:1fr 220px} }
 
-    /* Header */
-    .site-header{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.85); border-bottom:1px solid var(--ring)}
-    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-    .brand{font-weight:700; letter-spacing:.4px}
-    .nav-links{display:flex; gap:18px; flex-wrap:wrap}
-    .nav-links a{font-size:.95rem; color:var(--muted)}
-    .nav-links a:hover{color:var(--brand-strong-1)}
-    .nav-actions{display:flex; gap:10px}
-    .cta{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border:1px solid var(--ring); border-radius:14px; background:#fff; color:var(--text); font-weight:600; box-shadow:var(--shadow)}
-    .cta:hover{box-shadow:var(--shadow-hover)}
-    .cta.primary{background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2)); color:#fff; border:none}
-
-    /* Hamburger (mobile) */
-    .hamburger{display:none; width:42px; height:42px; border-radius:10px; border:1px solid var(--ring); background:#fff; align-items:center; justify-content:center; cursor:pointer; box-shadow:var(--shadow)}
-    .hamburger .lines{position:relative; width:22px; height:2px; background:var(--text); transition:transform .25s ease, background .25s ease}
-    .hamburger .lines::before,.hamburger .lines::after{content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text); transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease}
-    .hamburger .lines::before{top:-7px}
-    .hamburger .lines::after{bottom:-7px}
-    .hamburger[aria-expanded="true"] .lines{background:transparent}
-    .hamburger[aria-expanded="true"] .lines::before{top:0; transform:rotate(45deg)}
-    .hamburger[aria-expanded="true"] .lines::after{bottom:0; transform:rotate(-45deg)}
-
-    /* Mobile panel & backdrop */
-    .backdrop{position:fixed; inset:0; background:rgba(2,6,23,.35); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:55}
-    .backdrop.active{opacity:1; pointer-events:auto}
-    .mobile-panel{position:fixed; top:64px; right:14px; width:min(88vw,320px); border:1px solid var(--ring); border-radius:16px; background:#fff; transform:translateY(-12px) scale(.98); opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:var(--shadow-hover)}
-    .mobile-panel.active{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
-    .mobile-panel .panel-inner{padding:12px}
-    .mobile-panel nav{display:flex; flex-direction:column}
-    .mobile-panel nav a{padding:10px 12px; border-radius:10px; color:var(--text)}
-    .mobile-panel nav a:hover{background:#f8f5ff}
-    .mobile-panel .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring); background:#fff}
-    .no-scroll{overflow:hidden}
-
-    /* Desktop vs Mobile */
-    @media(min-width:960px){ .hamburger{display:none} .mobile-panel,.backdrop{display:none} }
-    @media(max-width:959.98px){ .nav-links,.nav-actions{display:none} .hamburger{display:inline-flex} }
-
-    /* Hero */
-    .hero{padding:72px 0 40px}
-    .grid{display:grid; gap:28px}
-    @media(min-width:960px){.grid-2{grid-template-columns:1.1fr 1fr}}
-    .headline{font-size:clamp(1.8rem,4vw,3rem); line-height:1.15; font-weight:800}
-    .lead{color:#334155; font-size:1.06rem}
-    .badges{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+    .name{font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.1; margin:0}
+    .role{margin:6px 0 0; color:#344256; font-weight:600}
+    .badges{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
     .badge{padding:.35rem .7rem; border-radius:999px; border:1px solid var(--ring); background:#fff; font-size:.9rem}
 
-    .preview{border:1px solid var(--ring); border-radius:22px; padding:6px; background:linear-gradient(180deg,#fff,#f8fafc); box-shadow:var(--shadow-hover)}
-    .preview img{border-radius:16px; aspect-ratio:4/3; object-fit:cover}
+    .avatar{border-radius:14px; overflow:hidden; border:1px solid var(--ring)}
+    .avatar img{aspect-ratio:1/1; object-fit:cover; width:100%; height:auto}
 
-    /* Sections */
-    section{padding:64px 0}
-    .section-head{display:flex; align-items:end; justify-content:space-between; gap:20px}
-    .section-head h2{margin:0; font-size:clamp(1.4rem,3vw,2rem)}
-    .muted{color:var(--muted); font-size:.95rem}
+    .contact{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:.4rem .7rem; border:1px solid var(--ring); border-radius:10px; background:#fff; font-size:.95rem}
 
-    /* JD Fit */
-    .fit-grid{display:grid; gap:18px}
-    @media(min-width:780px){.fit-grid{grid-template-columns:repeat(3,1fr)}}
-    .fit-card{border:1px solid var(--ring); border-radius:16px; padding:16px; background:#fff; box-shadow:var(--shadow)}
-    .fit-card h3{margin:0 0 .25rem 0; font-size:1.05rem}
-    .fit-card ul{margin:.4rem 0 0 1.1rem}
-    .fit-card li{margin:.18rem 0}
+    /* Grid: main / aside */
+    .grid{display:grid; gap:18px; margin-top:18px}
+    @media(min-width:980px){ .grid{grid-template-columns:1.6fr .9fr} }
 
-    /* Projects */
-    .cards{display:grid; gap:18px}
-    @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
-    .card{border:1px solid var(--ring); border-radius:16px; overflow:hidden; background:#fff; box-shadow:var(--shadow)}
-    .card img{aspect-ratio:16/10; object-fit:cover}
-    .card .p{padding:14px}
-    .meta{display:flex; gap:10px; flex-wrap:wrap; margin:.4rem 0}
-    .pill{padding:.25rem .6rem; border-radius:999px; border:1px solid var(--ring); font-size:.78rem; background:#fdf7ff}
-    .links{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    section{padding:16px}
+    section h2{margin:0 0 8px; font-size:1.2rem}
+    .muted{color:var(--muted)}
 
-    /* DB & API */
-    .dbapi{display:grid; gap:18px}
-    @media(min-width:900px){.dbapi{grid-template-columns:1fr 1fr}}
-    .panel{border:1px solid var(--ring); border-radius:16px; background:#fff; padding:16px; box-shadow:var(--shadow)}
-    pre{margin:0; padding:10px; background:#f8f5ff; border:1px solid var(--ring); border-radius:10px; overflow:auto}
-    .tbl{width:100%; border-collapse:separate; border-spacing:0; font-size:.95rem}
-    .tbl th,.tbl td{border-bottom:1px solid #e5e7eb; padding:8px 10px; text-align:left}
-    .tbl th{color:#334155; background:#faf5ff}
+    /* Lists / items */
+    .list{display:grid; gap:12px}
+    .item{padding:12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff}
+    .item h3{margin:0 0 2px; font-size:1.05rem}
+    .sub{display:flex; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:.95rem}
+    .bullets{margin:.4rem 0 0 1.1rem}
+    .bullets li{margin:.18rem 0}
 
-    /* Security & DevOps */
-    .perf{display:grid; gap:18px}
-    @media(min-width:780px){.perf{grid-template-columns:1fr 1fr}}
-    .perf-card{border:1px solid var(--ring); border-radius:16px; padding:16px; background:#fff; box-shadow:var(--shadow)}
-    .score{display:flex; align-items:center; gap:10px}
-    .dot{width:10px; height:10px; border-radius:999px; background:var(--ok)}
-    .warn{background:var(--warn)}
+    /* Pills */
+    .pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .pill{padding:.28rem .6rem; border-radius:999px; border:1px solid var(--ring); background:#fdf7ff; font-size:.85rem}
 
-    /* Footer */
-    footer{border-top:1px solid #e5e7eb; padding:22px 0; color:var(--muted); font-size:.95rem}
-    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px}
+    /* Buttons */
+    .actions{position:sticky; top:10px; display:flex; gap:10px; justify-content:flex-end; padding:10px}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:.55rem .9rem; border-radius:12px; border:1px solid var(--ring);
+      background:#fff; cursor:pointer; font-weight:600; box-shadow:var(--shadow);
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2)); color:#fff; border:none}
 
-    /* Reduce motion */
-    @media (prefers-reduced-motion: reduce){ .hamburger .lines, .hamburger .lines::before, .hamburger .lines::after, .mobile-panel{transition:none} }
+    /* Footer note */
+    .foot{display:flex; justify-content:space-between; align-items:center; padding:12px 16px; color:var(--muted); font-size:.95rem}
+
+    /* Print (A4) */
+    @page{ size:A4; margin:12mm }
+    @media print{
+      body{ background:#fff }
+      .actions{ display:none !important }
+      .page{ max-width:none; margin:0; padding:0 }
+      .card{ box-shadow:none; border-color:#ddd }
+      .btn, .chip{ box-shadow:none }
+      a[href^="http"]::after{ content:" (" attr(href) ")"; font-size:.85em; color:#555 }
+    }
   </style>
 </head>
 <body>
-  <!-- Backdrop for mobile menu -->
-  <div class="backdrop" id="backdrop" hidden></div>
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html">← กลับหน้าแรก</a>
-
-      <!-- Desktop nav -->
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#overview">Overview</a>
-        <a href="#projects">Projects</a>
-        <a href="#dbapi">Database & API</a>
-        <a href="#security">Security/DevOps</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav-actions">
-        <a class="cta" href="#contact"><i class="fa-regular fa-envelope"></i> ติดต่อ</a>
-        <a class="cta primary" href="cv-company-b.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> CV สำหรับ Company B</a>
-      </div>
-
-      <!-- Mobile hamburger -->
-      <button class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-controls="mobilePanel" aria-expanded="false">
-        <span class="lines" aria-hidden="true"></span>
-      </button>
+  <div class="page">
+    <!-- Sticky Actions -->
+    <div class="actions">
+      <a class="btn" href="company-b.html">← Company B Portfolio</a>
+      <a class="btn" href="index.html">หน้าแรก</a>
+      <button class="btn primary" onclick="window.print()">ดาวน์โหลด PDF</button>
     </div>
-  </header>
 
-  <!-- Mobile panel -->
-  <aside class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="เมนูนำทาง" hidden>
-    <div class="panel-inner">
-      <nav aria-label="Mobile primary">
-        <a href="#overview">Overview</a>
-        <a href="#projects">Projects</a>
-        <a href="#dbapi">Database & API</a>
-        <a href="#security">Security/DevOps</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="panel-actions">
-        <a class="cta" href="index.html">← หน้าแรก</a>
-        <a class="cta primary" href="cv-company-b.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> CV สำหรับ Company B</a>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Hero / Overview -->
-  <section id="overview" class="hero">
-    <div class="container grid grid-2">
+    <!-- Header -->
+    <div class="card header">
       <div>
-        <h1 class="headline">Company B — Full-Stack Focus</h1>
-        <p class="lead">
-          พอร์ตฉบับปรับเนื้อหาให้ตรง JD: <strong>PHP 8</strong>, <strong>MySQL</strong>, <strong>CRUD + Report</strong>, <strong>AuthN/AuthZ</strong>, <strong>REST API</strong>, <strong>Docker</strong>
-        </p>
+        <h1 class="name">Thidarat Budsad</h1>
+        <div class="role">Full-Stack Developer (PHP 8 • MySQL • REST API • Docker)</div>
         <div class="badges">
-          <span class="badge">MVC</span>
-          <span class="badge">RESTful</span>
-          <span class="badge">Secure by default</span>
+          <span class="badge">CRUD + Report</span>
+          <span class="badge">AuthN/AuthZ (RBAC)</span>
+          <span class="badge">MVC • RESTful</span>
           <span class="badge">Docker Compose</span>
         </div>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="cta primary" href="#projects"><i class="fa-solid fa-arrow-right"></i> ดูโปรเจกต์เด่น</a>
-          <a class="cta" href="#dbapi">ดู Database & API</a>
+        <div class="contact">
+          <a class="chip" href="mailto:you@email.com">you@email.com</a>
+          <a class="chip" href="tel:+66999999999">+66 9 9999 9999</a>
+          <a class="chip" href="https://github.com/yourname" target="_blank" rel="noopener">github.com/yourname</a>
+          <a class="chip" href="https://linkedin.com/in/yourname" target="_blank" rel="noopener">linkedin.com/in/yourname</a>
         </div>
       </div>
-      <div>
-        <div class="preview">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop" alt="Full-Stack preview" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JD Fit -->
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <h2>สิ่งที่ Company B ต้องการ ↔ หลักฐานความเหมาะสม</h2>
-      </div>
-      <div class="fit-grid">
-        <div class="fit-card">
-          <h3>Backend (PHP 8)</h3>
-          <ul>
-            <li>โครงสร้าง MVC, Routing ชัด, Controller/Service/Repo แยกหน้าที่</li>
-            <li>Validation ฝั่งเซิร์ฟเวอร์ + Sanitization</li>
-            <li>JWT/Session-based Auth, RBAC (Roles/Permissions)</li>
-          </ul>
-        </div>
-        <div class="fit-card">
-          <h3>Database (MySQL)</h3>
-          <ul>
-            <li>ออกแบบสคีมา Normalized + Index สำคัญ</li>
-            <li>Migration/Seeder พร้อมใช้งานหลายสภาพแวดล้อม</li>
-            <li>Query Optimization, Explain Plan</li>
-          </ul>
-        </div>
-        <div class="fit-card">
-          <h3>Reporting & Ops</h3>
-          <ul>
-            <li>รายงานสรุป/ส่งออก CSV/XLSX</li>
-            <li>Docker Compose (Nginx + PHP-FPM + MySQL)</li>
-            <li>สำรองข้อมูลอัตโนมัติ, .env แยก stage</li>
-          </ul>
-        </div>
+      <div class="avatar">
+        <!-- แก้เป็นรูปจริงของคุณ -->
+        <img src="../images/p2.jpg" alt="Thidarat portrait">
       </div>
     </div>
-  </section>
 
-  <!-- Featured Projects -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-head">
-        <h2>โปรเจกต์เด่นสาย Full-Stack</h2>
-        <p class="muted">ตัวอย่างงานระบบจัดการข้อมูล/รายงาน/สิทธิ์ผู้ใช้</p>
-      </div>
+    <!-- Body -->
+    <div class="grid">
+      <!-- Main -->
+      <main class="card">
+        <section>
+          <h2>สรุปย่อ (Summary)</h2>
+          <p class="muted">
+            นักศึกษาชั้นปีที่ 4 มหาวิทยาลัยกาฬสินธุ์ (รหัส 651420002012-5) สนใจงาน Full-Stack
+            ถนัด <strong>PHP 8</strong>, <strong>MySQL</strong>, <strong>REST API</strong>, <strong>Auth (RBAC)</strong>, และ <strong>รายงานข้อมูล</strong>.
+            โค้ดอ่านง่าย แยกชั้น Controller/Service/Repository ชัดเจน และใช้ Docker จัดสภาพแวดล้อมได้รวดเร็ว
+          </p>
+        </section>
 
-      <div class="cards">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project 1">
-          <div class="p">
-            <strong>Inventory & Orders Management</strong>
-            <div class="meta">
-              <span class="pill">PHP 8</span><span class="pill">MySQL</span><span class="pill">RBAC</span><span class="pill">Report</span>
+        <section>
+          <h2>ประสบการณ์ / โปรเจกต์ที่เกี่ยวข้อง</h2>
+          <div class="list">
+            <div class="item">
+              <h3>Inventory & Orders Management</h3>
+              <div class="sub"><span>Web App (ทีมขนาดเล็ก)</span> • <span>2025</span></div>
+              <ul class="bullets">
+                <li>CRUD สินค้า/คำสั่งซื้อ พร้อม RBAC (Admin/Manager/Staff)</li>
+                <li>ออกรายงานยอดขาย (CSV/XLSX) และสรุปแดชบอร์ด</li>
+                <li>เขียน Query Optimize และจัด Index บนฟิลด์สำคัญ</li>
+              </ul>
+              <div class="pills"><span class="pill">PHP 8</span><span class="pill">MySQL</span><span class="pill">RBAC</span><span class="pill">Report</span></div>
             </div>
-            <p class="muted">CRUD ครบ, สิทธิ์แยกระดับ (Admin/Manager/Staff), ออกรายงานยอดขาย</p>
-            <div class="links">
-              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-regular fa-eye"></i> Demo</a>
-              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+
+            <div class="item">
+              <h3>REST API สำหรับ Mobile App</h3>
+              <div class="sub"><span>Backend-only</span> • <span>2025</span></div>
+              <ul class="bullets">
+                <li>Login JWT, Refresh Token, Rate Limit, Error Shape เดียวกันทั้งระบบ</li>
+                <li>เขียนเอกสาร OpenAPI/Swagger และทำ Pagination มาตรฐาน</li>
+                <li>แยก Service/Repository, ทดสอบ Endpoint พื้นฐาน</li>
+              </ul>
+              <div class="pills"><span class="pill">REST</span><span class="pill">JWT</span><span class="pill">OpenAPI</span></div>
+            </div>
+
+            <div class="item">
+              <h3>Admin Dashboard + Export</h3>
+              <div class="sub"><span>Internal Tool</span> • <span>2024–2025</span></div>
+              <ul class="bullets">
+                <li>แดชบอร์ดสถิติแบบเรียลไทม์ย่อ (Cache ผลรวมเพื่อลดภาระ DB)</li>
+                <li>ระบบ Export CSV/XLSX ผ่านคิวงาน</li>
+              </ul>
+              <div class="pills"><span class="pill">Caching</span><span class="pill">CSV/XLSX</span><span class="pill">Chart.js</span></div>
             </div>
           </div>
-        </article>
+        </section>
 
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Project 2">
-          <div class="p">
-            <strong>REST API สำหรับ Mobile App</strong>
-            <div class="meta">
-              <span class="pill">JWT</span><span class="pill">Rate Limit</span><span class="pill">OpenAPI</span>
-            </div>
-            <p class="muted">Auth, Pagination, Error Shape มาตรฐาน, เอกสาร Swagger</p>
-            <div class="links">
-              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-regular fa-eye"></i> Docs</a>
-              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Project 3">
-          <div class="p">
-            <strong>Admin Dashboard + Export</strong>
-            <div class="meta">
-              <span class="pill">Chart.js</span><span class="pill">CSV/XLSX</span><span class="pill">Caching</span>
-            </div>
-            <p class="muted">แดชบอร์ดสถิติ, คิวงานสร้างไฟล์รายงาน, แคชผลรวม</p>
-            <div class="links">
-              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-regular fa-eye"></i> Demo</a>
-              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+        <section>
+          <h2>การศึกษา</h2>
+          <div class="list">
+            <div class="item">
+              <h3>มหาวิทยาลัยกาฬสินธุ์</h3>
+              <div class="sub"><span>ปริญญาตรี (ปี 4)</span> • <span>สาขาเทคโนโลยีสารสนเทศ</span> • <span>2022–ปัจจุบัน</span></div>
+              <ul class="bullets">
+                <li>วิชาเด่น: Web Programming, Database, Software Engineering, Data Visualization</li>
+                <li>โครงงาน: ระบบเว็บ/แดชบอร์ด/REST API</li>
+              </ul>
             </div>
           </div>
-        </article>
-      </div>
+        </section>
+
+        <section>
+          <h2>เกียรติบัตร/ผลงานเพิ่มเติม</h2>
+          <div class="list">
+            <div class="item">
+              <h3>Certificate: Backend Fundamentals (PHP/MySQL)</h3>
+              <div class="sub"><span>2025</span></div>
+              <p class="muted">แนบลิงก์/ไฟล์ผลงานหรือสรุปสั้น ๆ</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Aside -->
+      <aside class="card">
+        <section>
+          <h2>ทักษะหลัก</h2>
+          <div class="pills">
+            <span class="pill">PHP 8</span><span class="pill">MySQL</span><span class="pill">REST API</span>
+            <span class="pill">Auth (JWT/Session)</span><span class="pill">RBAC</span>
+            <span class="pill">MVC</span><span class="pill">Report</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>เครื่องมือ & DevOps</h2>
+          <div class="pills">
+            <span class="pill">Docker/Compose</span><span class="pill">Nginx + PHP-FPM</span>
+            <span class="pill">Composer</span><span class="pill">Git/GitHub</span>
+            <span class="pill">Linux Basics</span><span class="pill">OpenAPI</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>ฐานข้อมูล</h2>
+          <div class="list">
+            <div class="item">
+              <div class="sub">ออกแบบสคีมา • Index • Migration/Seeder • Explain Plan</div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>ความปลอดภัย</h2>
+          <div class="pills">
+            <span class="pill">Prepared Statements</span><span class="pill">Password Hash</span>
+            <span class="pill">CSRF</span><span class="pill">Input Validation</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>ภาษา</h2>
+          <div class="list">
+            <div class="item"><strong>ไทย</strong> — ดีมาก</div>
+            <div class="item"><strong>อังกฤษ</strong> — ปานกลาง (อ่านเอกสารเทคนิคได้)</div>
+          </div>
+        </section>
+
+        <section>
+          <h2>ข้อมูลส่วนตัว</h2>
+          <div class="list">
+            <div class="item">
+              <strong>ชื่อ:</strong> นางสาวธิดารัตน์ บุตรศาสตร์<br/>
+              <strong>รหัสนักศึกษา:</strong> 651420002012-5<br/>
+              <strong>สถานะ:</strong> นักศึกษาชั้นปีที่ 4
+            </div>
+          </div>
+        </section>
+      </aside>
     </div>
-  </section>
 
-  <!-- Database & API -->
-  <section id="dbapi">
-    <div class="container">
-      <div class="section-head">
-        <h2>Database & API</h2>
-        <p class="muted">สคีมาหลัก + ตัวอย่างเอนด์พอยต์มาตรฐาน</p>
-      </div>
-
-      <div class="dbapi">
-        <div class="panel">
-          <strong>Schema (ย่อ):</strong>
-<pre><code>users (id, name, email [unique], password_hash, role, created_at)
-products (id, sku [unique], name, price, stock, created_at)
-orders (id, user_id, total, status, created_at)
-order_items (order_id, product_id, qty, price)
-
-INDEX:
-- users.email, products.sku, products.name, orders.created_at
-FK:
-- orders.user_id → users.id
-- order_items.order_id → orders.id
-- order_items.product_id → products.id</code></pre>
-          <div style="margin-top:10px" class="muted">รองรับ Migration/Seeder และโหลดชุดข้อมูลตัวอย่างได้</div>
-        </div>
-
-        <div class="panel">
-          <strong>REST API (ตัวอย่าง):</strong>
-<pre><code>POST /api/v1/auth/login
-200 { "token":"&lt;jwt&gt;", "user":{"id":1,"name":"Admin","role":"admin"} }
-
-GET /api/v1/products?page=1&amp;limit=20&amp;q=monitor
-200 { "data":[...], "meta":{"page":1,"total":120} }
-
-POST /api/v1/orders
-Body: { "items":[{"product_id":1,"qty":2}] }
-201 { "id":101, "total": 1200.00, "status":"new" }</code></pre>
-          <div style="margin-top:10px" class="muted">มี Rate-Limit, Error Shape เดียวกันทั้งระบบ, รองรับ Swagger/OpenAPI</div>
-        </div>
-      </div>
+    <div class="card foot">
+      <div>อัปเดตล่าสุด: <span id="updated"></span></div>
+      <div>© <span id="y"></span> Thidarat</div>
     </div>
-  </section>
-
-  <!-- Security & DevOps -->
-  <section id="security">
-    <div class="container">
-      <div class="section-head">
-        <h2>Security & DevOps</h2>
-        <p class="muted">แนวทางที่ใช้จริงในงานโปรดักชันขนาดเล็ก-กลาง</p>
-      </div>
-
-      <div class="perf">
-        <div class="perf-card">
-          <h3>Security Checklist</h3>
-          <ul>
-            <li><span class="dot"></span> Password Hash: <code>password_hash()</code> (bcrypt/argon2)</li>
-            <li><span class="dot"></span> Prepared Statements ทุกคำสั่ง SQL</li>
-            <li><span class="dot"></span> CSRF Token ฟอร์ม + SameSite Cookie</li>
-            <li><span class="dot"></span> Input Validation/Filtering ทั้งฝั่ง Client/Server</li>
-            <li><span class="dot"></span> RBAC: Roles/Permissions แยกชัด</li>
-            <li><span class="dot warn"></span> มีแผนเพิ่ม Content Security Policy</li>
-          </ul>
-        </div>
-
-        <div class="perf-card">
-          <h3>DevOps / Deploy</h3>
-<pre><code># docker-compose.yml (ย่อ)
-services:
-  nginx: { image: nginx:alpine, volumes: ["./app:/var/www/html"], ports: ["8080:80"] }
-  php:   { image: php:8.2-fpm,   volumes: ["./app:/var/www/html"] }
-  db:    { image: mysql:8, environment: { MYSQL_DATABASE: app, MYSQL_ROOT_PASSWORD: secret } }</code></pre>
-          <ul style="margin-top:8px">
-            <li>แยก <code>.env</code> ตาม stage (dev/staging/prod)</li>
-            <li>สคริปต์ Backup DB รายวัน, Healthcheck เบื้องต้น</li>
-            <li>CI เบื้องต้นสำหรับ Lint/Test ก่อน deploy</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" style="padding-top:48px; padding-bottom:64px; background:var(--bg-soft); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)">
-    <div class="container">
-      <div class="section-head">
-        <h2>พร้อมคุยรายละเอียดงานกับ Company B</h2>
-        <p class="muted">ส่งอีเมลหรือทักมาพูดคุยกันได้เลย</p>
-      </div>
-      <div style="display:grid; gap:12px">
-        <a class="cta" href="mailto:you@email.com"><i class="fa-regular fa-envelope"></i> you@email.com
-        </a>
-        <a class="cta" href="tel:+66999999999"><i class="fa-solid fa-phone"></i> +66 9 9999 9999</a>
-        <div class="links" style="margin-top:6px">
-          <a class="cta" href="index.html">← กลับหน้าแรก</a>
-          <a class="cta primary" href="cv-company-b.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> ดาวน์โหลด CV สำหรับ Company B</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container foot">
-      <div>© <span id="y"></span> Thidarat. All rights reserved.</div>
-      <div style="display:flex; gap:12px">
-        <a href="#overview">Overview</a>
-        <a href="#projects">Projects</a>
-        <a href="#dbapi">Database & API</a>
-        <a href="#security">Security/DevOps</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    // ปีในฟุตเตอร์
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Smooth anchor + focus
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const id = link.getAttribute('href');
-        if(id.length>1){
-          const el = document.querySelector(id);
-          if(el){
-            e.preventDefault();
-            el.setAttribute('tabindex','-1');
-            el.focus({preventScroll:true});
-            el.scrollIntoView({behavior:'smooth', block:'start'});
-          }
-        }
-      });
-    });
-
-    // ===== Mobile menu logic =====
-    const burger = document.getElementById('hamburger');
-    const panel  = document.getElementById('mobilePanel');
-    const backdrop = document.getElementById('backdrop');
-
-    function openMenu(){
-      burger.setAttribute('aria-expanded','true');
-      panel.hidden = false; backdrop.hidden = false;
-      requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
-      document.body.classList.add('no-scroll');
-      const firstLink = panel.querySelector('a');
-      if(firstLink) firstLink.focus();
-    }
-    function closeMenu(){
-      burger.setAttribute('aria-expanded','false');
-      panel.classList.remove('active'); backdrop.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
-      burger.focus();
-    }
-    function toggleMenu(){
-      const expanded = burger.getAttribute('aria-expanded') === 'true';
-      expanded ? closeMenu() : openMenu();
-    }
-
-    burger.addEventListener('click', toggleMenu);
-    backdrop.addEventListener('click', closeMenu);
-    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
-    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') {
-        closeMenu();
-      }
-    });
+    const d = new Date();
+    document.getElementById('updated').textContent =
+      d.toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
   </script>
 </body>
 </html>
