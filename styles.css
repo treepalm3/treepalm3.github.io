@@ -5,11 +5,12 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', 'Kanit', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   color: #333;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
+  font-weight: 400;
 }
 
 /* Header */
@@ -34,9 +35,11 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
   color: #667eea;
+  letter-spacing: -0.5px;
 }
 
 .nav-menu {
@@ -46,9 +49,12 @@ body {
 }
 
 .nav-menu a {
+  font-family: 'Inter', sans-serif;
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
   transition: color 0.3s ease;
   position: relative;
 }
@@ -109,13 +115,71 @@ body {
   border-radius: 50%;
   margin: 0 auto 2rem;
   background: linear-gradient(45deg, #667eea, #764ba2);
+  padding: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.profile-image-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 4rem;
   color: white;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  animation: float 3s ease-in-out infinite;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-image-placeholder:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.upload-text {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-image:hover .upload-text {
+  opacity: 1;
 }
 
 @keyframes float {
@@ -124,25 +188,34 @@ body {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-family: 'Kanit', 'Poppins', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -1px;
 }
 
 .hero-subtitle {
-  font-size: 1.3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.95;
+  letter-spacing: 0.5px;
 }
 
 .intro-text {
-  font-size: 1.1rem;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 300;
   margin-bottom: 3rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  opacity: 0.9;
+  opacity: 0.92;
   line-height: 1.8;
+  letter-spacing: 0.2px;
 }
 
 /* Portfolio Buttons */
@@ -198,14 +271,20 @@ body {
 }
 
 .btn-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.3px;
 }
 
 .btn-description {
-  font-size: 0.95rem;
-  opacity: 0.8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  opacity: 0.85;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
 }
 
 /* Footer */
@@ -215,6 +294,7 @@ body {
   text-align: center;
   padding: 3rem 2rem;
   margin-top: 4rem;
+  font-family: 'Inter', sans-serif;
 }
 
 .footer-content {
@@ -231,8 +311,12 @@ body {
 }
 
 .footer-links a {
+  font-family: 'Inter', sans-serif;
   color: white;
   text-decoration: none;
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
   transition: color 0.3s ease;
 }
 
@@ -302,11 +386,11 @@ body {
   }
 
   .hero-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
   }
 
   .hero-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
   }
 
   .profile-image {
