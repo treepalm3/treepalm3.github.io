@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio – Company A (Frontend) | Thidarat</title>
+  <meta name="description" content="Portfolio ฉบับคัดเฉพาะสำหรับ Company A: Frontend (HTML/CSS/JS), UI/UX, Performance, SEO พร้อมตัวอย่างผลงานและกระบวนการทำงาน" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      /* Pastel Purple–Pink Theme */
+      --bg:#ffffff;
+      --bg-soft:#fdf7ff;
+      --card:#ffffff;
+
+      --text:#0f172a;
+      --muted:#64748b;
+
+      --brand:#a78bfa;          /* violet 400 */
+      --brand-2:#f9a8d4;        /* pink 300 */
+      --brand-strong-1:#8b5cf6; /* violet 500 */
+      --brand-strong-2:#f472b6; /* pink 400 */
+
+      --ring:rgba(124,58,237,.16);
+      --ring-strong:rgba(124,58,237,.35);
+      --shadow:0 8px 24px rgba(124,58,237,.08);
+      --shadow-hover:0 14px 32px rgba(236,72,153,.16);
+      --ok:#10b981;
+      --warn:#f59e0b;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(60rem 60rem at 90% -10%, rgba(167,139,250,.16), transparent 60%),
+        radial-gradient(70rem 70rem at -10% 0%, rgba(249,168,212,.14), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .container{max-width:1180px; margin-inline:auto; padding:0 20px}
+
+    /* Header */
+    .site-header{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(255,255,255,.85);
+      border-bottom:1px solid var(--ring);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{font-weight:700; letter-spacing:.4px}
+    .nav-links{display:flex; gap:18px; flex-wrap:wrap}
+    .nav-links a{font-size:.95rem; color:var(--muted)}
+    .nav-links a:hover{color:var(--brand-strong-1)}
+    .nav-actions{display:flex; gap:10px}
+    .cta{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.55rem .9rem; border:1px solid var(--ring);
+      border-radius:14px; background:#fff; color:var(--text); font-weight:600;
+      box-shadow:var(--shadow);
+    }
+    .cta:hover{box-shadow:var(--shadow-hover)}
+    .cta.primary{
+      background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2));
+      color:#fff; border:none;
+    }
+
+    /* Hamburger (mobile) */
+    .hamburger{
+      display:none; width:42px; height:42px; border-radius:10px;
+      border:1px solid var(--ring); background:#fff;
+      align-items:center; justify-content:center; cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+    .hamburger .lines{
+      position:relative; width:22px; height:2px; background:var(--text);
+      transition:transform .25s ease, background .25s ease
+    }
+    .hamburger .lines::before,
+    .hamburger .lines::after{
+      content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text);
+      transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease
+    }
+    .hamburger .lines::before{top:-7px}
+    .hamburger .lines::after{bottom:-7px}
+    .hamburger[aria-expanded="true"] .lines{background:transparent}
+    .hamburger[aria-expanded="true"] .lines::before{top:0; transform:rotate(45deg)}
+    .hamburger[aria-expanded="true"] .lines::after{bottom:0; transform:rotate(-45deg)}
+
+    /* Mobile panel & backdrop */
+    .backdrop{
+      position:fixed; inset:0; background:rgba(2,6,23,.35);
+      opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:55;
+    }
+    .backdrop.active{opacity:1; pointer-events:auto}
+    .mobile-panel{
+      position:fixed; top:64px; right:14px; width:min(88vw,320px);
+      border:1px solid var(--ring); border-radius:16px; background:#fff;
+      transform:translateY(-12px) scale(.98); opacity:0; pointer-events:none;
+      transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:var(--shadow-hover)
+    }
+    .mobile-panel.active{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
+    .mobile-panel .panel-inner{padding:12px}
+    .mobile-panel nav{display:flex; flex-direction:column}
+    .mobile-panel nav a{padding:10px 12px; border-radius:10px; color:var(--text)}
+    .mobile-panel nav a:hover{background:#f8f5ff}
+    .mobile-panel .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring); background:#fff}
+    .no-scroll{overflow:hidden}
+
+    /* Desktop vs Mobile */
+    @media(min-width:960px){
+      .hamburger{display:none}
+      .mobile-panel,.backdrop{display:none}
+    }
+    @media(max-width:959.98px){
+      .nav-links, .nav-actions{display:none}
+      .hamburger{display:inline-flex}
+    }
+
+    /* Hero */
+    .hero{padding:72px 0 40px}
+    .grid{display:grid; gap:28px}
+    @media(min-width:960px){.grid-2{grid-template-columns:1.1fr 1fr}}
+    .headline{font-size:clamp(1.8rem,4vw,3rem); line-height:1.15; font-weight:800}
+    .lead{color:#334155; font-size:1.06rem}
+    .hero-badges{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+    .badge{padding:.35rem .7rem; border-radius:999px; border:1px solid var(--ring); background:#fff; font-size:.9rem}
+
+    .preview{
+      border:1px solid var(--ring); border-radius:22px; padding:6px;
+      background:linear-gradient(180deg,#fff,#f8fafc);
+      box-shadow:var(--shadow-hover)
+    }
+    .preview img{border-radius:16px; aspect-ratio:4/3; object-fit:cover}
+
+    /* Sections */
+    section{padding:64px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:20px}
+    .section-head h2{margin:0; font-size:clamp(1.4rem,3vw,2rem)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    /* JD fit */
+    .fit-grid{display:grid; gap:18px}
+    @media(min-width:780px){.fit-grid{grid-template-columns:repeat(3,1fr)}}
+    .fit-card{border:1px solid var(--ring); border-radius:16px; padding:16px; background:#fff; box-shadow:var(--shadow)}
+    .fit-card h3{margin:0 0 .25rem 0; font-size:1.05rem}
+    .fit-card ul{margin:.4rem 0 0 1.1rem}
+    .fit-card li{margin:.18rem 0}
+
+    /* Projects */
+    .cards{display:grid; gap:18px}
+    @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{border:1px solid var(--ring); border-radius:16px; overflow:hidden; background:#fff; box-shadow:var(--shadow)}
+    .card img{aspect-ratio:16/10; object-fit:cover}
+    .card .p{padding:14px}
+    .meta{display:flex; gap:10px; flex-wrap:wrap; margin:.4rem 0}
+    .pill{padding:.25rem .6rem; border-radius:999px; border:1px solid var(--ring); font-size:.78rem; background:#fdf7ff}
+    .stat{font-size:.92rem; color:#0f172a}
+    .links{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+
+    /* UI/UX preview */
+    .ui-grid{display:grid; gap:18px}
+    @media(min-width:900px){.ui-grid{grid-template-columns:1.2fr .8fr}}
+    .tokens{border:1px solid var(--ring); border-radius:16px; background:#fff; padding:16px; box-shadow:var(--shadow)}
+    .swatches{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .swatch{width:68px; height:48px; border-radius:10px; border:1px solid var(--ring)}
+    .components{border:1px solid var(--ring); border-radius:16px; background:#fff; padding:16px; box-shadow:var(--shadow)}
+    .demo-row{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* Performance / SEO */
+    .perf{display:grid; gap:18px}
+    @media(min-width:780px){.perf{grid-template-columns:1fr 1fr}}
+    .perf-card{border:1px solid var(--ring); border-radius:16px; padding:16px; background:#fff; box-shadow:var(--shadow)}
+    .score{display:flex; align-items:center; gap:10px}
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--ok)}
+    .warn{background:var(--warn)}
+
+    /* Footer */
+    footer{border-top:1px solid #e5e7eb; padding:22px 0; color:var(--muted); font-size:.95rem}
+    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px}
+  </style>
+</head>
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">← กลับหน้าแรก</a>
+
+      <!-- Desktop nav -->
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#projects">Projects</a>
+        <a href="#uiux">UI/UX</a>
+        <a href="#performance">Perf & SEO</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="cta" href="#contact"><i class="fa-regular fa-envelope"></i> ติดต่อ</a>
+        <a class="cta primary" href="cv-company-a.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> CV สำหรับ Company A</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-controls="mobilePanel" aria-expanded="false">
+        <span class="lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile panel -->
+  <aside class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="เมนูนำทาง" hidden>
+    <div class="panel-inner">
+      <nav aria-label="Mobile primary">
+        <a href="#overview">Overview</a>
+        <a href="#projects">Projects</a>
+        <a href="#uiux">UI/UX</a>
+        <a href="#performance">Perf & SEO</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="panel-actions">
+        <a class="cta" href="index.html">← หน้าแรก</a>
+        <a class="cta primary" href="cv-company-a.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> CV สำหรับ Company A</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hero / Overview -->
+  <section id="overview" class="hero">
+    <div class="container grid grid-2">
+      <div>
+        <h1 class="headline">
+          Company A — Frontend Focus
+        </h1>
+        <p class="lead">
+          พอร์ตฉบับปรับเนื้อหาให้ตรง JD: <strong>HTML/CSS/JS</strong>, <strong>UI/UX</strong>, <strong>Performance</strong>, <strong>SEO</strong>
+        </p>
+        <div class="hero-badges">
+          <span class="badge">Atomic Design</span>
+          <span class="badge">Accessible (WCAG)</span>
+          <span class="badge">Responsive</span>
+          <span class="badge">Lighthouse Friendly</span>
+        </div>
+        <div style="margin-top:16px" class="links">
+          <a class="cta primary" href="#projects"><i class="fa-solid fa-arrow-right"></i> ดูโปรเจกต์เด่น</a>
+          <a class="cta" href="index.html">← กลับหน้าแรก</a>
+        </div>
+      </div>
+      <div>
+        <div class="preview">
+          <!-- แก้เป็นรูปจริงของงานคุณได้ -->
+          <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?q=80&w=1600&auto=format&fit=crop" alt="Frontend preview" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JD Fit -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>สิ่งที่ Company A ต้องการ ↔ หลักฐานความเหมาะสม</h2>
+      </div>
+      <div class="fit-grid">
+        <div class="fit-card">
+          <h3>HTML/CSS/JS แข็งแรง</h3>
+          <ul>
+            <li>จัดโครงสร้าง semantic + ARIA ครบ</li>
+            <li>CSS Utility + Components ด้วยตัวแปร (CSS vars)</li>
+            <li>Vanilla JS สำหรับเมนู/แผง/อนิเมชันเบา ๆ</li>
+          </ul>
+        </div>
+        <div class="fit-card">
+          <h3>Responsive & Accessibility</h3>
+          <ul>
+            <li>Mobile-first, breakpoint ชัดเจน</li>
+            <li>โฟกัสดี, ปิดเมนูด้วย ESC/คลิกนอก</li>
+            <li>สี/คอนทราสต์ผ่านเกณฑ์</li>
+          </ul>
+        </div>
+        <div class="fit-card">
+          <h3>Performance & SEO</h3>
+          <ul>
+            <li>น้ำหนักเบา, ใช้ภาพแบบ cover/ratio</li>
+            <li>เมตา/โครงสร้างเฮดเดอร์ครบ</li>
+            <li>พร้อมปรับแต้ม Lighthouse</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>โปรเจกต์เด่นสาย Frontend</h2>
+        <p class="muted">ตัวอย่างงานที่โชว์ทักษะ UI/UX และการปรับแต่งประสิทธิภาพ</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project 1">
+          <div class="p">
+            <strong>Landing Page Performance-First</strong>
+            <div class="meta">
+              <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JS</span>
+              <span class="pill">SEO</span>
+            </div>
+            <div class="stat">ผลลัพธ์: โหลดเร็ว, CLS ต่ำ, โครงสร้าง H1-H2 ถูกต้อง</div>
+            <div class="links">
+              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-regular fa-eye"></i> Demo</a>
+              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Project 2">
+          <div class="p">
+            <strong>Design System mini + Components</strong>
+            <div class="meta">
+              <span class="pill">Tokens</span><span class="pill">Buttons</span><span class="pill">Cards</span>
+              <span class="pill">Accessibility</span>
+            </div>
+            <div class="stat">ผลลัพธ์: ใช้ซ้ำง่าย, สเกลได้, ธีมเปลี่ยนได้เร็ว</div>
+            <div class="links">
+              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-regular fa-eye"></i> Demo</a>
+              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Project 3">
+          <div class="p">
+            <strong>Form UX + Validation เบา ๆ</strong>
+            <div class="meta">
+              <span class="pill">Accessibility</span><span class="pill">ARIA</span><span class="pill">Vanilla JS</span>
+            </div>
+            <div class="stat">ผลลัพธ์: ใช้งานง่าย, แจ้ง error เคลียร์, รองรับคีย์บอร์ด</div>
+            <div class="links">
+              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-regular fa-eye"></i> Demo</a>
+              <a class="cta" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- UI/UX Preview -->
+  <section id="uiux">
+    <div class="container">
+      <div class="section-head">
+        <h2>UI/UX Preview & Design Tokens</h2>
+        <p class="muted">ตัวอย่างโทนสี ปุ่ม และการ์ดในธีมม่วง-ชมพูอ่อน</p>
+      </div>
+
+      <div class="ui-grid">
+        <div class="tokens">
+          <strong>Color Tokens</strong>
+          <div class="swatches" style="margin-top:8px">
+            <div class="swatch" style="background:var(--brand-strong-1); border-color:var(--ring-strong)"></div>
+            <div class="swatch" style="background:var(--brand-strong-2); border-color:var(--ring-strong)"></div>
+            <div class="swatch" style="background:#fdf4ff"></div>
+            <div class="swatch" style="background:#f8fafc"></div>
+          </div>
+          <div style="margin-top:12px" class="muted">ปรับธีมเร็วด้วย CSS Variables</div>
+        </div>
+
+        <div class="components">
+          <strong>Components</strong>
+          <div class="demo-row" style="margin-top:10px">
+            <a class="cta primary" href="#"><i class="fa-regular fa-star"></i> Primary</a>
+            <a class="cta" href="#">Secondary</a>
+            <span class="pill">Badge</span>
+            <span class="pill">Tag</span>
+          </div>
+          <div style="margin-top:12px" class="muted">โครงสร้างเน้นใช้งานซ้ำ ลด CSS ซ้ำซ้อน</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance & SEO -->
+  <section id="performance">
+    <div class="container">
+      <div class="section-head">
+        <h2>Performance & SEO Checklist</h2>
+        <p class="muted">แนวทางที่ใช้ประจำเพื่อชนะทั้งความเร็วและคะแนน SEO</p>
+      </div>
+
+      <div class="perf">
+        <div class="perf-card">
+          <h3>Performance</h3>
+          <div class="score"><span class="dot"></span> เป้าหมาย Lighthouse: 90+ (FCP/TTI ดี)</div>
+          <ul>
+            <li>ลด render-blocking, ใช้ `rel="preconnect"` และ font-display</li>
+            <li>รูปภาพปรับสัดส่วน/ขนาดเหมาะสม ลด CLS</li>
+            <li>JS เท่าที่จำเป็น, หลบงานหนักไปหลังจบ first paint</li>
+          </ul>
+        </div>
+        <div class="perf-card">
+          <h3>SEO</h3>
+          <div class="score"><span class="dot"></span> โครงสร้าง H1-H2, meta/alt ครบ</div>
+          <ul>
+            <li>Title/Description เฉพาะหน้า, ลิงก์ internal เคลียร์</li>
+            <li>ภาพมี `alt` สั้นกระชับ, lazy where possible</li>
+            <li class="muted"><span class="dot warn"></span> มีแผนเพิ่ม schema.org เมื่อขึ้น production</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="padding-top:48px; padding-bottom:64px; background:var(--bg-soft); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)">
+    <div class="container">
+      <div class="section-head">
+        <h2>พร้อมคุยรายละเอียดงานกับ Company A</h2>
+        <p class="muted">ส่งอีเมลหรือทักมาพูดคุยกันได้เลย</p>
+      </div>
+      <div style="display:grid; gap:12px">
+        <a class="cta" href="mailto:you@email.com"><i class="fa-regular fa-envelope"></i> you@email.com
+        </a>
+        <a class="cta" href="tel:+66999999999"><i class="fa-solid fa-phone"></i> +66 9 9999 9999</a>
+        <div class="links" style="margin-top:6px">
+          <a class="cta" href="index.html">← กลับหน้าแรก</a>
+          <a class="cta primary" href="cv-company-a.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> ดาวน์โหลด CV สำหรับ Company A</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="y"></span> Thidarat. All rights reserved.</div>
+      <div style="display:flex; gap:12px">
+        <a href="#overview">Overview</a>
+        <a href="#projects">Projects</a>
+        <a href="#uiux">UI/UX</a>
+        <a href="#performance">Perf & SEO</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ปีในฟุตเตอร์
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth anchor + focus
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href');
+        if(id.length>1){
+          const el = document.querySelector(id);
+          if(el){
+            e.preventDefault();
+            el.setAttribute('tabindex','-1');
+            el.focus({preventScroll:true});
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }
+      });
+    });
+
+    // ===== Mobile menu logic =====
+    const burger = document.getElementById('hamburger');
+    const panel  = document.getElementById('mobilePanel');
+    const backdrop = document.getElementById('backdrop');
+
+    function openMenu(){
+      burger.setAttribute('aria-expanded','true');
+      panel.hidden = false; backdrop.hidden = false;
+      requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
+      document.body.classList.add('no-scroll');
+      const firstLink = panel.querySelector('a');
+      if(firstLink) firstLink.focus();
+    }
+    function closeMenu(){
+      burger.setAttribute('aria-expanded','false');
+      panel.classList.remove('active'); backdrop.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+      setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
+      burger.focus();
+    }
+    function toggleMenu(){
+      const expanded = burger.getAttribute('aria-expanded') === 'true';
+      expanded ? closeMenu() : openMenu();
+    }
+
+    burger.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', closeMenu);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+
+    // ปิดเมนูอัตโนมัติเมื่อคลิกลิงก์ในแผงมือถือ
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // กันเคสรีไซซ์
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+      }
+    });
+  </script>
+</body>
+</html>
