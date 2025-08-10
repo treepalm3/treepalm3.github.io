@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume – Company C (Data / Dashboard / AI) | Thidarat Budsad</title>
+  <meta name="description" content="เรซูเม่ฉบับคัดสำหรับ Company C: Data / Dashboard / AI — ทักษะ Python, SQL, DataViz, Web Application, IoT Dashboard" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Pastel Purple–Pink */
+      --bg:#ffffff; --bg-soft:#fdf7ff; --panel:#ffffff;
+      --text:#0f172a; --muted:#64748b;
+      --brand:#a78bfa; --brand-2:#f9a8d4;
+      --brand-strong-1:#8b5cf6; --brand-strong-2:#f472b6;
+      --ring:rgba(124,58,237,.18);
+      --shadow:0 10px 28px rgba(124,58,237,.10);
+      --shadow-soft:0 6px 18px rgba(2,6,23,.08);
+      --star:#f59e0b;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(60rem 60rem at 95% -10%, rgba(167,139,250,.14), transparent 60%),
+        radial-gradient(70rem 70rem at -15% 0%, rgba(249,168,212,.12), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+
+    .page{max-width:1020px; margin:20px auto; padding:16px}
+    .actions{position:sticky; top:10px; display:flex; gap:10px; justify-content:flex-end; margin-bottom:10px}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+      padding:.55rem .9rem; border-radius:12px; border:1px solid var(--ring);
+      background:#fff; box-shadow:var(--shadow-soft); font-weight:600;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2));
+      color:#fff; border:none;
+    }
+
+    /* Resume layout */
+    .resume{
+      display:grid; gap:18px;
+      grid-template-columns: 320px 1fr;
+    }
+    @media(max-width:900px){
+      .resume{ grid-template-columns: 1fr; }
+    }
+    .left{
+      background:linear-gradient(180deg,#fff,var(--bg-soft));
+      border:1px solid var(--ring); border-radius:18px; overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .left .photo{
+      padding:16px;
+      background:linear-gradient(135deg,rgba(167,139,250,.18),rgba(249,168,212,.18));
+      border-bottom:1px solid var(--ring);
+    }
+    .left .photo .frame{
+      border-radius:14px; overflow:hidden; border:1px solid var(--ring); box-shadow:var(--shadow-soft)
+    }
+    .left .pad{ padding:16px 16px 20px }
+
+    .section-title{
+      margin:0 0 8px; font-size:1.05rem; font-weight:700; color:#3b2f60;
+    }
+    .block{ margin-top:14px }
+    .card{
+      background:#fff; border:1px solid var(--ring); border-radius:12px;
+      padding:12px; box-shadow:var(--shadow-soft)
+    }
+    .info-list{display:grid; gap:8px}
+    .info{display:grid; grid-template-columns:96px 1fr; gap:8px; font-size:.98rem}
+    .pill{display:inline-block; padding:.25rem .55rem; border-radius:999px; border:1px solid var(--ring); background:#fff; font-size:.88rem}
+
+    .namebox{
+      background:#fff; border:1px solid var(--ring); border-radius:18px; padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .name{margin:0; font-size:clamp(1.8rem,4vw,2.4rem); line-height:1.15; font-weight:800}
+    .name small{display:block; color:#6b7280; font-weight:700}
+    .role{margin:6px 0 0; font-weight:600; color:#3b2f60}
+    .contact-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:.45rem .7rem;
+      border:1px solid var(--ring); border-radius:10px; background:#fff; box-shadow:var(--shadow-soft); font-size:.95rem
+    }
+
+    .right .sec{margin-top:14px}
+    .sec .hdr{display:flex; align-items:end; justify-content:space-between}
+    .sec .hdr h2{margin:0; font-size:1.2rem}
+    .muted{color:var(--muted)}
+
+    /* Skills with stars */
+    .skills{display:grid; gap:10px}
+    .skill{display:grid; grid-template-columns:160px 1fr; gap:12px; align-items:center}
+    .stars{font-size:1.02rem; letter-spacing:1px}
+    .stars .on{color:var(--star)}
+    .stars .off{color:#e5e7eb}
+
+    /* Education */
+    .edu{display:grid; gap:10px}
+    .edu .row{display:grid; grid-template-columns:120px 1fr 80px; gap:10px; align-items:center}
+    @media(max-width:520px){ .edu .row{grid-template-columns:1fr; align-items:start} }
+
+    /* Activities gallery */
+    .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+    @media(max-width:760px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    .gallery img{aspect-ratio:4/3; object-fit:cover; border-radius:10px; border:1px solid var(--ring); box-shadow:var(--shadow-soft)}
+
+    /* Print A4 */
+    @page{ size:A4; margin:12mm }
+    @media print{
+      body{ background:#fff }
+      .actions{ display:none !important }
+      .page{ margin:0; padding:0; }
+      .resume{ gap:12px; grid-template-columns: 280px 1fr; }
+      .left{ box-shadow:none }
+      .namebox{ box-shadow:none }
+      .card{ box-shadow:none }
+      a[href^="http"]::after{ content:" (" attr(href) ")"; font-size:.85em; color:#555 }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Actions -->
+    <div class="actions">
+      <a class="btn" href="index.html">← หน้าแรก</a>
+      <button class="btn primary" onclick="window.print()">ดาวน์โหลด PDF</button>
+    </div>
+
+    <!-- Resume -->
+    <div class="resume">
+
+      <!-- LEFT SIDEBAR -->
+      <aside class="left">
+        <div class="photo">
+          <div class="frame">
+            <!-- TODO: เปลี่ยนเป็นรูปโปรไฟล์จริง -->
+            <img src="../images/p2.jpg" alt="Thidarat portrait">
+          </div>
+        </div>
+
+        <div class="pad">
+          <div class="block">
+            <div class="section-title">ประวัติส่วนตัว</div>
+            <div class="card info-list">
+              <div class="info"><div>ชื่อ-สกุล</div><div><strong>น.ส.ธิดารัตน์ บุตรศาสตร์</strong></div></div>
+              <div class="info"><div>ชื่ออังกฤษ</div><div><strong>Thidarat Budsad</strong></div></div>
+              <div class="info"><div>เกิด</div><div>23 ส.ค. 2546</div></div>
+              <div class="info"><div>ที่อยู่</div><div>ที่อยู่ (แก้ไขตามจริง)</div></div>
+              <div class="info"><div>ศาสนา</div><div>พุทธ</div></div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="section-title">ความสามารถ</div>
+            <div class="card">
+              <div class="skills">
+                <div class="skill"><div>Python (Data)</div>
+                  <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="off">★</span></div>
+                </div>
+                <div class="skill"><div>SQL / MySQL</div>
+                  <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="off">★</span></div>
+                </div>
+                <div class="skill"><div>HTML / CSS</div>
+                  <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="off">★</span></div>
+                </div>
+                <div class="skill"><div>Web Application</div>
+                  <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="off">★</span><span class="off">★</span></div>
+                </div>
+                <div class="skill"><div>DataViz (Chart.js/Grafana)</div>
+                  <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="off">★</span><span class="off">★</span></div>
+                </div>
+                <div class="skill"><div>MS Office</div>
+                  <div class="stars"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="off">★</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="section-title">ติดต่อ</div>
+            <div class="card info-list">
+              <!-- TODO: เปลี่ยนข้อมูลตามจริง -->
+              <div class="info"><div>โทร</div><div>098-069-9301</div></div>
+              <div class="info"><div>อีเมล</div><div>palmy.tree13@gmail.com</div></div>
+              <div class="info"><div>GitHub</div><div><a href="#" target="_blank">github.com/yourname</a></div></div>
+              <div class="info"><div>LinkedIn</div><div><a href="#" target="_blank">linkedin.com/in/yourname</a></div></div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- RIGHT CONTENT -->
+      <main class="right">
+        <div class="namebox">
+          <h1 class="name">ธิดารัตน์ บุตรศาสตร์ <small>Thidarat Budsad</small></h1>
+          <div class="role">Data / Dashboard / AI (Junior)</div>
+          <div class="contact-row">
+            <span class="chip">Kalasin University • Year 4 • 651420002012-5</span>
+            <span class="chip">พร้อมฝึกงาน/เริ่มงาน</span>
+          </div>
+        </div>
+
+        <section class="sec">
+          <div class="hdr">
+            <h2>สรุปย่อ (Profile)</h2>
+          </div>
+          <div class="card">
+            นักศึกษาชั้นปีที่ 4 สนใจงานสายข้อมูลและแดชบอร์ด
+            ถนัด Python (พื้นฐานวิเคราะห์ข้อมูล), SQL/MySQL, HTML/CSS/JS และการทำ Data Visualization
+            เคยทำ Dashboard/รายงานบนเว็บ, โครงงาน IoT เล็ก ๆ และพัฒนา Web App เบื้องต้น
+            เน้นโค้ดอ่านง่าย ใช้งานได้จริง และทำงานร่วมทีมได้ดี
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="hdr">
+            <h2>ประวัติการศึกษา</h2>
+            <div class="muted">GPA ปัจจุบัน ~ 3.xx (ปรับตามจริง)</div>
+          </div>
+          <div class="card edu">
+            <div class="row">
+              <div><strong>2565–ปัจจุบัน</strong></div>
+              <div>มหาวิทยาลัยกาฬสินธุ์ • วิทยาการคอมพิวเตอร์/เทคโนโลยีสารสนเทศ</div>
+              <div class="muted">GPA 3.6*</div>
+            </div>
+            <div class="row">
+              <div><strong>2562–2564</strong></div>
+              <div>มัธยมปลาย • วิทย์-คณิต</div>
+              <div class="muted">GPA 3.7*</div>
+            </div>
+            <div class="row">
+              <div><strong>2559–2561</strong></div>
+              <div>มัธยมต้น • โรงเรียนเดิม</div>
+              <div class="muted">GPA 3.8*</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="hdr">
+            <h2>ทักษะหลักที่เกี่ยวข้องกับ Company C</h2>
+          </div>
+          <div class="card">
+            <div class="contact-row">
+              <span class="pill">Python (pandas เบื้องต้น)</span>
+              <span class="pill">SQL / MySQL</span>
+              <span class="pill">Data Cleaning</span>
+              <span class="pill">Data Visualization</span>
+              <span class="pill">Chart.js</span>
+              <span class="pill">Grafana / Zabbix</span>
+              <span class="pill">HTML/CSS/JS</span>
+              <span class="pill">Git</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="hdr">
+            <h2>กิจกรรม & ผลงานมหาวิทยาลัย</h2>
+            <div class="muted">แข่งขัน/บริการวิชาการ/ชมรม</div>
+          </div>
+          <div class="card">
+            <div class="gallery">
+              <!-- TODO: เปลี่ยนเป็นรูปกิจกรรมจริงของคุณ -->
+              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop" alt="กิจกรรม 1">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="กิจกรรม 2">
+              <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1200&auto=format&fit=crop" alt="กิจกรรม 3">
+            </div>
+            <div style="margin-top:10px" class="muted">
+              ตัวอย่าง: แข่งขัน IDDL Digital Challenge, องค์การนักศึกษา, บริการวิชาการโรงเรียนต่าง ๆ ฯลฯ
+            </div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="hdr">
+            <h2>ใบรับรอง/เกียรติบัตร</h2>
+          </div>
+          <div class="card">
+            <div class="contact-row">
+              <!-- แนบภาพ/ลิงก์ประกาศนียบัตร -->
+              <a class="chip" href="#" target="_blank">KDL Certificate – Data Challenge</a>
+              <a class="chip" href="#" target="_blank">Workshop: DataViz with Chart.js</a>
+              <a class="chip" href="#" target="_blank">อบรม IoT Dashboard</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="hdr">
+            <h2>ข้อมูลส่วนตัวเพิ่มเติม</h2>
+          </div>
+          <div class="card">
+            <div class="contact-row">
+              <span class="pill">ทำงานเป็นทีมได้ดี</span>
+              <span class="pill">พร้อมเรียนรู้เรื่องใหม่เร็ว</span>
+              <span class="pill">มีความรับผิดชอบ</span>
+              <span class="pill">สนใจ AI/IoT</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <div style="margin-top:12px; display:flex; justify-content:space-between; color:var(--muted); font-size:.95rem">
+      <div>อัปเดตล่าสุด: <span id="updated"></span></div>
+      <div>© <span id="y"></span> Thidarat</div>
+    </div>
+
+  </div>
+
+  <script>
+    // footer time
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent =
+      new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
+  </script>
+</body>
+</html>
