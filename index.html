@@ -1,162 +1,193 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - Landing Page</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ksuitcs Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
     body {
-        margin: 0;
-        font-family: 'Kanit', sans-serif;
-        background: #f9f9f9;
-        color: #333;
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f1f5f9;
     }
-    /* Header */
-    header {
-        background: #1a237e;
-        color: #fff;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    header h1 {
-        font-size: 1.5em;
+    header, footer {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     nav {
-        display: flex;
-        gap: 20px;
+      display: flex;
+      gap: 0.5rem;
     }
     nav a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
+      color: #e2e8f0;
+      text-decoration: none;
     }
-    /* Hamburger */
-    .hamburger {
+    nav a:hover {
+      color: #38bdf8;
+    }
+    .menu-toggle {
         display: none;
         flex-direction: column;
         cursor: pointer;
-    }
-    .hamburger div {
-        width: 25px;
+        z-index: 1001;
+      }
+      .bar {
         height: 3px;
-        background: white;
+        width: 25px;
+        background-color: #e2e8f0;
         margin: 4px 0;
-    }
-    .nav-links {
-        display: flex;
-        gap: 20px;
-    }
-    .nav-links.mobile {
-        display: none;
-        flex-direction: column;
-        background: #1a237e;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px;
-    }
-    .nav-links.mobile a {
-        padding: 10px;
-    }
-    /* Hero */
+        transition: all 0.3s ease;
+      }
+      .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      @media(max-width:768px){
+        nav {
+          display: none;
+          flex-direction: column;
+          background: rgba(15, 23, 42, 0.95);
+          position: absolute;
+          top: 64px;
+          right: 0;
+          padding: 1rem;
+          border-radius: 0 0 0 1rem;
+          width: 200px;
+          animation: slideDown 0.3s ease;
+        }
+        nav a {
+          padding: 0.5rem 0;
+        }
+        nav.active {
+          display: flex;
+        }
+        .menu-toggle {
+          display: flex;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
     .hero {
-        text-align: center;
-        padding: 50px 20px;
-        background: linear-gradient(to right, #283593, #3949ab);
-        color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 2rem;
+      gap: 2rem;
+      align-items: center;
     }
-    .hero h2 {
-        font-size: 2em;
-        margin-bottom: 10px;
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
     }
     .hero p {
-        font-size: 1.2em;
-        margin-bottom: 20px;
+      color: #cbd5e1;
     }
-    .portfolio-buttons {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        flex-wrap: wrap;
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      border-radius: 0.75rem;
+      font-weight: bold;
+      background: #38bdf8;
+      color: #0f172a;
+      text-decoration: none;
+      margin-top: 1rem;
     }
-    .portfolio-buttons button {
-        padding: 15px 30px;
-        font-size: 1.1em;
-        border: none;
-        border-radius: 5px;
-        background: #ff9800;
-        color: white;
-        cursor: pointer;
-        transition: background 0.3s;
+    .btn:hover {
+      background: #0ea5e9;
     }
-    .portfolio-buttons button:hover {
-        background: #f57c00;
+    .targets {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
-    /* Footer */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
     footer {
-        background: #1a237e;
-        color: white;
-        text-align: center;
-        padding: 15px;
-        margin-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
     }
-    /* Responsive */
-    @media (max-width: 768px) {
-        nav {
-            display: none;
-        }
-        .hamburger {
-            display: flex;
-        }
-        .nav-links.mobile.show {
-            display: flex;
-        }
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>My Portfolio</h1>
-    <nav class="nav-links">
-        <a href="#">หน้าแรก</a>
-        <a href="#">เกี่ยวกับ</a>
-        <a href="#">ติดต่อ</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <div class="nav-links mobile" id="mobileMenu">
-        <a href="#">หน้าแรก</a>
-        <a href="#">เกี่ยวกับ</a>
-        <a href="#">ติดต่อ</a>
-    </div>
-</header>
+    <header>
+        <div><strong>Ksuitcs • Portfolio</strong></div>
+        <div class="menu-toggle" id="menu-toggle">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <nav id="nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
-<section class="hero">
-    <h2>สวัสดีครับ ผมคือ [ชื่อของคุณ]</h2>
-    <p>นี่คือ Portfolio ที่ออกแบบมาเพื่อสมัครงาน</p>
-    <div class="portfolio-buttons">
-        <button onclick="location.href='company-a.html'">Portfolio บริษัท A</button>
-        <button onclick="location.href='company-b.html'">Portfolio บริษัท B</button>
-        <button onclick="location.href='company-c.html'">Portfolio บริษัท C</button>
-    </div>
+      <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav');
+      
+        menuToggle.addEventListener('click', () => {
+          menuToggle.classList.toggle('active');
+          nav.classList.toggle('active');
+        });
+      </script>
+      
+
+<section id="targets" class="targets">
+  <div class="card">
+    <h3>Company A</h3>
+    <p>Frontend / React — งาน UI และ SEO</p>
+    <a href="portfolio-company-a.html" class="btn">เปิดดู</a>
+  </div>
+  <div class="card">
+    <h3>Company B</h3>
+    <p>Full‑Stack / PHP + MySQL — ระบบจัดการข้อมูล</p>
+    <a href="portfolio-company-b.html" class="btn">เปิดดู</a>
+  </div>
+  <div class="card">
+    <h3>Company C</h3>
+    <p>Data / AI & Dashboard — สถิติและ IoT</p>
+    <a href="portfolio-company-c.html" class="btn">เปิดดู</a>
+  </div>
 </section>
 
 <footer>
-    &copy; 2025 My Portfolio. All rights reserved.
+  © 2025 Ksuitcs. All rights reserved.
 </footer>
 
 <script>
-function toggleMenu() {
-    document.getElementById("mobileMenu").classList.toggle("show");
-}
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav');
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
 </script>
 
 </body>
