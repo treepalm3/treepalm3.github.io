@@ -11,19 +11,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root{
-      --bg:#0b1220; --bg-soft:#121a2b; --card:#0f172a;
-      --text:#e6edf6; --muted:#a9b5c9;
-      --brand:#00d8d6; --brand-2:#74fac8;
-      --ring:rgba(255,255,255,.12)
+      /* ===== Fresh & Simple (Light) Palette ===== */
+      --bg:#ffffff;            /* พื้นหลัก */
+      --bg-soft:#f7fbff;       /* พื้นนวล */
+      --card:#ffffff;          /* การ์ด/พาเนล */
+      --text:#0f172a;          /* ตัวอักษรหลัก */
+      --muted:#64748b;         /* ตัวอักษรรอง */
+      --brand:#0ea5e9;         /* ฟ้าสดเป็นจุดเน้น */
+      --brand-2:#22d3ee;       /* ฟ้าอ่อน ไล่เฉดปุ่มหลัก */
+      --ring:rgba(15,23,42,.08);/* ขอบบางๆ */
+      --shadow:0 8px 24px rgba(2,6,23,.08); /* เงานุ่ม */
+      --shadow-hover:0 14px 32px rgba(2,6,23,.12);
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0; font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      margin:0;
+      font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(60rem 60rem at 80% -10%, rgba(0,216,214,.15), transparent 60%),
-        radial-gradient(70rem 70rem at -20% 10%, rgba(116,250,200,.07), transparent 60%),
+        radial-gradient(60rem 60rem at 90% -10%, rgba(14,165,233,.08), transparent 60%),
+        radial-gradient(70rem 70rem at -10% 0%, rgba(34,211,238,.06), transparent 60%),
         var(--bg);
       line-height:1.6;
     }
@@ -31,29 +40,48 @@
     img{max-width:100%; display:block}
 
     /* Header */
-    .site-header{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(8px); background:rgba(11,18,32,.75); border-bottom:1px solid var(--ring)}
+    .site-header{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(255,255,255,.85);
+      border-bottom:1px solid var(--ring);
+    }
     .container{max-width:1180px; margin-inline:auto; padding:0 20px}
     .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-    .brand{font-weight:700; letter-spacing:.4px}
+    .brand{font-weight:700; letter-spacing:.4px; color:var(--text)}
 
     .nav-links{display:flex; gap:18px; flex-wrap:wrap}
     .nav-links a{font-size:.95rem; color:var(--muted)}
-    .nav-links a:hover{color:#0b0b0b}
+    .nav-links a:hover{color:var(--brand)}
 
     .nav-actions{display:flex; gap:10px}
-    .cta{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border:1px solid var(--ring); border-radius:14px; background:transparent; color:#fff; font-weight:600}
-    .cta.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b1220; border:none}
+    .cta{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.55rem .9rem; border:1px solid var(--ring);
+      border-radius:14px; background:#fff; color:var(--text); font-weight:600;
+      box-shadow:var(--shadow);
+    }
+    .cta:hover{box-shadow:var(--shadow-hover)}
+    .cta.primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff; border:none;
+    }
 
     /* Hamburger (mobile) */
     .hamburger{
       display:none; width:42px; height:42px; border-radius:10px;
-      border:1px solid var(--ring); background:rgba(255,255,255,.04);
-      align-items:center; justify-content:center; cursor:pointer
+      border:1px solid var(--ring); background:#fff;
+      align-items:center; justify-content:center; cursor:pointer;
+      box-shadow:var(--shadow);
     }
-    .hamburger .lines{position:relative; width:22px; height:2px; background:#e6edf6; transition:transform .25s ease, background .25s ease}
+    .hamburger .lines{
+      position:relative; width:22px; height:2px; background:var(--text);
+      transition:transform .25s ease, background .25s ease
+    }
     .hamburger .lines::before,
     .hamburger .lines::after{
-      content:""; position:absolute; left:0; width:22px; height:2px; background:#e6edf6; transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease
+      content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text);
+      transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease
     }
     .hamburger .lines::before{top:-7px}
     .hamburger .lines::after{bottom:-7px}
@@ -63,22 +91,22 @@
 
     /* Mobile panel & backdrop */
     .backdrop{
-      position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px);
+      position:fixed; inset:0; background:rgba(2,6,23,.35);
       opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:55;
     }
     .backdrop.active{opacity:1; pointer-events:auto}
     .mobile-panel{
       position:fixed; top:64px; right:14px; width:min(88vw,320px);
-      border:1px solid var(--ring); border-radius:16px; background:rgba(11,18,32,.96);
+      border:1px solid var(--ring); border-radius:16px; background:#fff;
       transform:translateY(-12px) scale(.98); opacity:0; pointer-events:none;
-      transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:0 20px 60px rgba(0,0,0,.5)
+      transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:var(--shadow-hover)
     }
     .mobile-panel.active{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
     .mobile-panel .panel-inner{padding:12px}
     .mobile-panel nav{display:flex; flex-direction:column}
-    .mobile-panel nav a{padding:10px 12px; border-radius:10px; color:#e6edf6}
-    .mobile-panel nav a:hover{background:rgba(255,255,255,.06)}
-    .mobile-panel .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring)}
+    .mobile-panel nav a{padding:10px 12px; border-radius:10px; color:var(--text)}
+    .mobile-panel nav a:hover{background:#f1f5f9}
+    .mobile-panel .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring); background:#fff}
     .no-scroll{overflow:hidden}
 
     /* Desktop: hide mobile panel; show inline nav */
@@ -96,11 +124,15 @@
     .grid{display:grid; gap:28px}
     @media(min-width:960px){.grid-2{grid-template-columns:1.2fr 1fr}}
     .headline{font-size:clamp(1.9rem,4vw,3.2rem); line-height:1.15; font-weight:800}
-    .lead{color:#d6deea; font-size:1.05rem}
+    .lead{color:#334155; font-size:1.05rem}
     .hero-btns{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
     .hero-badge{margin-top:14px; color:var(--muted); font-size:.95rem}
 
-    .preview{border:1px solid var(--ring); border-radius:22px; padding:6px; background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); box-shadow:0 20px 50px rgba(0,0,0,.45)}
+    .preview{
+      border:1px solid var(--ring); border-radius:22px; padding:6px;
+      background:linear-gradient(180deg,#fff,#f8fafc);
+      box-shadow:var(--shadow-hover)
+    }
     .preview img{border-radius:16px; aspect-ratio:4/3; object-fit:cover}
 
     /* Sections */
@@ -111,29 +143,38 @@
 
     .company-grid{display:grid; gap:18px}
     @media(min-width:780px){.company-grid{grid-template-columns:repeat(3,1fr)}}
-    .company-card{display:block; position:relative; padding:18px; border-radius:18px; border:1px solid var(--ring);
-      background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      transition:.25s transform, .25s box-shadow, .25s border-color; box-shadow:0 10px 26px rgba(0,0,0,.28); overflow:hidden}
-    .company-card:hover{transform:translateY(-2px); border-color:rgba(0,216,214,.45); box-shadow:0 16px 40px rgba(0,0,0,.35)}
-    .chip{display:inline-block; padding:.25rem .6rem; font-size:.75rem; border:1px solid var(--ring); border-radius:999px; background:rgba(255,255,255,.06)}
+
+    .company-card{
+      display:block; position:relative; padding:18px; border-radius:18px;
+      border:1px solid #e5e7eb; background:#fff;
+      transition:.25s transform, .25s box-shadow, .25s border-color; box-shadow:var(--shadow); overflow:hidden
+    }
+    .company-card:hover{transform:translateY(-2px); border-color:var(--brand); box-shadow:var(--shadow-hover)}
+    .chip{display:inline-block; padding:.25rem .6rem; font-size:.75rem; border:1px solid var(--ring); border-radius:999px; background:#f8fafc}
     .open{display:inline-flex; align-items:center; gap:.4rem; font-weight:700; letter-spacing:.2px; color:var(--brand)}
 
-    .about{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)}
+    .about{
+      background:linear-gradient(180deg,#fff,#f8fafc);
+      border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)
+    }
 
     .skills{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .skill{padding:.4rem .75rem; border-radius:999px; border:1px solid var(--ring); background:rgba(255,255,255,.06); font-size:.9rem}
+    .skill{padding:.4rem .75rem; border-radius:999px; border:1px solid var(--ring); background:#fff; font-size:.9rem; box-shadow:var(--shadow)}
 
     .cards{display:grid; gap:18px}
     @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
-    .card{border:1px solid var(--ring); border-radius:16px; overflow:hidden; background:rgba(255,255,255,.04)}
+    .card{border:1px solid #e5e7eb; border-radius:16px; overflow:hidden; background:#fff; box-shadow:var(--shadow)}
     .card img{aspect-ratio:16/10; object-fit:cover}
     .card .p{padding:14px}
 
     .contact-grid{display:grid; gap:12px}
     @media(min-width:960px){.contact-grid{grid-template-columns:repeat(4,1fr)}}
-    .contact-item{display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--ring); border-radius:14px; background:rgba(255,255,255,.05)}
+    .contact-item{
+      display:flex; align-items:center; gap:10px; padding:12px 14px;
+      border:1px solid #e5e7eb; border-radius:14px; background:#fff; box-shadow:var(--shadow)
+    }
 
-    footer{border-top:1px solid var(--ring); padding:22px 0; color:var(--muted); font-size:.95rem}
+    footer{border-top:1px solid #e5e7eb; padding:22px 0; color:var(--muted); font-size:.95rem}
     .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px}
 
     /* ลดอนิเมชันสำหรับผู้ใช้ที่ไม่ต้องการ motion */
@@ -191,8 +232,8 @@
   <section id="home" class="hero">
     <div class="container grid grid-2">
       <div>
-        <h1 class="headline">Thidarat Budsad </h1>
-        <p class="lead">สวัสดีค่ะ ดิฉัน <strong>นางสาวธิดารัตน์ บุตรศาสตร์ 651420002012-5 ชั้นปีที่ 4  มหาวิทยาลัยกาฬสินธุ์</p>
+        <h1 class="headline">Thidarat Budsad</h1>
+        <p class="lead">สวัสดีค่ะ ดิฉัน <strong>นางสาวธิดารัตน์ บุตรศาสตร์ 651420002012-5 ชั้นปีที่ 4 มหาวิทยาลัยกาฬสินธุ์</strong></p>
         <div class="hero-btns">
           <a class="cta primary" href="#targets"><i class="fa-solid fa-arrow-right"></i> ดูผลงานสำหรับบริษัทเป้าหมาย</a>
           <a class="cta" href="#work">ดูโปรเจกต์ล่าสุด</a>
@@ -223,7 +264,7 @@
         <a class="company-card" href="company-b.html">
           <div class="muted">Target</div>
           <h3 style="margin:.2rem 0 0">Company B</h3>
-          <div class="chip" style="margin:.5rem 0 0">Full‑Stack / PHP + MySQL</div>
+          <div class="chip" style="margin:.5rem 0 0">Full-Stack / PHP + MySQL</div>
           <p class="muted" style="margin:.7rem 0 0">ระบบจริง จัดการข้อมูล ความปลอดภัย และรายงาน</p>
           <div style="margin-top:.9rem" class="open">เปิดดู <i class="fa-solid fa-chevron-right"></i></div>
         </a>
@@ -279,7 +320,7 @@
           <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Project 2">
           <div class="p">
             <div class="muted">Case Study #2</div>
-            <strong>เว็บพอร์ต SEO‑friendly</strong>
+            <strong>เว็บพอร์ต SEO-friendly</strong>
             <p class="muted">โหลดไว • โครงสร้างดีต่อ SEO</p>
           </div>
         </article>
@@ -343,10 +384,8 @@
     function openMenu(){
       burger.setAttribute('aria-expanded','true');
       panel.hidden = false; backdrop.hidden = false;
-      // trigger transitions
       requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
       document.body.classList.add('no-scroll');
-      // focus first link for accessibility
       const firstLink = panel.querySelector('a');
       if(firstLink) firstLink.focus();
     }
@@ -354,7 +393,6 @@
       burger.setAttribute('aria-expanded','false');
       panel.classList.remove('active'); backdrop.classList.remove('active');
       document.body.classList.remove('no-scroll');
-      // wait for animation then hide
       setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
       burger.focus();
     }
