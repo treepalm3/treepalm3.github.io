@@ -105,8 +105,63 @@
     .apply-bar .cta{box-shadow:none}
     @media(max-width:959.98px){ .apply-bar{display:flex} }
 
-    footer{border-top:1px solid #e5e7eb; padding:22px 0; color:var(--muted); font-size:.95rem}
-    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px}
+    /* Footer */
+    .footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+  }
+
+  .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+
+  .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+  }
+
+  .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover {
+      color: #667eea;
+  }
+
+  .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+  }
+
+  .social-link {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+      background: #667eea;
+      transform: translateY(-3px);
+  }
   </style>
 </head>
 <body>
@@ -303,15 +358,6 @@
             สมัครผ่าน InternTH
           </a>
         </div>
-        <div class="card">
-          <strong>ช่องทางผู้สมัคร</strong>
-          <p class="muted" style="margin:.4rem 0">Thidarat Budsad • 651420002012-5 • Kalasin University</p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap">
-            <a class="pill" href="mailto:Thidarat.bu@ksu.ac.th">Thidarat.bu@ksu.ac.th</a>
-            <a class="pill" href="tel:+66986999901">+66 98 699 9901</a>
-            <a class="pill" href="https://github.com/treepalm3" target="_blank" rel="noopener">github.com/treepalm3</a>
-          </div>
-        </div>
       </div>
       <div class="muted" style="margin-top:8px">ข้อมูลสรุปจากประกาศ InternTH เมื่อเข้าถึงล่าสุด</div>
     </div>
@@ -324,18 +370,25 @@
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="container foot">
-      <div>© <span id="y"></span> Thidarat. All rights reserved.</div>
-      <div style="display:flex; gap:12px">
-        <a href="#overview">ภาพรวม</a>
-        <a href="#responsibilities">หน้าที่</a>
-        <a href="#requirements">คุณสมบัติ</a>
-        <a href="#benefits">สวัสดิการ</a>
-        <a href="#contact">ติดต่อ</a>
-      </div>
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#privacy">นโยบายความเป็นส่วนตัว</a>
+            <a href="#terms">ข้อกำหนดการใช้งาน</a>
+            <a href="#sitemap">แผนผังเว็บไซต์</a>
+            <a href="#contact">ติดต่อเรา</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" title="GitHub">🐱</a>
+            <a href="#" class="social-link" title="Email">✉️</a>
+            <a href="#" class="social-link" title="Phone">📞</a>
+        </div>
+        
+        <p>&copy; 2025 [ชื่อของคุณ] Portfolio. สงวนลิขสิทธิ์.</p>
     </div>
-  </footer>
+</footer>
 
   <script>
     // ปีในฟุตเตอร์
