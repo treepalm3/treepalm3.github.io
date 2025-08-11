@@ -137,12 +137,35 @@
     .hero-btns{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
     .hero-badge{margin-top:14px; color:var(--muted); font-size:.95rem}
 
-    .preview{
-      border:1px solid var(--ring); border-radius:22px; padding:6px;
-      background:linear-gradient(180deg,#fff,#f8fafc);
-      box-shadow:var(--shadow-hover)
-    }
-    .preview img{border-radius:16px; aspect-ratio:4/3; object-fit:cover}
+    /* 1) Hero preview — ให้ภาพพอดีกรอบ ไม่ครอป */
+.preview{
+  border:1px solid var(--ring);
+  border-radius:22px;
+  padding:6px;
+  background:linear-gradient(180deg,#fff,#f8fafc);
+  box-shadow:var(--shadow-hover);
+
+  /* กำหนดความสูงแบบ responsive เพื่อให้ object-fit:contain ทำงาน */
+  height: clamp(240px, 38vw, 420px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.preview img{
+  border-radius:16px;
+  width:100%;
+  height:100%;
+  object-fit:contain;   /* แสดงภาพครบ ไม่ตัดขอบ */
+  background:#fff;      /* กันพื้นที่โปร่งดูหม่น */
+}
+
+/* 2) รูปในการ์ด Company — ทำให้สูงเท่ากัน และพอดีกรอบ */
+.card img{
+  width:100%;
+  height: clamp(160px, 24vw, 220px); /* ความสูงเท่ากันทุกใบ */
+  object-fit:contain;                /* ไม่ครอปรูป */
+  background:#fff;                   /* ถ้าสัดส่วนไม่พอดีจะมีแถบขาวดูเรียบร้อย */
+}
 
     /* Sections */
     section{padding:64px 0}
