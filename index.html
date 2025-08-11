@@ -507,6 +507,86 @@
 .site-header{
   box-shadow: 0 6px 18px rgba(124,58,237,.08);
 }
+/* === POLISH PACK — วางต่อท้าย CSS เดิมได้เลย === */
+:root{
+  --radius:16px; --radius-lg:22px;
+  --space:clamp(14px,1.8vw,20px);
+}
+
+/* Container กระชับสายตา */
+.container{ max-width:1100px; }
+
+/* Header/ Nav สวยคม + ใหญ่ขึ้น */
+.site-header{
+  background:rgba(255,255,255,.75);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid rgba(124,58,237,.12);
+  box-shadow:0 6px 18px rgba(124,58,237,.08);
+}
+.site-header .nav{ height:clamp(78px,8.4vw,104px); }
+
+.brand{
+  font-size:clamp(1.25rem,2.4vw,1.8rem);
+  font-weight:800; letter-spacing:.5px;
+  background:linear-gradient(90deg,var(--brand-strong-1),var(--brand-strong-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+.nav-links{ gap:clamp(16px,2.4vw,28px); }
+.nav-links a{
+  position:relative;
+  font-size:clamp(1.02rem,1.05vw,1.14rem);
+  padding:.4rem .2rem;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+  transform:scaleX(0); transform-origin:left;
+  background:linear-gradient(90deg,var(--brand-strong-1),var(--brand-strong-2));
+  transition:transform .25s ease; border-radius:2px;
+}
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after{ transform:scaleX(1); }
+
+.cta{
+  padding:.75rem 1.15rem; border-radius:16px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.cta.primary{ box-shadow:0 8px 22px rgba(124,58,237,.18); }
+.cta.primary:hover{ transform:translateY(-1px); box-shadow:0 14px 26px rgba(236,72,153,.22); }
+
+/* Hamburger ใหญ่ขึ้น + โฟกัสดีขึ้น */
+.hamburger{ width:56px; height:56px; border-radius:14px; }
+.hamburger .lines{ width:26px; height:3px; }
+.hamburger .lines::before,.hamburger .lines::after{ width:26px; height:3px; }
+.hamburger .lines::before{ top:-8px; } .hamburger .lines::after{ bottom:-8px; }
+.hamburger:focus-visible{ outline:3px solid var(--brand-2); outline-offset:2px; }
+
+/* แผงเมนูมือถือเลื่อนลงเท่าความสูง nav */
+.mobile-panel{ top:clamp(78px,8.4vw,104px); border-radius:18px; box-shadow:0 18px 42px rgba(17,24,39,.16); }
+.mobile-panel nav a{ font-size:1.05rem; padding:12px 14px; }
+
+/* Anchor offset: เลื่อนถึงหัวข้อแล้วไม่โดน header ทับ */
+section, header, footer, [id]{ scroll-margin-top:clamp(78px,8.4vw,104px); }
+
+/* Hero preview กลมมนขึ้นนิด */
+.preview{ border-radius:26px; padding:8px; }
+.preview img{ border-radius:20px; }
+
+/* Cards โชว์เด่นขึ้น */
+.cards{ gap:clamp(14px,2vw,22px); }
+.card{
+  border-radius:18px;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-hover); border-color:var(--brand); }
+.card .p{ padding:16px; }
+
+/* Footer/Contact เนียนขึ้นเล็กน้อย */
+.contact-footer{ margin-top:84px; }
+.c-card{ border-radius:26px; padding:34px 28px; }
+.c-title{ letter-spacing:.2px; }
+.contact-item{ border-radius:14px; padding:14px 16px; }
+.iconbtn{ width:44px; height:44px; }
 
   </style>
 </head>
