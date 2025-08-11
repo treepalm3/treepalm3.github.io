@@ -539,38 +539,24 @@
     </div>
 </footer>
 
-  <script>
-    // ปีในฟุตเตอร์
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Smooth anchor + focus
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const id = link.getAttribute('href');
-        if(id.length>1){
-          const el = document.querySelector(id);
-          if(el){
-            e.preventDefault();
-            el.setAttribute('tabindex','-1');
-            el.focus({preventScroll:true});
-            el.scrollIntoView({behavior:'smooth', block:'start'});
-          }
-        }
-      });
-    });
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // กัน error ถ้าไม่มี #y
+    const yEl = document.getElementById('y');
+    if (yEl) yEl.textContent = new Date().getFullYear();
 
     // ===== Mobile menu logic =====
-    const burger = document.getElementById('hamburger');
-    const panel  = document.getElementById('mobilePanel');
+    const burger   = document.getElementById('hamburger');
+    const panel    = document.getElementById('mobilePanel');
     const backdrop = document.getElementById('backdrop');
+    if (!burger || !panel || !backdrop) return;
 
     function openMenu(){
       burger.setAttribute('aria-expanded','true');
       panel.hidden = false; backdrop.hidden = false;
       requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
       document.body.classList.add('no-scroll');
-      const firstLink = panel.querySelector('a');
-      if(firstLink) firstLink.focus();
+      const firstLink = panel.querySelector('a'); if(firstLink) firstLink.focus();
     }
     function closeMenu(){
       burger.setAttribute('aria-expanded','false');
@@ -579,24 +565,21 @@
       setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
       burger.focus();
     }
-    function toggleMenu(){
-      const expanded = burger.getAttribute('aria-expanded') === 'true';
-      expanded ? closeMenu() : openMenu();
-    }
+    function toggleMenu(){ (burger.getAttribute('aria-expanded') === 'true') ? closeMenu() : openMenu(); }
 
-    burger.addEventListener('click', toggleMenu);
-    backdrop.addEventListener('click', closeMenu);
-    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
-
-    // ปิดเมนูอัตโนมัติเมื่อคลิกลิงก์ในแผงมือถือ
-    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-
-    // ป้องกันปัญหารีไซซ์: ถ้ากลับไปเดสก์ท็อปแล้วให้ปิดแผง
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') {
-        closeMenu();
-      }
+    burger.addEventListener('click', toggleMenu, {passive:true});
+    burger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
     });
-  </script>
+    backdrop.addEventListener('click', closeMenu, {passive:true});
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') closeMenu();
+    });
+  });
+</script>
+
 </body>
 </html>
