@@ -246,6 +246,54 @@
   text-decoration:none; color:inherit;
   transition:.2s box-shadow, .2s border-color, .2s transform;
 }
+/* === Activities (card gallery) === */
+.activities{
+  display:grid; gap:12px;
+  grid-template-columns:repeat(3,1fr);
+}
+@media (max-width:980px){ .activities{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .activities{grid-template-columns:1fr;} }
+
+.activity-card{
+  display:flex; flex-direction:column; overflow:hidden;
+  border:1px solid var(--ring); border-radius:14px; background:#fff;
+  box-shadow:var(--shadow-soft);
+  transition:.2s transform,.2s box-shadow,.2s border-color;
+}
+.activity-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--brand);
+  box-shadow:var(--shadow);
+}
+
+.activity-cover{
+  width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+}
+
+/* บนมือถือให้เห็นรูปเต็ม ไม่ครอป */
+@media (max-width:640px){
+  .activity-cover{ object-fit:contain; background:#fff; }
+}
+
+.activity-body{ padding:12px 14px; }
+.activity-title{ margin:0; font-size:1.02rem; font-weight:800; letter-spacing:.2px; }
+.activity-meta{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin:.35rem 0 .4rem; color:var(--muted); font-size:.92rem;
+}
+.badge{
+  display:inline-block; padding:.18rem .55rem; border-radius:999px;
+  border:1px solid var(--ring); background:#fdf7ff; font-weight:700; font-size:.78rem;
+}
+.activity-desc{ margin:.2rem 0 0; color:#334155; font-size:.96rem; line-height:1.55; }
+
+/* พิมพ์ PDF สวยขึ้น */
+@media print{
+  .activities{ grid-template-columns:1fr 1fr; gap:8px; }
+  .activity-card{ box-shadow:none; }
+  .activity-desc{ font-size:.9rem; }
+}
+
   </style>
 </head>
 <body>
@@ -378,20 +426,59 @@
         <section class="sec">
           <div class="hdr">
             <h2>กิจกรรม & ผลงานมหาวิทยาลัย</h2>
-            <div class="muted">แข่งขัน/บริการวิชาการ/ชมรม</div>
+            <div class="muted">แข่งขัน / บริการวิชาการ / องค์กรนักศึกษา</div>
           </div>
+        
           <div class="card">
-            <div class="gallery">
-              <!-- TODO: เปลี่ยนเป็นรูปกิจกรรมจริงของคุณ -->
-              <img src="../images/v1.jpg" alt="กิจกรรม 1">
-              <h3> กิจกรรมออกบริการวิชาการ ปี 2566 </h3>
-              <img src="../images/v2.jpg" alt="กิจกรรม 2">
-              <h3> องค์การนักศึกษา ปี 2567 </h3>
-              <img src="../images/v3.jpg" alt="กิจกรรม 3">
-              <h3> กิจกรรมออกบริการวิชาการ ปี 2567 </h3>
+            <div class="activities">
+              <!-- A1 -->
+              <article class="activity-card">
+                <img class="activity-cover" src="../images/v1.jpg" alt="กิจกรรมออกบริการวิชาการ ปี 2566">
+                <div class="activity-body">
+                  <h3 class="activity-title">กิจกรรมออกบริการวิชาการ</h3>
+                  <div class="activity-meta">
+                    <span class="badge">ปี 2566</span>
+                    <span>ชุมชน/โรงเรียน</span>
+                  </div>
+                  <p class="activity-desc">
+                    ใส่คำอธิบายสั้น ๆ 1–2 บรรทัด (เช่น “ร่วมทีมจัดเวิร์กช็อปทักษะดิจิทัลเบื้องต้น ดูแลสื่อ/เอกสาร และสรุปผลแบบฟอร์มประเมิน”)
+                  </p>
+                </div>
+              </article>
+        
+              <!-- A2 -->
+              <article class="activity-card">
+                <img class="activity-cover" src="../images/v2.jpg" alt="องค์การนักศึกษา ปี 2567">
+                <div class="activity-body">
+                  <h3 class="activity-title">องค์การนักศึกษา</h3>
+                  <div class="activity-meta">
+                    <span class="badge">ปี 2567</span>
+                    <span>บทบาท/ฝ่ายที่รับผิดชอบ</span>
+                  </div>
+                  <p class="activity-desc">
+                    ใส่หน้าที่หลัก (เช่น “ประสานงานกิจกรรม, ทำสื่อประชาสัมพันธ์, สรุปค่าใช้จ่าย/เอกสารเบิกจ่าย”)
+                  </p>
+                </div>
+              </article>
+        
+              <!-- A3 -->
+              <article class="activity-card">
+                <img class="activity-cover" src="../images/v3.jpg" alt="กิจกรรมออกบริการวิชาการ ปี 2567">
+                <div class="activity-body">
+                  <h3 class="activity-title">กิจกรรมออกบริการวิชาการ</h3>
+                  <div class="activity-meta">
+                    <span class="badge">ปี 2567</span>
+                    <span>Workshop / Training</span>
+                  </div>
+                  <p class="activity-desc">
+                    สรุปสิ่งที่ได้ทำ/ผลงานที่วัดผลได้ (เช่น “ผู้เข้าร่วม 80 คน, ทำคู่มือสรุป 10 หน้า และแบบประเมินความพึงพอใจเฉลี่ย 4.6/5”)
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
         </section>
+        
 
         <!-- <section class="sec">
           <div class="hdr">
