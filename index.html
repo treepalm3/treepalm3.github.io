@@ -453,6 +453,60 @@
   transition:.2s box-shadow, .2s border-color, .2s transform;
 }
 .iconbtn:hover{box-shadow:var(--shadow-hover); border-color:var(--brand); transform:translateY(-1px);}
+/* === Bigger Nav (desktop + mobile) === */
+:root{
+  /* ความสูงแถบนำทางแบบยืดหยุ่นตามหน้าจอ */
+  --nav-h: clamp(74px, 8vw, 96px);
+}
+
+/* ปรับความสูงจริงของแถบและระยะ top ของแผงมือถือให้สัมพันธ์กัน */
+.site-header .nav{ height: var(--nav-h); }
+.mobile-panel{ top: var(--nav-h); }
+
+/* แบรนด์ใหญ่ขึ้นอ่านง่าย */
+.brand{
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  letter-spacing:.5px;
+}
+
+/* ลิงก์ในแถบนำทางใหญ่ขึ้น + เพิ่มช่องไฟคลิกง่ายขึ้น */
+.nav-links{ gap: clamp(16px, 2.4vw, 28px); }
+.nav-links a{
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  padding: .35rem .1rem; /* เพิ่ม hit area แนวตั้งเล็กน้อย */
+}
+
+/* ปุ่ม CTA ใหญ่ขึ้น */
+.cta{
+  padding: .7rem 1.1rem;
+  font-size: clamp(.95rem, 1vw, 1.05rem);
+  border-radius:16px;
+}
+
+/* ไอคอน Hamburger ใหญ่ขึ้น + เส้นหนาขึ้น */
+.hamburger{
+  width: 52px; height: 52px; border-radius:12px;
+}
+.hamburger .lines{
+  width: 26px; height: 3px;
+}
+.hamburger .lines::before,
+.hamburger .lines::after{
+  width: 26px; height: 3px;
+}
+.hamburger .lines::before{ top:-8px; }
+.hamburger .lines::after{ bottom:-8px; }
+
+/* เมนูในแผงมือถือ: ตัวอักษร/ระยะห่างใหญ่ขึ้น */
+.mobile-panel nav a{
+  font-size: 1.05rem;
+  padding: 12px 14px;
+}
+
+/* ตัวเลือก: ให้แถบหัวเว็บดู “ฟูล” ขึ้นนิด (เงาอ่อนๆ) */
+.site-header{
+  box-shadow: 0 6px 18px rgba(124,58,237,.08);
+}
 
   </style>
 </head>
