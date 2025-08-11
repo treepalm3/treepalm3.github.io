@@ -351,6 +351,13 @@
       </aside>
     </div>
 
+    <script>
+      // footer time
+      document.getElementById('y').textContent = new Date().getFullYear();
+      document.getElementById('updated').textContent =
+        new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
+    </script>
+    
     <!-- Footer -->
     <footer id="contact" class="contact-footer">
       <div class="c-wrap">
