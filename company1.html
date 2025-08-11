@@ -126,63 +126,122 @@
     .apply-bar .cta{box-shadow:none}
     @media(max-width:959.98px){ .apply-bar{display:flex} }
 
-    /* Footer */
-    .footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      text-align: center;
-      padding: 3rem 2rem;
-      margin-top: 4rem;
-  }
+    /* === Contact + Footer (Unified) === */
+.site-footer{
+  margin-top:64px;
+  background: linear-gradient(180deg, rgba(167,139,250,.08), rgba(249,168,212,.08));
+  border-top:1px solid var(--ring);
+  color:var(--text);
+}
+.footer-top{ padding:48px 0; }
+.footer-grid{ display:grid; gap:20px; }
+@media (min-width:900px){
+  .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; }
+}
+.footer-title{ margin:0 0 10px; font-size:clamp(1.2rem,2.5vw,1.6rem); font-weight:800; }
+.footer-text{ color:var(--muted); margin:.2rem 0 1rem; }
 
-  .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-  }
+.contact-chips{
+  display:grid; gap:10px;
+  grid-template-columns:1fr;
+}
+@media (min-width:600px){
+  .contact-chips{ grid-template-columns:repeat(2,1fr); }
+}
+.contact-chip{
+  display:flex; align-items:center; gap:10px;
+  padding:12px 14px; border:1px solid #e5e7eb;
+  border-radius:12px; background:#fff; box-shadow:var(--shadow);
+  color:inherit; text-decoration:none;
+}
+.contact-chip:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
 
-  .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-  }
+.footer-links, .footer-social{ display:flex; gap:10px; flex-wrap:wrap; }
+.footer-links a{
+  display:inline-block; padding:.45rem .75rem;
+  border:1px solid var(--ring); border-radius:999px; background:#fff;
+  color:inherit; text-decoration:none; box-shadow:var(--shadow);
+}
+.footer-links a:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
 
-  .footer-links a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s ease;
-  }
+.social-btn{
+  width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--ring); border-radius:50%; background:#fff; box-shadow:var(--shadow);
+  font-size:1.1rem; color:inherit; text-decoration:none;
+}
+.social-btn:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
 
-  .footer-links a:hover {
-      color: #667eea;
-  }
+.footer-bottom{
+  border-top:1px solid var(--ring);
+  padding:14px 0; color:var(--muted);
+}
+.footer-bottom .row{
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+}
+.footer-bottom .mini-links{ display:flex; gap:14px; flex-wrap:wrap; }
+.footer-bottom .mini-links a{ color:var(--muted); text-decoration:none; }
+.footer-bottom .mini-links a:hover{ color:var(--brand-strong-1); }
 
-  .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-  }
+.to-top{
+  display:inline-flex; align-items:center; gap:.4rem; text-decoration:none; font-weight:600;
+  color:var(--brand-strong-1);
+}
+.to-top i{ transform:translateY(0); transition:transform .2s ease; }
+.to-top:hover i{ transform:translateY(-2px); }
 
-  .social-link {
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-  }
+/* === Contact + Footer (minimal & pastel) === */
+.contact-footer{
+  margin-top:72px;
+  background:
+    radial-gradient(900px 380px at 80% -10%, rgba(167,139,250,.18), transparent 60%),
+    radial-gradient(900px 380px at 0% 110%, rgba(249,168,212,.16), transparent 60%),
+    var(--bg);
+  border-top:1px solid var(--ring);
+}
+.c-wrap{max-width:980px; margin:0 auto; padding:56px 20px;}
+.c-card{
+  background:#fff;
+  border:1px solid #eceef3;
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 18px 40px rgba(124,58,237,.12);
+}
+.c-title{margin:0; font-weight:800; font-size:clamp(1.5rem,2.6vw,2rem);}
+.c-sub{color:var(--muted); margin:.45rem 0 1.2rem;}
 
-  .social-link:hover {
-      background: #667eea;
-      transform: translateY(-3px);
-  }
+.c-actions{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.btnx{
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.75rem 1.05rem; border-radius:12px; font-weight:700;
+  text-decoration:none; border:1px solid var(--ring); background:#fff; color:var(--text);
+  transition:.2s transform, .2s box-shadow, .2s border-color;
+}
+.btnx.primary{
+  border:none; color:#fff;
+  background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2));
+}
+.btnx:hover{transform:translateY(-1px); box-shadow:var(--shadow-hover); border-color:var(--brand);}
+
+.c-links{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+.c-link{
+  padding:.45rem .8rem; border-radius:999px; border:1px solid var(--ring);
+  background:#fff; text-decoration:none; color:var(--text); font-size:.95rem;
+}
+.c-link:hover{box-shadow:var(--shadow-hover); border-color:var(--brand);}
+
+.c-legal{
+  margin-top:22px; padding-top:16px; border-top:1px solid var(--ring);
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  color:var(--muted); font-size:.95rem;
+}
+.c-social{display:flex; gap:10px;}
+.iconbtn{
+  width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;
+  border-radius:50%; background:#fff; border:1px solid var(--ring);
+  text-decoration:none; color:inherit;
+  transition:.2s box-shadow, .2s border-color, .2s transform;
+}
+
   </style>
 </head>
 <body>
@@ -390,25 +449,29 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-links">
-            <a href="#privacy">นโยบายความเป็นส่วนตัว</a>
-            <a href="#terms">ข้อกำหนดการใช้งาน</a>
-            <a href="#sitemap">แผนผังเว็บไซต์</a>
-            <a href="#contact">ติดต่อเรา</a>
+  <footer id="contact" class="contact-footer">
+    <div class="c-wrap">
+      <div class="c-card">
+        <div class="c-legal">
+          <div>© <span id="y"></span> Thidarat Portfolio</div>
+          <div class="c-social">
+            <a class="iconbtn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a class="iconbtn" href="https://github.com/treepalm3" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a class="iconbtn" href="mailto:Thidarat.bu@ksu.ac.th" aria-label="Email">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+            <a class="iconbtn" href="tel:+6698699901" aria-label="Phone">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+          </div>
         </div>
-        
-        <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">💼</a>
-            <a href="#" class="social-link" title="GitHub">🐱</a>
-            <a href="#" class="social-link" title="Email">✉️</a>
-            <a href="#" class="social-link" title="Phone">📞</a>
-        </div>
-        
-        <p>&copy; 2025 Thidarat Portfolio. สงวนลิขสิทธิ์.</p>
+      </div>
     </div>
-</footer>
+  </footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
