@@ -260,6 +260,35 @@
 .open{
   color: var(--brand-strong-1);
 }
+/* ==== Clickable card links for Company section ==== */
+.card-link{
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card-link:hover,
+.card-link:focus-visible{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--brand);
+}
+.card-link:focus-visible{
+  outline: 3px solid var(--brand-2);
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+.card-link img{ transition: transform .35s ease; }
+.card-link:hover img{ transform: scale(1.02); }
+
+.card-cta{
+  margin-top:8px;
+  display:inline-flex; align-items:center; gap:.4rem;
+  color: var(--brand-strong-1); font-weight:700; letter-spacing:.2px;
+}
+.card-cta i{ transform: translateX(0); transition: transform .2s ease; }
+.card-link:hover .card-cta i{ transform: translateX(3px); }
 
   </style>
 </head>
@@ -384,36 +413,49 @@
     <div class="container">
       <div class="section-head">
         <h2>Company</h2>
+        <p class="muted">คลิกการ์ดเพื่อดูรายละเอียดงานฝึกงานของแต่ละบริษัท</p>
       </div>
+  
       <div class="cards">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project 1">
+        <!-- Company A -->
+        <a class="card card-link" href="company-a.html" aria-label="ดูรายละเอียดฝึกงาน Company A (Frontend)">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
+               alt="ตัวอย่างงาน Frontend สำหรับ Company A">
           <div class="p">
-            <div class="muted">Case Study #1</div>
-            <strong>ระบบจัดการข้อมูล + Dashboard</strong>
-            <p class="muted">Responsive • เขียนโค้ดสะอาด • ใช้งานจริง</p>
+            <div class="muted">Company A • Frontend</div>
+            <strong>งานหน้าบ้าน • UI/UX • Performance • SEO</strong>
+            <p class="muted">Responsive • โครงสร้างสะอาด • คะแนน Lighthouse ดี</p>
+            <span class="card-cta">ดูรายละเอียดฝึกงาน <i class="fa-solid fa-arrow-right"></i></span>
           </div>
         </a>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Project 2">
+  
+        <!-- Company B -->
+        <a class="card card-link" href="company-b.html" aria-label="ดูรายละเอียดฝึกงาน Company B (Full-Stack PHP + MySQL)">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop"
+               alt="ตัวอย่างระบบ Full-Stack PHP + MySQL สำหรับ Company B">
           <div class="p">
-            <div class="muted">Case Study #2</div>
-            <strong>เว็บพอร์ต SEO-friendly</strong>
-            <p class="muted">โหลดไว • โครงสร้างดีต่อ SEO</p>
+            <div class="muted">Company B • Full-Stack</div>
+            <strong>PHP 8 • MySQL • RBAC • Report • REST API</strong>
+            <p class="muted">CRUD ครบ • ออกรายงาน • โครงสร้าง MVC</p>
+            <span class="card-cta">ดูรายละเอียดฝึกงาน <i class="fa-solid fa-arrow-right"></i></span>
           </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Project 3">
+        </a>
+  
+        <!-- Company C -->
+        <a class="card card-link" href="company-c.html" aria-label="ดูรายละเอียดฝึกงาน Company C (Data/Dashboard/AI)">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
+               alt="ตัวอย่างงาน Data/Dashboard/AI สำหรับ Company C">
           <div class="p">
-            <div class="muted">Case Study #3</div>
-            <strong>IoT Dashboard & Alert</strong>
-            <p class="muted">กราฟสวย • แจ้งเตือนทันที</p>
+            <div class="muted">Company C • Data / Dashboard / AI</div>
+            <strong>Python • SQL • DataViz • IoT Dashboard</strong>
+            <p class="muted">ทำความสะอาดข้อมูล • ทำกราฟ • สร้างแดชบอร์ด</p>
+            <span class="card-cta">ดูรายละเอียดฝึกงาน <i class="fa-solid fa-arrow-right"></i></span>
           </div>
-        </article>
+        </a>
       </div>
     </div>
   </section>
+  
 
   <!-- Contact -->
   <section id="contact" class="about">
