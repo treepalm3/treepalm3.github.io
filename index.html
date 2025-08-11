@@ -337,6 +337,68 @@
     background: #fff;
   }
 }
+/* === Contact + Footer (Unified) === */
+.site-footer{
+  margin-top:64px;
+  background: linear-gradient(180deg, rgba(167,139,250,.08), rgba(249,168,212,.08));
+  border-top:1px solid var(--ring);
+  color:var(--text);
+}
+.footer-top{ padding:48px 0; }
+.footer-grid{ display:grid; gap:20px; }
+@media (min-width:900px){
+  .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; }
+}
+.footer-title{ margin:0 0 10px; font-size:clamp(1.2rem,2.5vw,1.6rem); font-weight:800; }
+.footer-text{ color:var(--muted); margin:.2rem 0 1rem; }
+
+.contact-chips{
+  display:grid; gap:10px;
+  grid-template-columns:1fr;
+}
+@media (min-width:600px){
+  .contact-chips{ grid-template-columns:repeat(2,1fr); }
+}
+.contact-chip{
+  display:flex; align-items:center; gap:10px;
+  padding:12px 14px; border:1px solid #e5e7eb;
+  border-radius:12px; background:#fff; box-shadow:var(--shadow);
+  color:inherit; text-decoration:none;
+}
+.contact-chip:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+
+.footer-links, .footer-social{ display:flex; gap:10px; flex-wrap:wrap; }
+.footer-links a{
+  display:inline-block; padding:.45rem .75rem;
+  border:1px solid var(--ring); border-radius:999px; background:#fff;
+  color:inherit; text-decoration:none; box-shadow:var(--shadow);
+}
+.footer-links a:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+
+.social-btn{
+  width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--ring); border-radius:50%; background:#fff; box-shadow:var(--shadow);
+  font-size:1.1rem; color:inherit; text-decoration:none;
+}
+.social-btn:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+
+.footer-bottom{
+  border-top:1px solid var(--ring);
+  padding:14px 0; color:var(--muted);
+}
+.footer-bottom .row{
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+}
+.footer-bottom .mini-links{ display:flex; gap:14px; flex-wrap:wrap; }
+.footer-bottom .mini-links a{ color:var(--muted); text-decoration:none; }
+.footer-bottom .mini-links a:hover{ color:var(--brand-strong-1); }
+
+.to-top{
+  display:inline-flex; align-items:center; gap:.4rem; text-decoration:none; font-weight:600;
+  color:var(--brand-strong-1);
+}
+.to-top i{ transform:translateY(0); transition:transform .2s ease; }
+.to-top:hover i{ transform:translateY(-2px); }
 
   </style>
 </head>
@@ -504,40 +566,82 @@
     </div>
   </section>
   
-
-  <!-- Contact -->
-  <section id="contact" class="about">
-    <div class="container">
-      <h2>ติดต่อ</h2>
-      <div class="contact-grid" style="margin-top:14px">
-        <a class="contact-item" href="mailto:you@email.com"><i class="fa-regular fa-envelope"></i> Thidarat.bu@ksu.ac.th</a>
-        <a class="contact-item" href="tel:+66999999999"><i class="fa-solid fa-phone"></i> +66 98 699 901</a>
-        <a class="contact-item" href="#"><i class="fa-brands fa-github"></i> github.com/treepalm3</a>
-        <a class="contact-item" href="#"><i class="fa-brands fa-facebook"></i> Palm Thidarat</a>
+  <footer id="contact" class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-grid">
+        <!-- Column 1: Intro + Quick contact -->
+        <div>
+          <h2 class="footer-title">ติดต่อ</h2>
+          <p class="footer-text">
+            สนใจฝึกงาน/ร่วมงาน ติดต่อฉันได้ทุกช่องทางด้านล่าง ยินดีแชร์ตัวอย่างงานและโค้ดเพิ่มเติมค่ะ 🙂
+          </p>
+          <div class="contact-chips">
+            <a class="contact-chip" href="mailto:Thidarat.bu@ksu.ac.th" aria-label="อีเมล">
+              <i class="fa-regular fa-envelope"></i> Thidarat.bu@ksu.ac.th
+            </a>
+            <a class="contact-chip" href="tel:+6698699901" aria-label="โทรศัพท์">
+              <i class="fa-solid fa-phone"></i> +66 98 699 901
+            </a>
+            <a class="contact-chip" href="https://github.com/treepalm3" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i> github.com/treepalm3
+            </a>
+            <a class="contact-chip" href="#" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fa-brands fa-facebook"></i> Palm Thidarat
+            </a>
+          </div>
+        </div>
+  
+        <!-- Column 2: Useful links -->
+        <div>
+          <h3 class="footer-title" style="font-size:1.1rem">ลิงก์ด่วน</h3>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#work">Company</a>
+            <a href="#targets">Target Portfolio</a>
+            <a href="#home">Home</a>
+          </div>
+        </div>
+  
+        <!-- Column 3: Social -->
+        <div>
+          <h3 class="footer-title" style="font-size:1.1rem">ติดตามฉัน</h3>
+          <div class="footer-social">
+            <a class="social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a class="social-btn" href="https://github.com/treepalm3" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a class="social-btn" href="mailto:Thidarat.bu@ksu.ac.th" aria-label="Email">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+            <a class="social-btn" href="tel:+6698699901" aria-label="Phone">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+          </div>
+          <div style="margin-top:12px">
+            <a class="to-top" href="#home"><i class="fa-solid fa-arrow-up"></i> กลับขึ้นบน</a>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-links">
-            <a href="#privacy">นโยบายความเป็นส่วนตัว</a>
-            <a href="#terms">ข้อกำหนดการใช้งาน</a>
-            <a href="#sitemap">แผนผังเว็บไซต์</a>
-            <a href="#contact">ติดต่อเรา</a>
+  
+    <div class="footer-bottom">
+      <div class="container row">
+        <div>© <span id="y"></span> Thidarat Portfolio. All rights reserved.</div>
+        <div class="mini-links">
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+          <a href="#sitemap">Sitemap</a>
         </div>
-        
-        <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">💼</a>
-            <a href="#" class="social-link" title="GitHub">🐱</a>
-            <a href="#" class="social-link" title="Email">✉️</a>
-            <a href="#" class="social-link" title="Phone">📞</a>
-        </div>
-        
-        <p>&copy; 2025 Thidarat Portfolio. สงวนลิขสิทธิ์.</p>
+      </div>
     </div>
-</footer>
+  </footer>
+  
+  
+
+  
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
