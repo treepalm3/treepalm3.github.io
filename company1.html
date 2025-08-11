@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company 1 – รายละเอียดงานฝึกงาน | Thidarat Portfolio</title>
+  <meta name="description" content="รายละเอียดงานฝึกงานสำหรับ Company 1 — ขอบเขตงาน หน้าที่ ทักษะที่ต้องใช้ และขั้นตอนการสมัคร" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      /* Pastel Purple–Pink */
+      --bg:#ffffff; --bg-soft:#fdf7ff; --card:#ffffff;
+      --text:#0f172a; --muted:#64748b;
+      --brand:#a78bfa; --brand-2:#f9a8d4;
+      --brand-strong-1:#8b5cf6; --brand-strong-2:#f472b6;
+      --ring:rgba(124,58,237,.16);
+      --shadow:0 8px 24px rgba(124,58,237,.08);
+      --shadow-hover:0 14px 32px rgba(236,72,153,.16);
+      --ok:#10b981; --warn:#f59e0b;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(60rem 60rem at 90% -10%, rgba(167,139,250,.14), transparent 60%),
+        radial-gradient(70rem 70rem at -10% 0%, rgba(249,168,212,.12), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .container{max-width:1180px; margin-inline:auto; padding:0 20px}
+
+    /* Header */
+    .site-header{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--ring)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{font-weight:700}
+    .nav-links{display:flex; gap:18px}
+    .nav-links a{color:var(--muted)}
+    .nav-links a:hover{color:var(--brand-strong-1)}
+    .cta{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border:1px solid var(--ring); border-radius:14px; background:#fff; font-weight:600; box-shadow:var(--shadow)}
+    .cta.primary{background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2)); color:#fff; border:none}
+
+    /* Hamburger (mobile) */
+    .hamburger{display:none; width:42px; height:42px; border-radius:10px; border:1px solid var(--ring); background:#fff; align-items:center; justify-content:center; cursor:pointer; box-shadow:var(--shadow)}
+    .hamburger .lines{position:relative; width:22px; height:2px; background:var(--text); transition:transform .25s ease, background .25s ease}
+    .hamburger .lines::before,.hamburger .lines::after{content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text); transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease}
+    .hamburger .lines::before{top:-7px}
+    .hamburger .lines::after{bottom:-7px}
+    .hamburger[aria-expanded="true"] .lines{background:transparent}
+    .hamburger[aria-expanded="true"] .lines::before{top:0; transform:rotate(45deg)}
+    .hamburger[aria-expanded="true"] .lines::after{bottom:0; transform:rotate(-45deg)}
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,23,.35); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:55}
+    .backdrop.active{opacity:1; pointer-events:auto}
+    .mobile-panel{position:fixed; top:64px; right:14px; width:min(88vw,320px); border:1px solid var(--ring); border-radius:16px; background:#fff; transform:translateY(-12px) scale(.98); opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:var(--shadow-hover)}
+    .mobile-panel.active{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
+    .mobile-panel .panel-inner{padding:12px}
+    .mobile-panel nav{display:flex; flex-direction:column}
+    .mobile-panel nav a{padding:10px 12px; border-radius:10px}
+    .mobile-panel nav a:hover{background:#f8f5ff}
+    .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring)}
+    .no-scroll{overflow:hidden}
+    @media(min-width:960px){.hamburger{display:none}.mobile-panel,.backdrop{display:none}}
+    @media(max-width:959.98px){.nav-links,.nav-actions{display:none}.hamburger{display:inline-flex}}
+
+    /* Hero */
+    .hero{padding:64px 0 28px}
+    .grid{display:grid; gap:24px}
+    @media(min-width:960px){.grid-2{grid-template-columns:1.1fr .9fr}}
+    .headline{font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.15; font-weight:800}
+    .lead{color:#334155}
+
+    .preview{border:1px solid var(--ring); border-radius:18px; padding:6px; background:linear-gradient(180deg,#fff,#f8fafc); box-shadow:var(--shadow)}
+    .preview img{border-radius:12px; aspect-ratio:16/10; object-fit:cover}
+
+    /* Sections / cards */
+    section{padding:48px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:16px}
+    .section-head h2{margin:0; font-size:clamp(1.3rem,3vw,1.8rem)}
+    .muted{color:var(--muted)}
+    .cards{display:grid; gap:16px}
+    @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{background:#fff; border:1px solid var(--ring); border-radius:14px; padding:14px; box-shadow:var(--shadow)}
+    .facts{display:grid; gap:10px}
+    @media(min-width:900px){.facts{grid-template-columns:repeat(3,1fr)}}
+
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:.32rem .6rem; border:1px solid var(--ring); border-radius:999px; background:#fdf7ff; font-size:.9rem}
+    .list{margin:.4rem 0 0 1.1rem}
+    .list li{margin:.18rem 0}
+
+    /* Timeline */
+    .timeline{display:grid; gap:10px}
+    .step{display:flex; gap:10px; align-items:flex-start}
+    .dot{width:10px; height:10px; border-radius:50%; background:var(--brand-strong-1); margin-top:.45rem}
+
+    /* Sticky apply (mobile) */
+    .apply-bar{
+      position:fixed; left:0; right:0; bottom:0; z-index:50;
+      background:rgba(255,255,255,.95); border-top:1px solid var(--ring);
+      display:none; justify-content:space-between; align-items:center; gap:10px; padding:10px 16px;
+      backdrop-filter:blur(6px);
+    }
+    .apply-bar .cta{box-shadow:none}
+    @media(max-width:959.98px){ .apply-bar{display:flex} }
+
+    footer{border-top:1px solid #e5e7eb; padding:22px 0; color:var(--muted); font-size:.95rem}
+    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px}
+  </style>
+</head>
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">← กลับหน้าแรก</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#process">ขั้นตอนสมัคร</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="cta" href="#contact"><i class="fa-regular fa-envelope"></i> ติดต่อ</a>
+        <a class="cta primary" href="mailto:you@email.com?subject=สมัครฝึกงาน Company 1"><i class="fa-regular fa-paper-plane"></i> สมัครฝึกงาน</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-controls="mobilePanel" aria-expanded="false">
+        <span class="lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile panel -->
+  <aside class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="เมนูนำทาง" hidden>
+    <div class="panel-inner">
+      <nav aria-label="Mobile primary">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#skills">ทักษะ</a>
+        <a href="#process">ขั้นตอนสมัคร</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="panel-actions">
+        <a class="cta primary" href="mailto:you@email.com?subject=สมัครฝึกงาน Company 1"><i class="fa-regular fa-paper-plane"></i> สมัครฝึกงาน</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hero / Overview -->
+  <section id="overview" class="hero">
+    <div class="container grid grid-2">
+      <div>
+        <h1 class="headline">Company 1 — รายละเอียดงานฝึกงาน</h1>
+        <p class="lead">ตำแหน่ง: <strong>Data / Dashboard Intern</strong> • ทีม: <strong>Web Application & DataViz</strong></p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px">
+          <span class="pill"><i class="fa-regular fa-calendar"></i> ระยะฝึก: <!-- TODO --> มิ.ย.–ส.ค. 2568</span>
+          <span class="pill"><i class="fa-solid fa-location-dot"></i> สถานที่: <!-- TODO --> กรุงเทพฯ / Remote</span>
+          <span class="pill"><i class="fa-regular fa-clock"></i> เวลา: จ.-ศ. 9.00–17.00</span>
+          <span class="pill"><i class="fa-solid fa-baht-sign"></i> สวัสดิการ: เบี้ยเลี้ยง/อุปกรณ์</span>
+        </div>
+      </div>
+      <div>
+        <div class="preview">
+          <!-- TODO: ใส่ภาพโลโก้/ออฟฟิศจริง -->
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop" alt="Office / Team preview">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job facts -->
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>ข้อมูลโดยย่อ</h2></div>
+      <div class="facts">
+        <div class="card">
+          <strong>ขอบเขตงาน</strong>
+          <ul class="list">
+            <li>ช่วยพัฒนา Dashboard (Chart.js/Grafana) และ Web App เบื้องต้น</li>
+            <li>ทำความสะอาด/เตรียมข้อมูล (CSV/Excel/SQL)</li>
+            <li>ทดสอบและปรับปรุง UX ของหน้าเว็บที่รับผิดชอบ</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>เครื่องมือหลัก</strong>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+            <span class="pill">Python</span><span class="pill">SQL/MySQL</span>
+            <span class="pill">HTML/CSS/JS</span><span class="pill">Chart.js</span>
+            <span class="pill">Grafana</span><span class="pill">Git</span>
+          </div>
+        </div>
+        <div class="card">
+          <strong>ผลงานอ้างอิง</strong>
+          <p class="muted" style="margin:.4rem 0 0">เลือกดูพอร์ตที่เกี่ยวข้อง:</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
+            <a class="pill" href="company-a.html">Frontend</a>
+            <a class="pill" href="company-b.html">Full-Stack</a>
+            <a class="pill" href="company-c.html">Data/Dashboard/AI</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsibilities -->
+  <section id="responsibilities">
+    <div class="container">
+      <div class="section-head"><h2>หน้าที่ความรับผิดชอบ</h2></div>
+      <div class="card">
+        <ul class="list">
+          <li>ออกแบบและสร้างกราฟ/การ์ดสรุปข้อมูลตามโจทย์</li>
+          <li>Connect แหล่งข้อมูล (CSV/API/DB) และจัดการ Data Pipeline เบื้องต้น</li>
+          <li>ทดสอบการใช้งานจริง ปรับปรุงประสิทธิภาพและความสวยงาม</li>
+          <li>เขียน README/คู่มือการใช้งานสั้น ๆ สำหรับทีม</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section id="requirements">
+    <div class="container">
+      <div class="section-head"><h2>คุณสมบัติที่ต้องการ</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>จำเป็นต้องมี</strong>
+          <ul class="list">
+            <li>พื้นฐาน Python หรือ SQL อย่างใดอย่างหนึ่ง</li>
+            <li>เข้าใจ HTML/CSS/JavaScript ระดับเริ่ม-กลาง</li>
+            <li>สื่อสารและทำงานเป็นทีมได้</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>จะพิจารณาเป็นพิเศษ</strong>
+          <ul class="list">
+            <li>เคยทำ Dashboard/กราฟข้อมูล</li>
+            <li>มีโปรเจกต์ GitHub/ผลงานให้ลองดู</li>
+            <li>รู้จักการออกแบบ UX เบื้องต้น</li>
+          </ul>
+        </div>
+        <div class="card" id="skills">
+          <strong>ทักษะที่ได้พัฒนาช่วงฝึก</strong>
+          <ul class="list">
+            <li>Data Cleaning / Visualization</li>
+            <li>การพัฒนาเว็บให้ใช้งานจริงและอ่านง่าย</li>
+            <li>การทำงานร่วมกับทีมและการส่งมอบงาน</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head"><h2>ขั้นตอนการสมัคร & ไทม์ไลน์</h2></div>
+      <div class="card timeline">
+        <div class="step"><span class="dot"></span><div><strong>ส่งเรซูเม่/พอร์ต</strong> ไปที่อีเมลบริษัท (ไฟล์ PDF / ลิงก์งาน)</div></div>
+        <div class="step"><span class="dot"></span><div><strong>สัมภาษณ์ออนไลน์</strong> 20–30 นาที (แนะนำผลงานสั้น ๆ)</div></div>
+        <div class="step"><span class="dot"></span><div><strong>ทดลองทำโจทย์เล็ก</strong> (เช่น จัดกราฟ/สรุปข้อมูล) ภายใน 2–3 วัน</div></div>
+        <div class="step"><span class="dot"></span><div><strong>เริ่มฝึกงาน</strong> <!-- TODO --> ช่วง มิ.ย. 2568 เป็นต้นไป</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Apply -->
+  <section id="contact" style="padding-top:40px; padding-bottom:64px; background:var(--bg-soft); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)">
+    <div class="container">
+      <div class="section-head"><h2>ติดต่อ & สมัคร</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>อีเมลบริษัท</strong>
+          <p style="margin:.4rem 0"> <!-- TODO: เปลี่ยนอีเมลจริงของบริษัท --> hr@company1.co.th</p>
+          <a class="cta primary" href="mailto:hr@company1.co.th?subject=สมัครฝึกงาน Company 1 – Thidarat Budsad">
+            <i class="fa-regular fa-paper-plane"></i> ส่งใบสมัครทางอีเมล
+          </a>
+        </div>
+        <div class="card">
+          <strong>เอกสารที่ควรแนบ</strong>
+          <ul class="list">
+            <li>เรซูเม่ (PDF 1 หน้า)</li>
+            <li>ลิงก์พอร์ตที่เกี่ยวข้อง (เช่น Company C – Data/Dashboard)</li>
+            <li>ทรานสคริปต์/หนังสือรับรองนิสิต (หากมี)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>ติดต่อฉัน (ผู้สมัคร)</strong>
+          <p class="muted" style="margin:.4rem 0">Thidarat Budsad • 651420002012-5 • Kalasin University</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <a class="pill" href="mailto:Thidarat.bu@ksu.ac.th">Thidarat.bu@ksu.ac.th</a>
+            <a class="pill" href="tel:+6698699901">+66 98 699 9901</a>
+            <a class="pill" href="https://github.com/treepalm3" target="_blank" rel="noopener">github.com/treepalm3</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky apply (mobile) -->
+  <div class="apply-bar">
+    <div class="muted" style="font-weight:600">Company 1 – Data/Dashboard Intern</div>
+    <a class="cta primary" href="mailto:hr@company1.co.th?subject=สมัครฝึกงาน Company 1 – Thidarat Budsad">สมัครฝึกงาน</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="y"></span> Thidarat. All rights reserved.</div>
+      <div style="display:flex; gap:12px">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#process">ขั้นตอนสมัคร</a>
+        <a href="#contact">ติดต่อ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ปีในฟุตเตอร์
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== Mobile menu logic =====
+    const burger = document.getElementById('hamburger');
+    const panel  = document.getElementById('mobilePanel');
+    const backdrop = document.getElementById('backdrop');
+
+    function openMenu(){
+      burger.setAttribute('aria-expanded','true');
+      panel.hidden = false; backdrop.hidden = false;
+      requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
+      document.body.classList.add('no-scroll');
+      const firstLink = panel.querySelector('a'); if(firstLink) firstLink.focus();
+    }
+    function closeMenu(){
+      burger.setAttribute('aria-expanded','false');
+      panel.classList.remove('active'); backdrop.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+      setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
+      burger.focus();
+    }
+    function toggleMenu(){ (burger.getAttribute('aria-expanded') === 'true') ? closeMenu() : openMenu(); }
+
+    burger.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', closeMenu);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') closeMenu(); });
+  </script>
+</body>
+</html>
