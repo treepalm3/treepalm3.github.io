@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>After You – Developer Intern | Thidarat Portfolio</title>
+  <meta name="description" content="รับนักศึกษาฝึกงาน Developer ที่บริษัท อาฟเตอร์ ยู จำกัด (มหาชน) • ใช้ Python, Flutter, Java, CSS, C#, SQL • มีความรู้ด้าน UX/UI • เวลา 09:00–18:00 น. • เบี้ยเลี้ยง 2,500–4,000 บาท • สมัครผ่าน InternTH" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome สำหรับไอคอน -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      --bg:#ffffff; --bg-soft:#fdf7ff; --card:#ffffff;
+      --text:#0f172a; --muted:#64748b;
+      --brand:#a78bfa; --brand-2:#f9a8d4;
+      --brand-strong-1:#8b5cf6; --brand-strong-2:#f472b6;
+      --ring:rgba(124,58,237,.16);
+      --shadow:0 8px 24px rgba(124,58,237,.08);
+      --shadow-hover:0 14px 32px rgba(236,72,153,.16);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(60rem 60rem at 90% -10%, rgba(167,139,250,.14), transparent 60%),
+        radial-gradient(70rem 70rem at -10% 0%, rgba(249,168,212,.12), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:1180px; margin-inline:auto; padding:0 20px}
+
+    /* Header */
+    .site-header{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--ring)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{font-weight:700}
+    .nav-links{display:flex; gap:18px}
+    .nav-links a{color:var(--muted)}
+    .nav-links a:hover{color:var(--brand-strong-1)}
+    .cta{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border:1px solid var(--ring); border-radius:14px; background:#fff; font-weight:600; box-shadow:var(--shadow)}
+    .cta.primary{background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2)); color:#fff; border:none}
+
+    /* Hamburger (mobile) */
+    .hamburger{display:none; width:42px; height:42px; border-radius:10px; border:1px solid var(--ring); background:#fff; align-items:center; justify-content:center; cursor:pointer; box-shadow:var(--shadow)}
+    .hamburger .lines{position:relative; width:22px; height:2px; background:var(--text); transition:transform .25s ease, background .25s ease}
+    .hamburger .lines::before,.hamburger .lines::after{content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text); transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease}
+    .hamburger .lines::before{top:-7px}
+    .hamburger .lines::after{bottom:-7px}
+    .hamburger[aria-expanded="true"] .lines{background:transparent}
+    .hamburger[aria-expanded="true"] .lines::before{top:0; transform:rotate(45deg)}
+    .hamburger[aria-expanded="true"] .lines::after{bottom:0; transform:rotate(-45deg)}
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,23,.35); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:55}
+    .backdrop.active{opacity:1; pointer-events:auto}
+    .mobile-panel{position:fixed; top:64px; right:14px; width:min(88vw,320px); border:1px solid var(--ring); border-radius:16px; background:#fff; transform:translateY(-12px) scale(.98); opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:var(--shadow-hover)}
+    .mobile-panel.active{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
+    .mobile-panel .panel-inner{padding:12px}
+    .mobile-panel nav{display:flex; flex-direction:column}
+    .mobile-panel nav a{padding:10px 12px; border-radius:10px}
+    .mobile-panel nav a:hover{background:#f8f5ff}
+    .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring)}
+    .no-scroll{overflow:hidden}
+    @media(min-width:960px){.hamburger{display:none}.mobile-panel,.backdrop{display:none}}
+    @media(max-width:959.98px){.nav-links,.nav-actions{display:none}.hamburger{display:inline-flex}}
+
+    /* Hero */
+    .hero{padding:64px 0 28px}
+    .grid{display:grid; gap:24px}
+    @media(min-width:960px){.grid-2{grid-template-columns:1.1fr .9fr}}
+    .headline{font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.15; font-weight:800}
+    .lead{color:#334155}
+
+    /* รูปพอดีกรอบ ไม่ครอป */
+    .preview{
+      border:1px solid var(--ring);
+      border-radius:18px;
+      padding:6px;
+      background:linear-gradient(180deg,#fff,#f8fafc);
+      box-shadow:var(--shadow);
+      height: clamp(220px, 32vw, 360px);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .preview img{
+      border-radius:12px;
+      width:100%; height:100%; object-fit:contain;
+    }
+
+    /* Sections / cards */
+    section{padding:48px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:16px}
+    .section-head h2{margin:0; font-size:clamp(1.3rem,3vw,1.8rem)}
+    .muted{color:var(--muted)}
+    .cards{display:grid; gap:16px}
+    @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{background:#fff; border:1px solid var(--ring); border-radius:14px; padding:14px; box-shadow:var(--shadow)}
+    .facts{display:grid; gap:10px}
+    @media(min-width:900px){.facts{grid-template-columns:repeat(3,1fr)}}
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:.32rem .6rem; border:1px solid var(--ring); border-radius:999px; background:#fdf7ff; font-size:.9rem}
+    .list{margin:.4rem 0 0 1.1rem}
+    .list li{margin:.18rem 0}
+
+    /* Sticky apply (mobile) */
+    .apply-bar{
+      position:fixed; left:0; right:0; bottom:0; z-index:50;
+      background:rgba(255,255,255,.95); border-top:1px solid var(--ring);
+      display:none; justify-content:space-between; align-items:center; gap:10px; padding:10px 16px;
+      backdrop-filter:blur(6px);
+    }
+    .apply-bar .cta{box-shadow:none}
+    @media(max-width:959.98px){ .apply-bar{display:flex} }
+
+    /* Footer (เรียบง่ายพอ) */
+    .footer{background:#0f172a; color:#fff; text-align:center; padding:2.2rem 1rem; margin-top:3rem}
+    .footer a{color:#fff}
+  </style>
+</head>
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">← กลับหน้าแรก</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#benefits">สวัสดิการ</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="cta primary" href="https://internth.com/job/4308" target="_blank" rel="noopener">
+          <i class="fa-regular fa-paper-plane"></i> สมัครผ่าน InternTH
+        </a>
+      </div>
+      <button type="button" class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-controls="mobilePanel" aria-expanded="false">
+        <span class="lines" aria-hidden="true"></span>
+      </button>      
+    </div>
+  </header>
+
+  <!-- Mobile panel -->
+  <aside class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="เมนูนำทาง" hidden>
+    <div class="panel-inner">
+      <nav aria-label="Mobile primary">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#benefits">สวัสดิการ</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="panel-actions">
+        <a class="cta primary" href="https://internth.com/job/4308" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hero / Overview -->
+  <section id="overview" class="hero">
+    <div class="container grid grid-2">
+      <div>
+        <h1 class="headline">After You — Developer Intern</h1>
+        <p class="lead">
+          บริษัท <strong>อาฟเตอร์ ยู จำกัด (มหาชน)</strong> • ประเภทงาน: <strong>ฝึกงาน</strong> (สัมภาษณ์ออนไลน์)
+        </p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px">
+          <span class="pill"><i class="fa-regular fa-user"></i> รับ 1 อัตรา</span>
+          <span class="pill"><i class="fa-regular fa-clock"></i> 5 วัน/สัปดาห์ • 09:00–18:00 น.</span>
+          <span class="pill"><i class="fa-solid fa-location-dot"></i> ประจำออฟฟิศ (On-site)</span>
+          <span class="pill"><i class="fa-regular fa-building"></i> After You PLC</span>
+        </div>
+      </div>
+      <div>
+        <div class="preview">
+          <img src="../images/w2.webp" alt="After You office / team preview">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job facts -->
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>ข้อมูลโดยย่อ</h2></div>
+      <div class="facts">
+        <div class="card">
+          <strong>บทบาท/สิ่งที่จะได้ทำ</strong>
+          <ul class="list">
+            <li>พัฒนาแอปพลิเคชันด้วยภาษาโปรแกรมต่าง ๆ</li>
+            <li>ออกแบบฐานข้อมูลและเขียนโค้ด ฟังก์ชัน/โมดูล</li>
+            <li>ทดสอบและแก้บั๊กในระบบ</li>
+            <li>ใช้ <strong>Python, Flutter, Java, CSS, C#, SQL</strong></li>
+            <li>มีความรู้ด้าน <strong>UX/UI</strong></li>
+            <li>ต่อยอดพัฒนาระบบภายในบริษัทในอนาคต</li>
+          </ul>
+          <!-- ที่มา: InternTH job/4308 -->
+        </div>
+        <div class="card">
+          <strong>ทักษะ/เครื่องมือ</strong>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+            <span class="pill">Python</span><span class="pill">Flutter</span><span class="pill">Java</span>
+            <span class="pill">CSS</span><span class="pill">C#</span><span class="pill">SQL</span>
+            <span class="pill">UX / UI</span><span class="pill">Database Design</span>
+          </div>
+        </div>
+        <div class="card">
+          <strong>การสมัครงาน</strong>
+          <p class="muted" style="margin:.4rem 0 6px">สมัครผ่านหน้า InternTH เพื่อให้บริษัทติดตามสถานะได้</p>
+          <a class="cta primary" href="https://internth.com/job/4308" target="_blank" rel="noopener">
+            <i class="fa-regular fa-paper-plane"></i> ไปที่หน้า InternTH
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsibilities -->
+  <section id="responsibilities">
+    <div class="container">
+      <div class="section-head"><h2>หน้าที่ความรับผิดชอบ</h2></div>
+      <div class="card">
+        <ul class="list">
+          <li>พัฒนาและปรับปรุงฟีเจอร์ของระบบ/เว็บแอป</li>
+          <li>ทำงานร่วมทีม ทดสอบ และแก้ไขบั๊กให้พร้อมใช้งาน</li>
+          <li>ออกแบบฐานข้อมูลและโครงสร้างระบบตามที่มอบหมาย</li>
+          <li>สื่อสารความคืบหน้า/ปัญหาอย่างมืออาชีพ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section id="requirements">
+    <div class="container">
+      <div class="section-head"><h2>คุณสมบัติผู้สมัคร</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>ต้องมี</strong>
+          <ul class="list">
+            <li>กำลังศึกษาในระดับปริญญาตรี สาขาที่เกี่ยวข้อง</li>
+            <li>ระยะฝึกงานอย่างน้อย <strong>3 เดือนขึ้นไป</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>ลักษณะนิสัย</strong>
+          <ul class="list">
+            <li>มีทักษะการจัดการที่ดี ละเอียดรอบคอบ</li>
+            <li>ตรงต่อเวลา และมีความรับผิดชอบ</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>เวลาทำงาน</strong>
+          <ul class="list">
+            <li>จันทร์–ศุกร์ • 09:00–18:00 น. (5 วัน/สัปดาห์)</li>
+            <li>รูปแบบ: ประจำออฟฟิศ (On-site)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:8px">อ้างอิงรายละเอียดจากประกาศ InternTH (รหัสงาน 4308)</div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <div class="container">
+      <div class="section-head"><h2>เบี้ยเลี้ยง & สวัสดิการ</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>เบี้ยเลี้ยง</strong>
+          <ul class="list">
+            <li><strong>2,500 – 4,000 บาท</strong> (ตามประกาศ)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>สวัสดิการอื่น ๆ</strong>
+          <ul class="list">
+            <li>เบี้ยเลี้ยง</li>
+            <li>เข้าร่วมกิจกรรมต่าง ๆ ของบริษัท</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Company info -->
+  <section id="contact" style="padding-top:40px; padding-bottom:64px; background:var(--bg-soft); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)">
+    <div class="container">
+      <div class="section-head"><h2>ข้อมูลบริษัท & ติดต่อ</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>บริษัท</strong>
+          <p style="margin:.4rem 0">บริษัท อาฟเตอร์ ยู จำกัด (มหาชน) • ธุรกิจอาหาร/เครื่องดื่ม</p>
+          <p class="muted" style="margin:.2rem 0">ที่อยู่: 1319/9 ซอยพัฒนาการ 25 ถนนพัฒนาการ เขตสวนหลวง แขวงสวนหลวง กรุงเทพมหานคร 10250</p>
+        </div>
+        <div class="card">
+          <strong>ผู้ติดต่อ</strong>
+          <p style="margin:.4rem 0">ธนกฤต ชัยทะนุ (เจ้าหน้าที่สรรหาว่าจ้าง)</p>
+          <p class="muted" style="margin:.2rem 0">โทร: 092-281-6444 / 02-318-4488</p>
+          <a class="cta primary" href="https://internth.com/job/4308" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:8px">สรุปจากประกาศ InternTH job/4308 ณ เวลาที่เข้าถึง</div>
+    </div>
+  </section>
+
+  <!-- Sticky apply (mobile) -->
+  <div class="apply-bar">
+    <div class="muted" style="font-weight:600">After You — Developer Intern</div>
+    <a class="cta primary" href="https://internth.com/job/4308" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © <span id="y"></span> Thidarat Portfolio • สงวนลิขสิทธิ์ •
+    <a href="https://internth.com/job/4308" target="_blank" rel="noopener">InternTH #4308</a>
+  </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const yEl = document.getElementById('y'); if (yEl) yEl.textContent = new Date().getFullYear();
+
+    // ===== Mobile menu logic =====
+    const burger   = document.getElementById('hamburger');
+    const panel    = document.getElementById('mobilePanel');
+    const backdrop = document.getElementById('backdrop');
+    if (!burger || !panel || !backdrop) return;
+
+    function openMenu(){
+      burger.setAttribute('aria-expanded','true');
+      panel.hidden = false; backdrop.hidden = false;
+      requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
+      document.body.classList.add('no-scroll');
+      const firstLink = panel.querySelector('a'); if(firstLink) firstLink.focus();
+    }
+    function closeMenu(){
+      burger.setAttribute('aria-expanded','false');
+      panel.classList.remove('active'); backdrop.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+      setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
+      burger.focus();
+    }
+    function toggleMenu(){ (burger.getAttribute('aria-expanded') === 'true') ? closeMenu() : openMenu(); }
+
+    burger.addEventListener('click', toggleMenu, {passive:true});
+    burger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+    backdrop.addEventListener('click', closeMenu, {passive:true});
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') closeMenu();
+    });
+  });
+</script>
+</body>
+</html>
