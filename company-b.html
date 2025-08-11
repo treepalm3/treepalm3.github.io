@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resume (Company B) – Thidarat Budsad</title>
-  <meta name="description" content="เรซูเม่ฉบับคัดเฉพาะสำหรับ Company B – Full-Stack PHP + MySQL, CRUD, Report, Auth, REST API, Docker" />
+  <title>Resume – Thidarat Budsad</title>
+  <meta name="description" content="เรซูเม่ของ ธิดารัตน์ บุตรศาสตร์ – Frontend • HTML/CSS/JS • UI/UX • Performance • SEO" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root{
       /* Pastel Purple–Pink */
@@ -31,12 +32,13 @@
       line-height:1.6;
     }
     a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
 
     /* Layout */
-    .page{max-width:980px; margin:24px auto; padding:18px;}
+    .page{max-width:980px; margin:24px auto; padding:18px; }
     .card{background:var(--card); border:1px solid #e5e7eb; border-radius:16px; box-shadow:var(--shadow)}
     .header{padding:22px; display:grid; gap:16px; align-items:center}
-    @media(min-width:860px){ .header{grid-template-columns:1fr 220px} }
+    @media(min-width:860px){ .header{grid-template-columns:1fr 200px} }
 
     .name{font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.1; margin:0}
     .role{margin:6px 0 0; color:#344256; font-weight:600}
@@ -44,10 +46,10 @@
     .badge{padding:.35rem .7rem; border-radius:999px; border:1px solid var(--ring); background:#fff; font-size:.9rem}
 
     .avatar{border-radius:14px; overflow:hidden; border:1px solid var(--ring)}
-    .avatar img{aspect-ratio:1/1; object-fit:cover; width:100%; height:auto}
+    .avatar img{aspect-ratio:1/1; object-fit:cover}
 
     .contact{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:.4rem .7rem; border:1px solid var(--ring); border-radius:10px; background:#fff; font-size:.95rem}
+    .contact a{display:inline-flex; align-items:center; gap:8px; padding:.4rem .7rem; border:1px solid var(--ring); border-radius:10px; background:#fff}
 
     /* Grid: main / aside */
     .grid{display:grid; gap:18px; margin-top:18px}
@@ -57,7 +59,7 @@
     section h2{margin:0 0 8px; font-size:1.2rem}
     .muted{color:var(--muted)}
 
-    /* Lists / items */
+    /* Lists / timeline */
     .list{display:grid; gap:12px}
     .item{padding:12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff}
     .item h3{margin:0 0 2px; font-size:1.05rem}
@@ -65,7 +67,7 @@
     .bullets{margin:.4rem 0 0 1.1rem}
     .bullets li{margin:.18rem 0}
 
-    /* Pills */
+    /* tokens / pills */
     .pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
     .pill{padding:.28rem .6rem; border-radius:999px; border:1px solid var(--ring); background:#fdf7ff; font-size:.85rem}
 
@@ -78,8 +80,121 @@
     }
     .btn.primary{background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2)); color:#fff; border:none}
 
-    /* Footer note */
-    .foot{display:flex; justify-content:space-between; align-items:center; padding:12px 16px; color:var(--muted); font-size:.95rem}
+    /* === Contact + Footer (Unified) === */
+.site-footer{
+  margin-top:64px;
+  background: linear-gradient(180deg, rgba(167,139,250,.08), rgba(249,168,212,.08));
+  border-top:1px solid var(--ring);
+  color:var(--text);
+}
+.footer-top{ padding:48px 0; }
+.footer-grid{ display:grid; gap:20px; }
+@media (min-width:900px){
+  .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; }
+}
+.footer-title{ margin:0 0 10px; font-size:clamp(1.2rem,2.5vw,1.6rem); font-weight:800; }
+.footer-text{ color:var(--muted); margin:.2rem 0 1rem; }
+
+.contact-chips{
+  display:grid; gap:10px;
+  grid-template-columns:1fr;
+}
+@media (min-width:600px){
+  .contact-chips{ grid-template-columns:repeat(2,1fr); }
+}
+.contact-chip{
+  display:flex; align-items:center; gap:10px;
+  padding:12px 14px; border:1px solid #e5e7eb;
+  border-radius:12px; background:#fff; box-shadow:var(--shadow);
+  color:inherit; text-decoration:none;
+}
+.contact-chip:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+
+.footer-links, .footer-social{ display:flex; gap:10px; flex-wrap:wrap; }
+.footer-links a{
+  display:inline-block; padding:.45rem .75rem;
+  border:1px solid var(--ring); border-radius:999px; background:#fff;
+  color:inherit; text-decoration:none; box-shadow:var(--shadow);
+}
+.footer-links a:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+
+.social-btn{
+  width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--ring); border-radius:50%; background:#fff; box-shadow:var(--shadow);
+  font-size:1.1rem; color:inherit; text-decoration:none;
+}
+.social-btn:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+
+.footer-bottom{
+  border-top:1px solid var(--ring);
+  padding:14px 0; color:var(--muted);
+}
+.footer-bottom .row{
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+}
+.footer-bottom .mini-links{ display:flex; gap:14px; flex-wrap:wrap; }
+.footer-bottom .mini-links a{ color:var(--muted); text-decoration:none; }
+.footer-bottom .mini-links a:hover{ color:var(--brand-strong-1); }
+
+.to-top{
+  display:inline-flex; align-items:center; gap:.4rem; text-decoration:none; font-weight:600;
+  color:var(--brand-strong-1);
+}
+.to-top i{ transform:translateY(0); transition:transform .2s ease; }
+.to-top:hover i{ transform:translateY(-2px); }
+
+/* === Contact + Footer (minimal & pastel) === */
+.contact-footer{
+  margin-top:72px;
+  background:
+    radial-gradient(900px 380px at 80% -10%, rgba(167,139,250,.18), transparent 60%),
+    radial-gradient(900px 380px at 0% 110%, rgba(249,168,212,.16), transparent 60%),
+    var(--bg);
+  border-top:1px solid var(--ring);
+}
+.c-wrap{max-width:980px; margin:0 auto; padding:56px 20px;}
+.c-card{
+  background:#fff;
+  border:1px solid #eceef3;
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 18px 40px rgba(124,58,237,.12);
+}
+.c-title{margin:0; font-weight:800; font-size:clamp(1.5rem,2.6vw,2rem);}
+.c-sub{color:var(--muted); margin:.45rem 0 1.2rem;}
+
+.c-actions{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.btnx{
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.75rem 1.05rem; border-radius:12px; font-weight:700;
+  text-decoration:none; border:1px solid var(--ring); background:#fff; color:var(--text);
+  transition:.2s transform, .2s box-shadow, .2s border-color;
+}
+.btnx.primary{
+  border:none; color:#fff;
+  background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2));
+}
+.btnx:hover{transform:translateY(-1px); box-shadow:var(--shadow-hover); border-color:var(--brand);}
+
+.c-links{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+.c-link{
+  padding:.45rem .8rem; border-radius:999px; border:1px solid var(--ring);
+  background:#fff; text-decoration:none; color:var(--text); font-size:.95rem;
+}
+.c-link:hover{box-shadow:var(--shadow-hover); border-color:var(--brand);}
+
+.c-legal{
+  margin-top:22px; padding-top:16px; border-top:1px solid var(--ring);
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  color:var(--muted); font-size:.95rem;
+}
+.c-social{display:flex; gap:10px;}
+.iconbtn{
+  width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;
+  border-radius:50%; background:#fff; border:1px solid var(--ring);
+  text-decoration:none; color:inherit;
+  transition:.2s box-shadow, .2s border-color, .2s transform;
+}
 
     /* Print (A4) */
     @page{ size:A4; margin:12mm }
@@ -88,41 +203,46 @@
       .actions{ display:none !important }
       .page{ max-width:none; margin:0; padding:0 }
       .card{ box-shadow:none; border-color:#ddd }
-      .btn, .chip{ box-shadow:none }
+      .btn, .contact a{ box-shadow:none }
       a[href^="http"]::after{ content:" (" attr(href) ")"; font-size:.85em; color:#555 }
     }
   </style>
+  <!-- Schema.org (Person) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Thidarat Budsad",
+    "jobTitle":"Frontend Developer (Junior/Intern)",
+    "email":"mailto:you@email.com",
+    "url":"https://example.com",
+    "alumniOf":{"@type":"CollegeOrUniversity","name":"มหาวิทยาลัยกาฬสินธุ์"},
+    "sameAs":["https://github.com/yourname","https://www.linkedin.com/in/yourname/"]
+  }
+  </script>
 </head>
 <body>
   <div class="page">
     <!-- Sticky Actions -->
     <div class="actions">
-      <a class="btn" href="company-b.html">← Company B Portfolio</a>
-      <a class="btn" href="index.html">หน้าแรก</a>
-      <button class="btn primary" onclick="window.print()">ดาวน์โหลด PDF</button>
+      <a class="btn" href="index.html"><i class="fa-solid fa-arrow-left"></i> กลับหน้าแรก</a>
+      <button class="btn primary" onclick="window.print()"><i class="fa-regular fa-file-pdf"></i> ดาวน์โหลด PDF</button>
     </div>
 
     <!-- Header -->
     <div class="card header">
       <div>
         <h1 class="name">Thidarat Budsad</h1>
-        <div class="role">Full-Stack Developer (PHP 8 • MySQL • REST API • Docker)</div>
-        <div class="badges">
-          <span class="badge">CRUD + Report</span>
-          <span class="badge">AuthN/AuthZ (RBAC)</span>
-          <span class="badge">MVC • RESTful</span>
-          <span class="badge">Docker Compose</span>
-        </div>
+        <div class="role">ธิดารัตน์ บุตรศาสตร์</div>
         <div class="contact">
-          <a class="chip" href="mailto:you@email.com">you@email.com</a>
-          <a class="chip" href="tel:+66999999999">+66 9 9999 9999</a>
-          <a class="chip" href="https://github.com/yourname" target="_blank" rel="noopener">github.com/yourname</a>
-          <a class="chip" href="https://linkedin.com/in/yourname" target="_blank" rel="noopener">linkedin.com/in/yourname</a>
+          <a href="mailto:you@email.com"><i class="fa-regular fa-envelope"></i> Thidarat.bu@ksu.ac.th</a>
+          <a href="tel:+6698699901"><i class="fa-solid fa-phone"></i> +66 98 699 901</a>
+          <a href="https://github.com/treepalm3" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> github.com/treepalm3</a>
         </div>
       </div>
       <div class="avatar">
-        <!-- แก้เป็นรูปจริงของคุณ -->
-        <img src="../images/p2.jpg" alt="Thidarat portrait">
+        <!-- เปลี่ยนเป็นรูปจริงได้ -->
+        <img src="../images/p5.jpg" alt="Thidarat portrait">
       </div>
     </div>
 
@@ -131,48 +251,32 @@
       <!-- Main -->
       <main class="card">
         <section>
-          <h2>สรุปย่อ (Summary)</h2>
-          <p class="muted">
-            นักศึกษาชั้นปีที่ 4 มหาวิทยาลัยกาฬสินธุ์ (รหัส 651420002012-5) สนใจงาน Full-Stack
-            ถนัด <strong>PHP 8</strong>, <strong>MySQL</strong>, <strong>REST API</strong>, <strong>Auth (RBAC)</strong>, และ <strong>รายงานข้อมูล</strong>.
-            โค้ดอ่านง่าย แยกชั้น Controller/Service/Repository ชัดเจน และใช้ Docker จัดสภาพแวดล้อมได้รวดเร็ว
-          </p>
+          <h2>ข้อมูลส่วนตัว</h2>
+          <div class="list">
+            <div class="item">
+              <strong>ชื่อ:</strong> นางสาวธิดารัตน์ บุตรศาสตร์<br/>
+              <strong>ชื่อเล่น:</strong> ปาล์ม<br/>
+              <strong>เกิด:</strong> 23 สิงหาคม 2546<br/>
+              <strong>อายุ:</strong> 21<br/>
+              <strong>เชื้อชาติ:</strong> ไทย <strong>สัญชาติ:</strong>ไทย <strong>ศาสนา:</strong> พุทธ<br/>
+              <strong>ที่อยูส:</strong> 148/16 บ.ท่างาม ต.สงเปลือย อ.นามน จ.กาฬสินธุ์ 46230
+            </div>
+          </div>
         </section>
 
         <section>
-          <h2>ประสบการณ์ / โปรเจกต์ที่เกี่ยวข้อง</h2>
+          <h2>โปรเจกต์ที่เกี่ยวข้อง</h2>
           <div class="list">
             <div class="item">
-              <h3>Inventory & Orders Management</h3>
-              <div class="sub"><span>Web App (ทีมขนาดเล็ก)</span> • <span>2025</span></div>
+              <h3>Development of a Gas Station Management System for Community Cooperatives Using a Web Application</h3>
+              <div class="sub"><span>ระบบปั๊มน้ำมันสหกรณ์ชุมชน</span> • <span>2568</span></div>
               <ul class="bullets">
-                <li>CRUD สินค้า/คำสั่งซื้อ พร้อม RBAC (Admin/Manager/Staff)</li>
-                <li>ออกรายงานยอดขาย (CSV/XLSX) และสรุปแดชบอร์ด</li>
-                <li>เขียน Query Optimize และจัด Index บนฟิลด์สำคัญ</li>
+                <li>พัฒนาระบบบริหารจัดการปั๊มน้ำมันในสหกรณ์ชุมชน</li>
+                <li>การออกแบบ UI ด้วย Figma</li>
+                <li>รองรับมือถือสมบูรณ์</li>
               </ul>
-              <div class="pills"><span class="pill">PHP 8</span><span class="pill">MySQL</span><span class="pill">RBAC</span><span class="pill">Report</span></div>
-            </div>
-
-            <div class="item">
-              <h3>REST API สำหรับ Mobile App</h3>
-              <div class="sub"><span>Backend-only</span> • <span>2025</span></div>
-              <ul class="bullets">
-                <li>Login JWT, Refresh Token, Rate Limit, Error Shape เดียวกันทั้งระบบ</li>
-                <li>เขียนเอกสาร OpenAPI/Swagger และทำ Pagination มาตรฐาน</li>
-                <li>แยก Service/Repository, ทดสอบ Endpoint พื้นฐาน</li>
-              </ul>
-              <div class="pills"><span class="pill">REST</span><span class="pill">JWT</span><span class="pill">OpenAPI</span></div>
-            </div>
-
-            <div class="item">
-              <h3>Admin Dashboard + Export</h3>
-              <div class="sub"><span>Internal Tool</span> • <span>2024–2025</span></div>
-              <ul class="bullets">
-                <li>แดชบอร์ดสถิติแบบเรียลไทม์ย่อ (Cache ผลรวมเพื่อลดภาระ DB)</li>
-                <li>ระบบ Export CSV/XLSX ผ่านคิวงาน</li>
-              </ul>
-              <div class="pills"><span class="pill">Caching</span><span class="pill">CSV/XLSX</span><span class="pill">Chart.js</span></div>
-            </div>
+              <div class="pills"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JS</span><span class="pill">PHP</span></div>
+            </div>          
           </div>
         </section>
 
@@ -181,25 +285,25 @@
           <div class="list">
             <div class="item">
               <h3>มหาวิทยาลัยกาฬสินธุ์</h3>
-              <div class="sub"><span>ปริญญาตรี (ปี 4)</span> • <span>สาขาเทคโนโลยีสารสนเทศ</span> • <span>2022–ปัจจุบัน</span></div>
+              <div class="sub"><span>ปริญญาตรี (ปี 4)</span> • <span>คณะ: วิทยาศาสตร์และเทคโนโลยีสุขภาพ สาขา: เทคโนโลยีสารสนเทศและดิจิทัล </span> • <span>2565–ปัจจุบัน</span></div>
               <ul class="bullets">
-                <li>วิชาเด่น: Web Programming, Database, Software Engineering, Data Visualization</li>
-                <li>โครงงาน: ระบบเว็บ/แดชบอร์ด/REST API</li>
+                <li>วิชาเด่น: Web Programming, Database</li>
+                <li>โครงงาน: ระบบเว็บ/งาน UX</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <section>
+        <!-- <section>
           <h2>เกียรติบัตร/ผลงานเพิ่มเติม</h2>
           <div class="list">
             <div class="item">
-              <h3>Certificate: Backend Fundamentals (PHP/MySQL)</h3>
+              <h3>Certificate: Web Performance Fundamentals</h3>
               <div class="sub"><span>2025</span></div>
               <p class="muted">แนบลิงก์/ไฟล์ผลงานหรือสรุปสั้น ๆ</p>
             </div>
           </div>
-        </section>
+        </section> -->
       </main>
 
       <!-- Aside -->
@@ -207,35 +311,17 @@
         <section>
           <h2>ทักษะหลัก</h2>
           <div class="pills">
-            <span class="pill">PHP 8</span><span class="pill">MySQL</span><span class="pill">REST API</span>
-            <span class="pill">Auth (JWT/Session)</span><span class="pill">RBAC</span>
-            <span class="pill">MVC</span><span class="pill">Report</span>
+            <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript</span>
+            <span class="pill">PHP</span><span class="pill">Responsive</span>
+            <span class="pill">Git</span>
           </div>
         </section>
 
         <section>
-          <h2>เครื่องมือ & DevOps</h2>
+          <h2>เครื่องมือ</h2>
           <div class="pills">
-            <span class="pill">Docker/Compose</span><span class="pill">Nginx + PHP-FPM</span>
-            <span class="pill">Composer</span><span class="pill">Git/GitHub</span>
-            <span class="pill">Linux Basics</span><span class="pill">OpenAPI</span>
-          </div>
-        </section>
-
-        <section>
-          <h2>ฐานข้อมูล</h2>
-          <div class="list">
-            <div class="item">
-              <div class="sub">ออกแบบสคีมา • Index • Migration/Seeder • Explain Plan</div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2>ความปลอดภัย</h2>
-          <div class="pills">
-            <span class="pill">Prepared Statements</span><span class="pill">Password Hash</span>
-            <span class="pill">CSRF</span><span class="pill">Input Validation</span>
+            <span class="pill">VS Code</span><span class="pill">Figma</span><span class="pill">Docker</span>
+            <span class="pill">MySQLWorkbench</span>
           </div>
         </section>
 
@@ -243,28 +329,44 @@
           <h2>ภาษา</h2>
           <div class="list">
             <div class="item"><strong>ไทย</strong> — ดีมาก</div>
-            <div class="item"><strong>อังกฤษ</strong> — ปานกลาง (อ่านเอกสารเทคนิคได้)</div>
+            <div class="item"><strong>อังกฤษ</strong> — พอใช้ </div>
           </div>
         </section>
 
         <section>
-          <h2>ข้อมูลส่วนตัว</h2>
-          <div class="list">
-            <div class="item">
-              <strong>ชื่อ:</strong> นางสาวธิดารัตน์ บุตรศาสตร์<br/>
-              <strong>รหัสนักศึกษา:</strong> 651420002012-5<br/>
-              <strong>สถานะ:</strong> นักศึกษาชั้นปีที่ 4
-            </div>
+          <h2>ความสนใจ</h2>
+          <div class="pills">
+            <span class="pill">UI/UX</span><span class="pill">Design System</span>
+            <span class="pill">Programming</span>
           </div>
         </section>
       </aside>
     </div>
 
-    <div class="card foot">
-      <div>อัปเดตล่าสุด: <span id="updated"></span></div>
-      <div>© <span id="y"></span> Thidarat</div>
-    </div>
-  </div>
+    <!-- Footer -->
+    <footer id="contact" class="contact-footer">
+      <div class="c-wrap">
+        <div class="c-card">
+          <div class="c-legal">
+            <div>© <span id="y"></span> Thidarat Portfolio</div>
+            <div class="c-social">
+              <a class="iconbtn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a class="iconbtn" href="https://github.com/treepalm3" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a class="iconbtn" href="mailto:Thidarat.bu@ksu.ac.th" aria-label="Email">
+                <i class="fa-regular fa-envelope"></i>
+              </a>
+              <a class="iconbtn" href="tel:+6698699901" aria-label="Phone">
+                <i class="fa-solid fa-phone"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
