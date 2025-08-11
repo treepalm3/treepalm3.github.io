@@ -313,6 +313,31 @@
 .card-cta i{ transform: translateX(0); transition: transform .2s ease; }
 .card-link:hover .card-cta i{ transform: translateX(3px); }
 
+/* ไม่ให้รูปถูกตัดบนมือถือ */
+@media (max-width: 767.98px){
+  /* Hero image */
+  .preview{
+    height: auto;             /* ให้ความสูงตามรูปจริง */
+  }
+  .preview img{
+    width: 100%;
+    height: auto;             /* ยกเลิกการยืด */
+    aspect-ratio: auto;       /* ยกเลิกสัดส่วนบังคับเดิม */
+    object-fit: contain;      /* แสดงรูปครบ ไม่ครอป */
+    background: #fff;         /* ถ้ามีขอบขาวด้านข้าง/บนล่างจะดูเนียน */
+  }
+
+  /* รูปในการ์ดบริษัท/การ์ดงาน */
+  .cards .card img,
+  .company-grid .company-card img{
+    width: 100%;
+    height: auto;             /* ไม่บังคับความสูงคงที่ */
+    aspect-ratio: auto;       /* ยกเลิก 16/10 เดิม */
+    object-fit: contain;      /* ไม่ครอป */
+    background: #fff;
+  }
+}
+
   </style>
 </head>
 <body>
