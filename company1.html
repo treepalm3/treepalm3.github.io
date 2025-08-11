@@ -3,17 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Company 1 – รายละเอียดงานฝึกงาน | Thidarat Portfolio</title>
-  <meta name="description" content="รายละเอียดงานฝึกงานสำหรับ Company 1 — ขอบเขตงาน หน้าที่ ทักษะที่ต้องใช้ และขั้นตอนการสมัคร" />
+  <title>Somsri Garment – PHP Web Developer Intern | Thidarat Portfolio</title>
+  <meta name="description" content="รายละเอียดฝึกงานที่ Somsri Garment Co.,Ltd. (PHP Web Developer – Front/Back End) พร้อมคุณสมบัติ หน้าที่ สวัสดิการ และลิงก์สมัครผ่าน InternTH" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root{
-      /* Pastel Purple–Pink */
       --bg:#ffffff; --bg-soft:#fdf7ff; --card:#ffffff;
       --text:#0f172a; --muted:#64748b;
       --brand:#a78bfa; --brand-2:#f9a8d4;
@@ -36,7 +33,6 @@
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
-
     .container{max-width:1180px; margin-inline:auto; padding:0 20px}
 
     /* Header */
@@ -96,12 +92,10 @@
     .list{margin:.4rem 0 0 1.1rem}
     .list li{margin:.18rem 0}
 
-    /* Timeline */
     .timeline{display:grid; gap:10px}
     .step{display:flex; gap:10px; align-items:flex-start}
     .dot{width:10px; height:10px; border-radius:50%; background:var(--brand-strong-1); margin-top:.45rem}
 
-    /* Sticky apply (mobile) */
     .apply-bar{
       position:fixed; left:0; right:0; bottom:0; z-index:50;
       background:rgba(255,255,255,.95); border-top:1px solid var(--ring);
@@ -127,10 +121,14 @@
         <a href="#overview">ภาพรวม</a>
         <a href="#responsibilities">หน้าที่</a>
         <a href="#requirements">คุณสมบัติ</a>
-        <a href="#process">ขั้นตอนสมัคร</a>
+        <a href="#benefits">สวัสดิการ</a>
+        <a href="#contact">ติดต่อ</a>
       </nav>
-      <div class="nav-actions">   
-        <a class="cta primary" href="mailto:you@email.com?subject=สมัครฝึกงาน Company 1"><i class="fa-regular fa-envelope"></i> ติดต่อ</a>
+      <div class="nav-actions">
+        <a class="cta" href="#contact"><i class="fa-regular fa-envelope"></i> ติดต่อ</a>
+        <a class="cta primary" href="https://internth.com/job/936" target="_blank" rel="noopener">
+          <i class="fa-regular fa-paper-plane"></i> สมัครผ่าน InternTH
+        </a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-controls="mobilePanel" aria-expanded="false">
         <span class="lines" aria-hidden="true"></span>
@@ -145,12 +143,13 @@
         <a href="#overview">ภาพรวม</a>
         <a href="#responsibilities">หน้าที่</a>
         <a href="#requirements">คุณสมบัติ</a>
-        <a href="#skills">ทักษะ</a>
-        <a href="#process">ขั้นตอนสมัคร</a>
+        <a href="#benefits">สวัสดิการ</a>
         <a href="#contact">ติดต่อ</a>
       </nav>
       <div class="panel-actions">
-        <a class="cta primary" href="mailto:you@email.com?subject=สมัครฝึกงาน Company 1"><i class="fa-regular fa-paper-plane"></i> สมัครฝึกงาน</a>
+        <a class="cta primary" href="https://internth.com/job/936" target="_blank" rel="noopener">
+          สมัครผ่าน InternTH
+        </a>
       </div>
     </div>
   </aside>
@@ -159,19 +158,22 @@
   <section id="overview" class="hero">
     <div class="container grid grid-2">
       <div>
-        <h1 class="headline">Company 1 — รายละเอียดงานฝึกงาน</h1>
-        <p class="lead">ตำแหน่ง: <strong>Data / Dashboard Intern</strong> • ทีม: <strong>Web Application & DataViz</strong></p>
+        <h1 class="headline">Somsri Garment — PHP Web Developer Intern</h1>
+        <p class="lead">
+          ตำแหน่ง: <strong>PHP Web Developer (Front-End / Back-End)</strong> •
+          ประเภท: <strong>ฝึกงาน (สัมภาษณ์ออนไลน์)</strong>
+        </p>
         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px">
-          <span class="pill"><i class="fa-regular fa-calendar"></i> ระยะฝึก: <!-- TODO --> มิ.ย.–ส.ค. 2568</span>
-          <span class="pill"><i class="fa-solid fa-location-dot"></i> สถานที่: <!-- TODO --> กรุงเทพฯ / Remote</span>
-          <span class="pill"><i class="fa-regular fa-clock"></i> เวลา: จ.-ศ. 9.00–17.00</span>
-          <span class="pill"><i class="fa-solid fa-baht-sign"></i> สวัสดิการ: เบี้ยเลี้ยง/อุปกรณ์</span>
+          <span class="pill"><i class="fa-regular fa-user"></i> รับ 2 อัตรา</span>
+          <span class="pill"><i class="fa-solid fa-location-dot"></i> ประจำออฟฟิศ • หนองแขม กทม.</span>
+          <span class="pill"><i class="fa-regular fa-clock"></i> จ.–ศ. 08:30–17:30</span>
+          <span class="pill"><i class="fa-regular fa-building"></i> Somsri Garment Co.,Ltd.</span>
         </div>
       </div>
       <div>
         <div class="preview">
-          <!-- TODO: ใส่ภาพโลโก้/ออฟฟิศจริง -->
-          <img src="../images/w1.webp" alt="Office / Team preview">
+          <!-- โลโก้/ภาพบริษัท (ปรับตามจริงได้) -->
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop" alt="Office preview">
         </div>
       </div>
     </div>
@@ -183,29 +185,28 @@
       <div class="section-head"><h2>ข้อมูลโดยย่อ</h2></div>
       <div class="facts">
         <div class="card">
-          <strong>ขอบเขตงาน</strong>
+          <strong>บทบาท/สิ่งที่จะได้เรียนรู้</strong>
           <ul class="list">
-            <li>ช่วยพัฒนา Dashboard (Chart.js/Grafana) และ Web App เบื้องต้น</li>
-            <li>ทำความสะอาด/เตรียมข้อมูล (CSV/Excel/SQL)</li>
-            <li>ทดสอบและปรับปรุง UX ของหน้าเว็บที่รับผิดชอบ</li>
+            <li>เรียนรู้งานพัฒนาเว็บ (Front/Back) ในธุรกิจเสื้อผ้าแฟชั่น</li>
+            <li>ใช้ Project Management Tool จัดงานเป็นระบบ</li>
+            <li>ทดลองสปรินต์งาน, ทำ Scrum ให้โฟลว์งานไหลลื่น</li>
+            <li>เสนอไอเดีย ออกแบบ และทำชิ้นงานจริง</li>
           </ul>
+          <div class="muted" style="margin-top:.4rem">อ้างอิงรายละเอียดจากประกาศ InternTH</div>
         </div>
         <div class="card">
-          <strong>เครื่องมือหลัก</strong>
+          <strong>เครื่องมือเกี่ยวข้อง</strong>
           <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
-            <span class="pill">Python</span><span class="pill">SQL/MySQL</span>
-            <span class="pill">HTML/CSS/JS</span><span class="pill">Chart.js</span>
-            <span class="pill">Grafana</span><span class="pill">Git</span>
+            <span class="pill">PHP</span><span class="pill">HTML/CSS/JS</span>
+            <span class="pill">Project Management</span><span class="pill">Git (แนะนำ)</span>
           </div>
         </div>
         <div class="card">
-          <strong>ผลงานอ้างอิง</strong>
-          <p class="muted" style="margin:.4rem 0 0">เลือกดูพอร์ตที่เกี่ยวข้อง:</p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
-            <a class="pill" href="company-a.html">Frontend</a>
-            <a class="pill" href="company-b.html">Full-Stack</a>
-            <a class="pill" href="company-c.html">Data/Dashboard/AI</a>
-          </div>
+          <strong>สมัครงาน</strong>
+          <p class="muted" style="margin:.4rem 0 6px">กรุณาสมัครผ่านหน้า InternTH เพื่อให้บริษัทติดตามสถานะได้</p>
+          <a class="cta primary" href="https://internth.com/job/936" target="_blank" rel="noopener">
+            <i class="fa-regular fa-paper-plane"></i> ไปที่หน้า InternTH
+          </a>
         </div>
       </div>
     </div>
@@ -217,10 +218,10 @@
       <div class="section-head"><h2>หน้าที่ความรับผิดชอบ</h2></div>
       <div class="card">
         <ul class="list">
-          <li>ออกแบบและสร้างกราฟ/การ์ดสรุปข้อมูลตามโจทย์</li>
-          <li>Connect แหล่งข้อมูล (CSV/API/DB) และจัดการ Data Pipeline เบื้องต้น</li>
-          <li>ทดสอบการใช้งานจริง ปรับปรุงประสิทธิภาพและความสวยงาม</li>
-          <li>เขียน README/คู่มือการใช้งานสั้น ๆ สำหรับทีม</li>
+          <li>ร่วมพัฒนาเว็บแอป (ส่วนหน้า/หลัง) และทดสอบใช้งาน</li>
+          <li>ทำงานร่วมทีมตามสปรินต์/สแครัม ติดตามงานบนเครื่องมือจัดการโปรเจกต์</li>
+          <li>เรียนรู้กระบวนการธุรกิจเสื้อผ้า ตั้งแต่ไอเดียจนเป็นสินค้า</li>
+          <li>สื่อสารไอเดีย/ปัญหา/ข้อเสนอแนะกับทีมอย่างมืออาชีพ</li>
         </ul>
       </div>
     </div>
@@ -229,86 +230,97 @@
   <!-- Requirements -->
   <section id="requirements">
     <div class="container">
-      <div class="section-head"><h2>คุณสมบัติที่ต้องการ</h2></div>
+      <div class="section-head"><h2>คุณสมบัติผู้สมัคร</h2></div>
       <div class="cards">
         <div class="card">
-          <strong>จำเป็นต้องมี</strong>
+          <strong>ต้องมี</strong>
           <ul class="list">
-            <li>พื้นฐาน Python หรือ SQL อย่างใดอย่างหนึ่ง</li>
-            <li>เข้าใจ HTML/CSS/JavaScript ระดับเริ่ม-กลาง</li>
-            <li>สื่อสารและทำงานเป็นทีมได้</li>
+            <li>GPA 3.00 ขึ้นไป</li>
+            <li>ทัศนคติแบบ <em>Can-do</em> พร้อมเรียนรู้งานจริง</li>
+            <li>รับผิดชอบ ตรงต่อเวลา มนุษยสัมพันธ์ดี</li>
           </ul>
         </div>
         <div class="card">
-          <strong>จะพิจารณาเป็นพิเศษ</strong>
+          <strong>จะดีมากถ้ามี</strong>
           <ul class="list">
-            <li>เคยทำ Dashboard/กราฟข้อมูล</li>
-            <li>มีโปรเจกต์ GitHub/ผลงานให้ลองดู</li>
-            <li>รู้จักการออกแบบ UX เบื้องต้น</li>
+            <li>พื้นฐานงานดีไซน์/งานตัดเย็บ (เข้าใจธุรกิจได้เร็ว)</li>
+            <li>สนุกกับการทำงานร่วมกับทีม Gen Z</li>
           </ul>
         </div>
-        <div class="card" id="skills">
-          <strong>ทักษะที่ได้พัฒนาช่วงฝึก</strong>
+        <div class="card">
+          <strong>เวลาทำงาน</strong>
           <ul class="list">
-            <li>Data Cleaning / Visualization</li>
-            <li>การพัฒนาเว็บให้ใช้งานจริงและอ่านง่าย</li>
-            <li>การทำงานร่วมกับทีมและการส่งมอบงาน</li>
+            <li>จันทร์–ศุกร์ เวลา 08:30–17:30</li>
+            <li>รูปแบบ: ประจำออฟฟิศ (On-site)</li>
           </ul>
         </div>
       </div>
+      <div class="muted" style="margin-top:8px">ที่มา: รายละเอียดในหน้าประกาศ InternTH</div>
     </div>
   </section>
 
-  <!-- Process -->
-  <section id="process">
+  <!-- Benefits -->
+  <section id="benefits">
     <div class="container">
-      <div class="section-head"><h2>ขั้นตอนการสมัคร & ไทม์ไลน์</h2></div>
-      <div class="card timeline">
-        <div class="step"><span class="dot"></span><div><strong>ส่งเรซูเม่/พอร์ต</strong> ไปที่อีเมลบริษัท (ไฟล์ PDF / ลิงก์งาน)</div></div>
-        <div class="step"><span class="dot"></span><div><strong>สัมภาษณ์ออนไลน์</strong> 20–30 นาที (แนะนำผลงานสั้น ๆ)</div></div>
-        <div class="step"><span class="dot"></span><div><strong>ทดลองทำโจทย์เล็ก</strong> (เช่น จัดกราฟ/สรุปข้อมูล) ภายใน 2–3 วัน</div></div>
-        <div class="step"><span class="dot"></span><div><strong>เริ่มฝึกงาน</strong> <!-- TODO --> ช่วง มิ.ย. 2568 เป็นต้นไป</div></div>
+      <div class="section-head"><h2>เบี้ยเลี้ยง & สวัสดิการ</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>เบี้ยเลี้ยง</strong>
+          <ul class="list">
+            <li>ระบุ “ตามความสามารถของผู้สมัคร” ในหัวข้อเบี้ยเลี้ยง</li>
+            <li>สวัสดิการระบุ <strong>เบี้ยเลี้ยง 100 บาท/วัน</strong> (ตามประกาศ)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>สวัสดิการอื่น ๆ</strong>
+          <ul class="list">
+            <li>กระเป๋าและเสื้อสำหรับ Intern</li>
+            <li>Board Games / Snack Bar</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact / Apply -->
+  <!-- Contact / Company info -->
   <section id="contact" style="padding-top:40px; padding-bottom:64px; background:var(--bg-soft); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)">
     <div class="container">
-      <div class="section-head"><h2>ติดต่อ & สมัคร</h2></div>
+      <div class="section-head"><h2>ข้อมูลบริษัท & ติดต่อ</h2></div>
       <div class="cards">
         <div class="card">
-          <strong>อีเมลบริษัท</strong>
-          <p style="margin:.4rem 0"> <!-- TODO: เปลี่ยนอีเมลจริงของบริษัท --> hr@company1.co.th</p>
-          <a class="cta primary" href="mailto:hr@company1.co.th?subject=สมัครฝึกงาน Company 1 – Thidarat Budsad">
-            <i class="fa-regular fa-paper-plane"></i> ส่งใบสมัครทางอีเมล
+          <strong>บริษัท</strong>
+          <p style="margin:.4rem 0">Somsri Garment Co.,Ltd. (ธุรกิจเสื้อผ้า/สิ่งทอ)</p>
+          <p class="muted" style="margin:.2rem 0">ที่อยู่: 1033/11, 1033/13 ซ.เพชรเกษม 106 ถ.เพชรเกษม หนองค้างพลู หนองแขม กทม. 10160</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
+            <a class="pill" href="https://www.ssgm.co.th" target="_blank" rel="noopener">เว็บไซต์บริษัท</a>
+            <a class="pill" href="tel:+6624300678">02-430-0678</a>
+          </div>
+        </div>
+        <div class="card">
+          <strong>ผู้ติดต่อ</strong>
+          <p style="margin:.4rem 0">ศรีสุดา อมเครือ • ฝ่ายทรัพยากรบุคคล</p>
+          <a class="cta primary" href="https://internth.com/job/936" target="_blank" rel="noopener">
+            สมัครผ่าน InternTH
           </a>
         </div>
         <div class="card">
-          <strong>เอกสารที่ควรแนบ</strong>
-          <ul class="list">
-            <li>เรซูเม่ (PDF 1 หน้า)</li>
-            <li>ลิงก์พอร์ตที่เกี่ยวข้อง (เช่น Company C – Data/Dashboard)</li>
-            <li>ทรานสคริปต์/หนังสือรับรองนิสิต (หากมี)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <strong>ติดต่อฉัน (ผู้สมัคร)</strong>
+          <strong>ช่องทางผู้สมัคร</strong>
           <p class="muted" style="margin:.4rem 0">Thidarat Budsad • 651420002012-5 • Kalasin University</p>
           <div style="display:flex; gap:8px; flex-wrap:wrap">
             <a class="pill" href="mailto:Thidarat.bu@ksu.ac.th">Thidarat.bu@ksu.ac.th</a>
-            <a class="pill" href="tel:+6698699901">+66 98 699 9901</a>
+            <a class="pill" href="tel:+66986999901">+66 98 699 9901</a>
             <a class="pill" href="https://github.com/treepalm3" target="_blank" rel="noopener">github.com/treepalm3</a>
           </div>
         </div>
       </div>
+      <div class="muted" style="margin-top:8px">ข้อมูลสรุปจากประกาศ InternTH เมื่อเข้าถึงล่าสุด</div>
     </div>
   </section>
 
   <!-- Sticky apply (mobile) -->
   <div class="apply-bar">
-    <div class="muted" style="font-weight:600">Company 1 – Data/Dashboard Intern</div>
-    <a class="cta primary" href="mailto:hr@company1.co.th?subject=สมัครฝึกงาน Company 1 – Thidarat Budsad">สมัครฝึกงาน</a>
+    <div class="muted" style="font-weight:600">Somsri Garment – PHP Web Dev Intern</div>
+    <a class="cta primary" href="https://internth.com/job/936" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
   </div>
 
   <!-- Footer -->
@@ -319,7 +331,7 @@
         <a href="#overview">ภาพรวม</a>
         <a href="#responsibilities">หน้าที่</a>
         <a href="#requirements">คุณสมบัติ</a>
-        <a href="#process">ขั้นตอนสมัคร</a>
+        <a href="#benefits">สวัสดิการ</a>
         <a href="#contact">ติดต่อ</a>
       </div>
     </div>
