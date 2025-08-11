@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyber Defense – FullStack Developer Intern | Thidarat Portfolio</title>
+  <meta name="description" content="รายละเอียดฝึกงาน FullStack Developer ที่ Cyber Defense — เทคโนโลยี React, Node.js, MongoDB, ClickHouse/Elastic/OpenSearch พร้อมข้อมูลเวลางาน เบี้ยเลี้ยง และลิงก์สมัคร InternTH" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      --bg:#ffffff; --bg-soft:#fdf7ff; --card:#ffffff;
+      --text:#0f172a; --muted:#64748b;
+      --brand:#a78bfa; --brand-2:#f9a8d4;
+      --brand-strong-1:#8b5cf6; --brand-strong-2:#f472b6;
+      --ring:rgba(124,58,237,.16);
+      --shadow:0 8px 24px rgba(124,58,237,.08);
+      --shadow-hover:0 14px 32px rgba(236,72,153,.16);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(60rem 60rem at 90% -10%, rgba(167,139,250,.14), transparent 60%),
+        radial-gradient(70rem 70rem at -10% 0%, rgba(249,168,212,.12), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:1180px; margin-inline:auto; padding:0 20px}
+
+    /* Header */
+    .site-header{position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--ring)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{font-weight:700}
+    .nav-links{display:flex; gap:18px}
+    .nav-links a{color:var(--muted)}
+    .nav-links a:hover{color:var(--brand-strong-1)}
+    .cta{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border:1px solid var(--ring); border-radius:14px; background:#fff; font-weight:700; box-shadow:var(--shadow)}
+    .cta.primary{background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2)); color:#fff; border:none}
+
+    /* Hamburger (mobile) */
+    .hamburger{display:none; width:42px; height:42px; border-radius:10px; border:1px solid var(--ring); background:#fff; align-items:center; justify-content:center; cursor:pointer; box-shadow:var(--shadow)}
+    .hamburger .lines{position:relative; width:22px; height:2px; background:var(--text); transition:transform .25s ease, background .25s ease}
+    .hamburger .lines::before,.hamburger .lines::after{content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text); transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease}
+    .hamburger .lines::before{top:-7px}
+    .hamburger .lines::after{bottom:-7px}
+    .hamburger[aria-expanded="true"] .lines{background:transparent}
+    .hamburger[aria-expanded="true"] .lines::before{top:0; transform:rotate(45deg)}
+    .hamburger[aria-expanded="true"] .lines::after{bottom:0; transform:rotate(-45deg)}
+    .backdrop{position:fixed; inset:0; background:rgba(2,6,23,.35); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:55}
+    .backdrop.active{opacity:1; pointer-events:auto}
+    .mobile-panel{position:fixed; top:64px; right:14px; width:min(88vw,320px); border:1px solid var(--ring); border-radius:16px; background:#fff; transform:translateY(-12px) scale(.98); opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease; z-index:70; box-shadow:var(--shadow-hover)}
+    .mobile-panel.active{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
+    .mobile-panel .panel-inner{padding:12px}
+    .mobile-panel nav{display:flex; flex-direction:column}
+    .mobile-panel nav a{padding:10px 12px; border-radius:10px}
+    .mobile-panel nav a:hover{background:#f8f5ff}
+    .panel-actions{display:flex; gap:10px; padding:10px 12px 12px; border-top:1px solid var(--ring)}
+    .no-scroll{overflow:hidden}
+    @media(min-width:960px){.hamburger{display:none}.mobile-panel,.backdrop{display:none}}
+    @media(max-width:959.98px){.nav-links,.nav-actions{display:none}.hamburger{display:inline-flex}}
+
+    /* Hero */
+    .hero{padding:64px 0 28px}
+    .grid{display:grid; gap:24px}
+    @media(min-width:960px){.grid-2{grid-template-columns:1.1fr .9fr}}
+    .headline{font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.15; font-weight:800}
+    .lead{color:#334155}
+
+    /* ภาพพอดีกรอบ */
+    .preview{border:1px solid var(--ring); border-radius:18px; padding:6px; background:linear-gradient(180deg,#fff,#f8fafc); box-shadow:var(--shadow); height:clamp(220px,32vw,360px); display:flex; align-items:center; justify-content:center}
+    .preview img{border-radius:12px; width:100%; height:100%; object-fit:contain}
+
+    /* Sections / cards */
+    section{padding:48px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:16px}
+    .section-head h2{margin:0; font-size:clamp(1.3rem,3vw,1.8rem)}
+    .muted{color:var(--muted)}
+    .cards{display:grid; gap:16px}
+    @media(min-width:780px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{background:#fff; border:1px solid var(--ring); border-radius:14px; padding:14px; box-shadow:var(--shadow)}
+    .facts{display:grid; gap:10px}
+    @media(min-width:900px){.facts{grid-template-columns:repeat(3,1fr)}}
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:.32rem .6rem; border:1px solid var(--ring); border-radius:999px; background:#fdf7ff; font-size:.9rem}
+    .list{margin:.4rem 0 0 1.1rem}
+    .list li{margin:.18rem 0}
+
+    .apply-bar{
+      position:fixed; left:0; right:0; bottom:0; z-index:50;
+      background:rgba(255,255,255,.95); border-top:1px solid var(--ring);
+      display:none; justify-content:space-between; align-items:center; gap:10px; padding:10px 16px;
+      backdrop-filter:blur(6px);
+    }
+    .apply-bar .cta{box-shadow:none}
+    @media(max-width:959.98px){ .apply-bar{display:flex} }
+
+    /* === Contact + Footer (Unified) === */
+.site-footer{
+    margin-top:64px;
+    background: linear-gradient(180deg, rgba(167,139,250,.08), rgba(249,168,212,.08));
+    border-top:1px solid var(--ring);
+    color:var(--text);
+  }
+  .footer-top{ padding:48px 0; }
+  .footer-grid{ display:grid; gap:20px; }
+  @media (min-width:900px){
+    .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; }
+  }
+  .footer-title{ margin:0 0 10px; font-size:clamp(1.2rem,2.5vw,1.6rem); font-weight:800; }
+  .footer-text{ color:var(--muted); margin:.2rem 0 1rem; }
+  
+  .contact-chips{
+    display:grid; gap:10px;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:600px){
+    .contact-chips{ grid-template-columns:repeat(2,1fr); }
+  }
+  .contact-chip{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 14px; border:1px solid #e5e7eb;
+    border-radius:12px; background:#fff; box-shadow:var(--shadow);
+    color:inherit; text-decoration:none;
+  }
+  .contact-chip:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+  
+  .footer-links, .footer-social{ display:flex; gap:10px; flex-wrap:wrap; }
+  .footer-links a{
+    display:inline-block; padding:.45rem .75rem;
+    border:1px solid var(--ring); border-radius:999px; background:#fff;
+    color:inherit; text-decoration:none; box-shadow:var(--shadow);
+  }
+  .footer-links a:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+  
+  .social-btn{
+    width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center;
+    border:1px solid var(--ring); border-radius:50%; background:#fff; box-shadow:var(--shadow);
+    font-size:1.1rem; color:inherit; text-decoration:none;
+  }
+  .social-btn:hover{ box-shadow:var(--shadow-hover); border-color:var(--brand); }
+  
+  .footer-bottom{
+    border-top:1px solid var(--ring);
+    padding:14px 0; color:var(--muted);
+  }
+  .footer-bottom .row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  }
+  .footer-bottom .mini-links{ display:flex; gap:14px; flex-wrap:wrap; }
+  .footer-bottom .mini-links a{ color:var(--muted); text-decoration:none; }
+  .footer-bottom .mini-links a:hover{ color:var(--brand-strong-1); }
+  
+  .to-top{
+    display:inline-flex; align-items:center; gap:.4rem; text-decoration:none; font-weight:600;
+    color:var(--brand-strong-1);
+  }
+  .to-top i{ transform:translateY(0); transition:transform .2s ease; }
+  .to-top:hover i{ transform:translateY(-2px); }
+  
+  /* === Contact + Footer (minimal & pastel) === */
+  .contact-footer{
+    margin-top:72px;
+    background:
+      radial-gradient(900px 380px at 80% -10%, rgba(167,139,250,.18), transparent 60%),
+      radial-gradient(900px 380px at 0% 110%, rgba(249,168,212,.16), transparent 60%),
+      var(--bg);
+    border-top:1px solid var(--ring);
+  }
+  .c-wrap{max-width:980px; margin:0 auto; padding:56px 20px;}
+  .c-card{
+    background:#fff;
+    border:1px solid #eceef3;
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 18px 40px rgba(124,58,237,.12);
+  }
+  .c-title{margin:0; font-weight:800; font-size:clamp(1.5rem,2.6vw,2rem);}
+  .c-sub{color:var(--muted); margin:.45rem 0 1.2rem;}
+  
+  .c-actions{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+  .btnx{
+    display:inline-flex; align-items:center; gap:.55rem;
+    padding:.75rem 1.05rem; border-radius:12px; font-weight:700;
+    text-decoration:none; border:1px solid var(--ring); background:#fff; color:var(--text);
+    transition:.2s transform, .2s box-shadow, .2s border-color;
+  }
+  .btnx.primary{
+    border:none; color:#fff;
+    background:linear-gradient(135deg,var(--brand-strong-1),var(--brand-strong-2));
+  }
+  .btnx:hover{transform:translateY(-1px); box-shadow:var(--shadow-hover); border-color:var(--brand);}
+  
+  .c-links{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .c-link{
+    padding:.45rem .8rem; border-radius:999px; border:1px solid var(--ring);
+    background:#fff; text-decoration:none; color:var(--text); font-size:.95rem;
+  }
+  .c-link:hover{box-shadow:var(--shadow-hover); border-color:var(--brand);}
+  
+  .c-legal{
+    margin-top:22px; padding-top:16px; border-top:1px solid var(--ring);
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    color:var(--muted); font-size:.95rem;
+  }
+  .c-social{display:flex; gap:10px;}
+  .iconbtn{
+    width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;
+    border-radius:50%; background:#fff; border:1px solid var(--ring);
+    text-decoration:none; color:inherit;
+    transition:.2s box-shadow, .2s border-color, .2s transform;
+  }
+  
+  </style>
+</head>
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">← กลับหน้าแรก</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#benefits">สวัสดิการ</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="cta primary" href="https://internth.com/job/8393" target="_blank" rel="noopener">
+          <i class="fa-regular fa-paper-plane"></i> สมัครผ่าน InternTH
+        </a>
+      </div>
+      <button type="button" class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-controls="mobilePanel" aria-expanded="false">
+        <span class="lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile panel -->
+  <aside class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="เมนูนำทาง" hidden>
+    <div class="panel-inner">
+      <nav aria-label="Mobile primary">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#responsibilities">หน้าที่</a>
+        <a href="#requirements">คุณสมบัติ</a>
+        <a href="#benefits">สวัสดิการ</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="panel-actions">
+        <a class="cta primary" href="https://internth.com/job/8393" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Overview -->
+  <section id="overview" class="hero">
+    <div class="container grid grid-2">
+      <div>
+        <h1 class="headline">Cyber Defense — FullStack Developer Intern</h1>
+        <p class="lead">
+          ประเภท: <strong>ฝึกงาน (สัมภาษณ์ออนไลน์)</strong> • ประจำออฟฟิศ
+        </p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px">
+          <span class="pill"><i class="fa-regular fa-user"></i> รับ 2 อัตรา</span>
+          <span class="pill"><i class="fa-regular fa-clock"></i> จ.–ศ. 09:00–18:00</span>
+          <span class="pill"><i class="fa-solid fa-location-dot"></i> สวนหลวง, กรุงเทพฯ</span>
+          <span class="pill"><i class="fa-regular fa-building"></i> Cyber Defense</span>
+        </div>
+      </div>
+      <div>
+        <div class="preview">
+          <img src="../images/w3.webp" alt="Cyber Defense office/illustration">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job facts -->
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>ข้อมูลโดยย่อ</h2></div>
+      <div class="facts">
+        <div class="card">
+          <strong>บทบาท/สิ่งที่จะได้ทำ</strong>
+          <ul class="list">
+            <li>พัฒนาเว็บแอปทั้ง Frontend และ Backend</li>
+            <li>ออกแบบฐานข้อมูล และเขียนคำสั่งบน ClickHouse / Elastic / OpenSearch</li>
+            <li>ทำงานกับเทคโนโลยี: Metabase*, React, Node.js, MongoDB</li>
+            <li>ทดสอบและปรับปรุงประสิทธิภาพระบบ • ร่วมวางแผนโปรเจกต์กับทีม</li>
+          </ul>
+          <div class="muted" style="margin-top:.4rem">*ในประกาศสะกดว่า “Metabased”</div>
+        </div>
+        <div class="card">
+          <strong>ทักษะที่เหมาะ</strong>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+            <span class="pill">JavaScript</span><span class="pill">Python</span><span class="pill">Java</span>
+            <span class="pill">React</span><span class="pill">Node.js</span><span class="pill">MongoDB</span>
+            <span class="pill">ClickHouse</span><span class="pill">Elastic</span><span class="pill">OpenSearch</span>
+          </div>
+        </div>
+        <div class="card">
+          <strong>สมัครงาน</strong>
+          <p class="muted" style="margin:.4rem 0 6px">สมัครผ่านหน้า InternTH เพื่อให้บริษัทติดตามสถานะได้</p>
+          <a class="cta primary" href="https://internth.com/job/8393" target="_blank" rel="noopener">
+            <i class="fa-regular fa-paper-plane"></i> ไปที่หน้า InternTH
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsibilities -->
+  <section id="responsibilities">
+    <div class="container">
+      <div class="section-head"><h2>หน้าที่ความรับผิดชอบ</h2></div>
+      <div class="card">
+        <ul class="list">
+          <li>พัฒนาและทดสอบเว็บแอป (ทั้งส่วนหน้าและส่วนหลัง)</li>
+          <li>ออกแบบฐานข้อมูล + เขียนคิวรี (ClickHouse/Elastic/OpenSearch)</li>
+          <li>ใช้เทคโนโลยีสมัยใหม่ เช่น Metabase, React, Node.js, MongoDB</li>
+          <li>ร่วมทีมในการวางแผนและสร้างโปรเจกต์ใหม่ ๆ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section id="requirements">
+    <div class="container">
+      <div class="section-head"><h2>คุณสมบัติผู้สมัคร</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>พื้นฐานที่ต้องมี</strong>
+          <ul class="list">
+            <li>ทำงานได้ทั้งฝั่ง Frontend และ Backend</li>
+            <li>ใช้ภาษาได้หลายชนิด เช่น JavaScript, Python, Java</li>
+            <li>ออกแบบฐานข้อมูล + เขียนคำสั่ง ClickHouse/Elastic/OpenSearch</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Framework/เครื่องมือ</strong>
+          <ul class="list">
+            <li>Metabase, React, Angular, Node.js</li>
+            <li>ทำงานร่วมทีมและเรียนรู้สิ่งใหม่ได้เร็ว</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>เวลาทำงาน</strong>
+          <ul class="list">
+            <li>5 วัน/สัปดาห์ • 09:00–18:00 น.</li>
+            <li>รูปแบบ: ประจำออฟฟิศ (On-site)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <div class="container">
+      <div class="section-head"><h2>เบี้ยเลี้ยง & สวัสดิการ</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>เบี้ยเลี้ยง</strong>
+          <ul class="list">
+            <li>200 บาท/วัน</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>สวัสดิการ</strong>
+          <ul class="list">
+            <li>โบนัส (ตามประกาศ)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>สถานที่</strong>
+          <ul class="list">
+            <li>NASA STREET Building B, 99/1 Room L, ถ.รามคำแหง, แขวง/เขตสวนหลวง, กรุงเทพฯ 10250</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Company info -->
+  <section id="contact" style="padding-top:40px; padding-bottom:64px; background:var(--bg-soft); border-top:1px solid var(--ring); border-bottom:1px solid var(--ring)">
+    <div class="container">
+      <div class="section-head"><h2>ข้อมูลบริษัท & ติดต่อ</h2></div>
+      <div class="cards">
+        <div class="card">
+          <strong>บริษัท</strong>
+          <p style="margin:.4rem 0">Cyber Defense • บริษัทเอกชน (เทคโนโลยี/ไอที/ซอฟต์แวร์)</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
+            <a class="pill" href="https://cyberdefense.co.th" target="_blank" rel="noopener">เว็บไซต์บริษัท</a>
+            <a class="pill" href="tel:+66982596261">098-259-6261</a>
+          </div>
+        </div>
+        <div class="card">
+          <strong>ช่องทางสมัคร</strong>
+          <p class="muted" style="margin:.4rem 0">สมัครผ่าน InternTH เพื่อให้บริษัทติดตามสถานะได้</p>
+          <a class="cta primary" href="https://internth.com/job/8393" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:8px">สรุปจากประกาศ InternTH</div>
+    </div>
+  </section>
+
+  <!-- Sticky apply (mobile) -->
+  <div class="apply-bar">
+    <div class="muted" style="font-weight:600">Cyber Defense – FullStack Dev Intern</div>
+    <a class="cta primary" href="https://internth.com/job/8393" target="_blank" rel="noopener">สมัครผ่าน InternTH</a>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact" class="contact-footer">
+    <div class="c-wrap">
+      <div class="c-card">
+        <div class="c-legal">
+          <div>© <span id="y"></span> Thidarat Portfolio</div>
+          <div class="c-social">
+            <a class="iconbtn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a class="iconbtn" href="https://github.com/treepalm3" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a class="iconbtn" href="mailto:Thidarat.bu@ksu.ac.th" aria-label="Email">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+            <a class="iconbtn" href="tel:+6698699901" aria-label="Phone">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    const yEl = document.getElementById('y'); if (yEl) yEl.textContent = new Date().getFullYear();
+
+    // ===== Mobile menu logic =====
+    const burger   = document.getElementById('hamburger');
+    const panel    = document.getElementById('mobilePanel');
+    const backdrop = document.getElementById('backdrop');
+    if (burger && panel && backdrop){
+      function openMenu(){
+        burger.setAttribute('aria-expanded','true');
+        panel.hidden = false; backdrop.hidden = false;
+        requestAnimationFrame(()=>{ panel.classList.add('active'); backdrop.classList.add('active'); });
+        document.body.classList.add('no-scroll');
+      }
+      function closeMenu(){
+        burger.setAttribute('aria-expanded','false');
+        panel.classList.remove('active'); backdrop.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        setTimeout(()=>{ panel.hidden = true; backdrop.hidden = true; }, 200);
+      }
+      function toggleMenu(){ (burger.getAttribute('aria-expanded') === 'true') ? closeMenu() : openMenu(); }
+      burger.addEventListener('click', toggleMenu);
+      backdrop.addEventListener('click', closeMenu);
+      window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 960 && burger.getAttribute('aria-expanded') === 'true') closeMenu();
+      });
+    }
+  </script>
+</body>
+</html>
